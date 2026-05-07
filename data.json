@@ -1,0 +1,400 @@
+{
+  "_comment": "EDIT THIS FILE TO CHANGE ANY TEXT OR LINK ON YOUR PORTFOLIO. After editing, push to Vercel — site updates automatically. HTML uses <strong>...</strong> for highlights, <br> for line breaks. **bold** in project narratives is the orange accent.",
+
+  "site": {
+    "title": "Artem Iskandirov — Product Designer",
+    "description": "Product Designer. Uchi.ru / VK EdTech. Based in Kazan.",
+    "brand": "Artem Iskandirov",
+    "splashName": "Artem Iskandirov",
+    "splashCta": "Enter — sound on",
+    "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
+  },
+
+  "tabs": {
+    "labelOverview": "01 — Overview",
+    "labelExperience": "02 — Experience",
+    "labelProjects": "03 — Projects",
+    "labelEducation": "04 — Education",
+    "labelSocial": "05 — Social",
+    "dockOverview": "Overview",
+    "dockExperience": "Experience",
+    "dockProjects": "Projects",
+    "dockEducation": "Education",
+    "dockSocial": "Social",
+    "hint": "to switch"
+  },
+
+  "themes": {
+    "cat": {
+      "name": "Artem",
+      "bio": "Product designer working on <strong>kids edtech, retail AI, and design systems</strong>. Currently <strong>Senior</strong> at Uchi.ru / VK EdTech.",
+      "meta": [
+        "<strong>7+ yrs</strong> design",
+        "Based in <strong>Kazan</strong>",
+        "Open to <strong>remote · hybrid · relocation</strong>"
+      ],
+      "statusText": "open to work",
+      "themeLabel": "Cat realm",
+      "gameLabel": "Play vs cat",
+      "gameTitle": "Tic-tac-toe vs cat",
+      "gameSub": "You are X · Cat is O · Cat cheats",
+      "statusYouWin": "<strong>You win!</strong> The cat is grumpy.",
+      "statusCatWin": "<strong>Cat wins!</strong> Of course it does.",
+      "statusDraw": "<strong>Draw.</strong> The cat purrs anyway.",
+      "statusCheat": "Cat cheated! It stole your <strong>X</strong>.",
+      "yourMove": "Your move.",
+      "catchTitle": "Catch the cat",
+      "catchSub": "30 seconds — tap as many as you can"
+    },
+    "fantasy": {
+      "name": "Artem",
+      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold.",
+      "meta": [
+        "<strong>Seven winters</strong> on the craft",
+        "From the city of <strong>Kazan</strong>",
+        "Open to <strong>far roads · remote keeps · relocation</strong>"
+      ],
+      "statusText": "awaiting a quest",
+      "themeLabel": "Fantasy realm",
+      "gameLabel": "Duel the dragon",
+      "gameTitle": "Duel the Dragon",
+      "gameSub": "You — Sword · Dragon — Sigil · It is no honest beast",
+      "statusYouWin": "<strong>The dragon falls.</strong> Songs shall be sung.",
+      "statusCatWin": "<strong>The dragon prevails.</strong> Run, mortal.",
+      "statusDraw": "<strong>A stalemate.</strong> The dragon snarls.",
+      "statusCheat": "The dragon cheats! It claims one of your sigils.",
+      "yourMove": "Your move, knight.",
+      "catchTitle": "Catch the dragon",
+      "catchSub": "30 seconds — tap as many as you can"
+    }
+  },
+
+  "overviewLinks": [
+    { "label": "Email",     "url": "mailto:art.iskandirov@gmail.com" },
+    { "label": "Telegram",  "url": "https://t.me/artemiskandirov" },
+    { "label": "LinkedIn",  "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/" },
+    { "label": "Channel",   "url": "https://t.me/kidstechdesign" }
+  ],
+
+  "experience": [
+    {
+      "period": "2023 — now",
+      "co": "uchi",
+      "initial": "U",
+      "name": "Uchi.ru / VK EdTech",
+      "role": "Senior Product Designer",
+      "tag": "Edtech · Mobile"
+    },
+    {
+      "period": "2024 — now",
+      "co": "miry",
+      "initial": "M",
+      "name": "Miry Avi",
+      "role": "Senior Product Designer · Part-time",
+      "tag": "Kids · Gamification"
+    },
+    {
+      "period": "2021 — 2023",
+      "co": "ailet",
+      "initial": "A",
+      "name": "Ailet · JedAI",
+      "role": "Product Designer",
+      "tag": "B2B SaaS · AI Vision"
+    },
+    {
+      "period": "2020 — 2021",
+      "co": "akbars",
+      "initial": "AK",
+      "name": "Ak Bars",
+      "role": "Product Designer",
+      "tag": "Fintech · Investments"
+    },
+    {
+      "period": "2018 — 2020",
+      "co": "bars",
+      "initial": "B",
+      "name": "BARS Group",
+      "role": "Product Designer",
+      "tag": "MedTech · 12 regions"
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "uchiru",
+      "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
+      "title": "Uchi.ru",
+      "subtitle": "Selflearning platform for kids",
+      "co": "Uchi.ru / VK EdTech",
+      "sector": "Edtech",
+      "period": "2023 → present",
+      "problem": "At the kids' core flow, **engagement was stagnating** because lessons felt monotonous after a few sessions.",
+      "approach": "I rebuilt the **learning loop with sound, gamification and a unified design system** across 1–4 grade.",
+      "outcome": "ARPU **+5%**, conversion rate **+7%**, won 1st AI hackathon",
+      "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
+      "state": "ongoing",
+      "tags": ["Edtech", "Design Systems", "Sound UX", "Gamification"],
+      "deeplink": "https://artemiskandirovv.framer.website/uchiru",
+      "gallery": 4
+    },
+    {
+      "id": "miryavi",
+      "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
+      "title": "Miry Avi · Speech",
+      "subtitle": "Speech-therapy app for preschool kids",
+      "co": "Miry Avi",
+      "sector": "Kids · Speech",
+      "period": "2024 → present",
+      "problem": "Speech therapy at home felt like a chore — kids dropped off and parents lost track of progress.",
+      "approach": "I designed **game mechanics, characters and a parallel parent flow** to keep both sides engaged.",
+      "outcome": "D7 retention up, **4.7★ on the App Store** at MVP",
+      "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
+      "state": "ongoing",
+      "tags": ["Kids", "Gamification", "Speech", "Mobile"],
+      "deeplink": "https://artemiskandirovv.framer.website/miryavi",
+      "gallery": 4
+    },
+    {
+      "id": "ailet",
+      "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
+      "title": "Ailet · JedAI",
+      "subtitle": "AI vision for retail & CPG",
+      "co": "Ailet",
+      "sector": "B2B SaaS",
+      "period": "2021 — 2023",
+      "problem": "Field merchandisers across **P&G, Coca-Cola and Mars** struggled with dense data and slow audits in stores.",
+      "approach": "I led **the analytics web platform and the mobile field app** — patterns adopted across all modules.",
+      "outcome": "CSAT/CSI **+5pp**, support load **−8%**, task rate up",
+      "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
+      "state": "shipped",
+      "tags": ["B2B SaaS", "AI Vision", "Field UX", "Web"],
+      "deeplink": "https://artemiskandirovv.framer.website/ailet",
+      "gallery": 4
+    },
+    {
+      "id": "conditional",
+      "title": "Conditional",
+      "subtitle": "Visual logic builder for non-tech analysts",
+      "co": "Ailet",
+      "sector": "No-code Tooling",
+      "period": "2022",
+      "problem": "Analysts had to write **JSON formulas by hand** to ship rules — every change burned engineering time.",
+      "approach": "I turned the formula syntax into a **visual logic UI** non-tech users could drag together.",
+      "outcome": "**Zero engineering** dependency, time-to-configure dropped",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": ["No-code", "Tooling", "Sub-case"],
+      "deeplink": "https://artemiskandirovv.framer.website/conditional",
+      "gallery": 3
+    },
+    {
+      "id": "portal",
+      "title": "Portal redesign",
+      "subtitle": "Detail page restructure",
+      "co": "Ailet",
+      "sector": "Web · Redesign",
+      "period": "2022",
+      "problem": "The portal detail page was a wall — users couldn't find primary actions or filter what they needed.",
+      "approach": "I rebuilt **information hierarchy, layout, primary CTAs and filters** from scratch.",
+      "outcome": "Task time down, NPS up",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": ["Web", "Redesign", "Sub-case"],
+      "deeplink": "https://artemiskandirovv.framer.website/portal",
+      "gallery": 3
+    },
+    {
+      "id": "mobileview",
+      "title": "Adaptive tables",
+      "subtitle": "Dense data on small screens",
+      "co": "Ailet",
+      "sector": "Mobile · Pattern",
+      "period": "2022",
+      "problem": "Complex tabular data didn't fit on phones — merchandisers in the field had to zoom and pan endlessly.",
+      "approach": "I designed a **responsive table pattern** — adopted across every module of the product.",
+      "outcome": "Mobile usability up across the platform",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": ["Mobile", "Pattern", "Sub-case"],
+      "deeplink": "https://artemiskandirovv.framer.website/mobileview",
+      "gallery": 3
+    },
+    {
+      "id": "realogram",
+      "title": "Realogram",
+      "subtitle": "Shelf recognition view",
+      "co": "Ailet",
+      "sector": "AI Vision · Data viz",
+      "period": "2022",
+      "problem": "Auditors couldn't tell **what the AI saw** on a shelf photo — overlays were too dense and unreadable.",
+      "approach": "I designed **layered overlays** so anyone can read AI's recognition results on a real photo.",
+      "outcome": "Audit speed up significantly",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": ["AI Vision", "Data viz", "Sub-case"],
+      "deeplink": "https://artemiskandirovv.framer.website/realogram",
+      "gallery": 3
+    },
+    {
+      "id": "soundux",
+      "title": "Sound UX",
+      "subtitle": "Talk at Chulakov Design Meetup",
+      "co": "Speaking",
+      "sector": "Talk",
+      "period": "Jul 2024",
+      "problem": "Sound is **the most ignored interface layer** — designers leave it to engineers and lose product feel.",
+      "approach": "A 25-minute talk on **how sound shapes product feel** — lessons from Uchi.ru, kids UX, metrics.",
+      "outcome": "**300+ designers** in the audience",
+      "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
+      "state": "live",
+      "tags": ["Speaking", "Sound", "Talk"],
+      "deeplink": "https://t.me/kidstechdesign/74",
+      "gallery": 2
+    },
+    {
+      "id": "haptics",
+      "title": "Custom Vibrations",
+      "subtitle": "iOS app for crafting haptics",
+      "co": "Solo project",
+      "sector": "Side · iOS",
+      "period": "2025",
+      "problem": "Designing haptic patterns means **describing them in slack** — nobody can feel a Figma frame.",
+      "approach": "I vibe-coded an iOS app in **Cursor + SwiftUI** to test custom haptics before pitching them.",
+      "outcome": "Tested 30+ patterns, picks ship to production",
+      "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
+      "state": "live",
+      "tags": ["Side", "iOS", "Haptics", "SwiftUI"],
+      "deeplink": "https://t.me/kidstechdesign/113",
+      "gallery": 2
+    },
+    {
+      "id": "tg-digester",
+      "title": "Telegram Digester",
+      "subtitle": "No-code summary bot",
+      "co": "Solo project",
+      "sector": "Side · AI",
+      "period": "2025",
+      "problem": "My channel feed grew faster than I could read it — important posts kept slipping through.",
+      "approach": "I assembled a **no-code TG bot** that ChatGPT summarises into one daily digest message.",
+      "outcome": "Daily digest in **1 message**",
+      "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
+      "state": "live",
+      "tags": ["Side", "AI", "No-code"],
+      "deeplink": "https://t.me/kidstechdesign/121",
+      "gallery": 2
+    },
+    {
+      "id": "bi-agent",
+      "title": "BI Agent",
+      "subtitle": "Chat-style insights over BI data",
+      "co": "Solo project",
+      "sector": "Side · AI",
+      "period": "2025",
+      "problem": "Retail dashboards are dense — most managers want **the answer**, not the chart.",
+      "approach": "I designed and built an **LLM agent** that talks to BI data and answers questions in chat.",
+      "outcome": "Skip the dashboard, get the answer",
+      "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
+      "state": "live",
+      "tags": ["Side", "AI Agent", "Retail"],
+      "deeplink": "https://t.me/kidstechdesign/117",
+      "gallery": 2
+    }
+  ],
+
+  "education": [
+    {
+      "year": "2018",
+      "school": "KNRTU-KAI",
+      "degree": "M.Sc., Microelectronics · Kazan"
+    },
+    {
+      "year": "2016",
+      "school": "KNRTU-KAI",
+      "degree": "B.Sc., Nanotechnology · Kazan"
+    }
+  ],
+
+  "skills": [
+    "Figma", "FigJam", "Sketch", "Framer",
+    "UI / UX", "Design Systems", "Prototyping",
+    "Photoshop", "Illustrator", "After Effects",
+    "Lottie", "Spline", "Blender", "3D",
+    "Cursor", "Xcode", "SwiftUI",
+    "Notion", "Confluence", "Jira", "Miro",
+    "Sound design", "Haptics",
+    "User research", "A/B testing", "Analytics"
+  ],
+
+  "languages": [
+    { "name": "Russian", "level": "Native" },
+    { "name": "English", "level": "B1" }
+  ],
+
+  "social": [
+    {
+      "side": "Telegram",
+      "name": "@artemiskandirov",
+      "tag": "Direct",
+      "arrow": "open ↗",
+      "url": "https://t.me/artemiskandirov"
+    },
+    {
+      "side": "Channel",
+      "name": "@kidstechdesign",
+      "tag": "Notes on design",
+      "arrow": "open ↗",
+      "url": "https://t.me/kidstechdesign"
+    },
+    {
+      "side": "Email",
+      "name": "art.iskandirov@gmail.com",
+      "tag": "Hi there",
+      "arrow": "write ↗",
+      "url": "mailto:art.iskandirov@gmail.com"
+    },
+    {
+      "side": "LinkedIn",
+      "name": "artem-iskandirov",
+      "tag": "Profile",
+      "arrow": "open ↗",
+      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+    },
+    {
+      "side": "CV",
+      "name": "hh.ru resume",
+      "tag": "Long version",
+      "arrow": "open ↗",
+      "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    }
+  ],
+
+  "labels": {
+    "stateOngoing": "Ongoing",
+    "stateLive": "Live",
+    "stateShipped": "Shipped",
+    "toolsLabel": "Tools",
+    "languagesLabel": "Languages",
+    "galleryLabel": "Gallery — coming soon",
+    "openCase": "Open full case ↗",
+    "outcomePrefix": "As a result —",
+    "frameLabel": "Frame",
+    "gameTabTtt": "Tic-tac-toe",
+    "gameTabCatch": "Catch the cat",
+    "gameNewRound": "New round",
+    "gameStartRound": "Start round",
+    "gameStop": "Stop",
+    "gamePlayAgain": "Play again",
+    "catchScoreLabel": "Score",
+    "catchBestLabel": "Best",
+    "catchTimeLabel": "Time",
+    "catchCaught": "caught"
+  },
+
+  "catBubbles": {
+    "awake": ["hi.", "mrr?", "oh hello", "pet me", "meow.", "...?"],
+    "purring": ["purr...", "mmmm", "happy cat", "don't stop"],
+    "annoyed": ["enough.", "go away", "hmph", "rude."],
+    "playful": ["play with me!", "bouncy", "yay!", "weeee"],
+    "startled": ["eep!", "!!!", "agh!"]
+  }
+}
