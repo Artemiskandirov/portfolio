@@ -4909,22 +4909,36 @@ const splash = document.getElementById('splash');
 document.getElementById('splashEnter').addEventListener('click', async () => {
   sfx.init(); sfx.resume(); sfx.enter();
   splash.classList.add('hide');
-  // ensure data loaded (retry quickly if not yet)
-  if (!DATA) await loadData();
-  renderAll();
-  buildName(); // names use DATA.themes[currentTheme].name
+  // Make sure DATA exists. If load is still pending, race it against a 1.5s timeout.
+  // If it never resolves (404, 401, offline) — use the embedded FALLBACK_DATA so the site always renders.
+  if (!DATA) {
+    try {
+      await Promise.race([
+        loadData(),
+        new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 1500))
+      ]);
+    } catch (e) {
+      console.warn('using fallback data:', e);
+      DATA = FALLBACK_DATA;
+    }
+  }
+  if (!DATA) DATA = FALLBACK_DATA;
+  try { renderAll(); } catch (e) { console.error('renderAll failed:', e); }
+  try { buildName(); } catch (e) { console.error('buildName failed:', e); }
   setTimeout(() => {
-    goTo(0, false);
-    requestAnimationFrame(() => positionIndicator(dock.querySelectorAll('.dock-tab')[0]));
-    scheduleThief();
-    buildTrees(); buildKnight(); buildFireflies(); buildBat();
-    buildSleepingCat();
-    startZLoop();
-    bindCatBed();
-    startIdleLoop();
-    requestAnimationFrame(tickFire);
-    setTimeout(shootingStarLoop, 6000);
-    setTimeout(batLoop, 12000);
+    try {
+      goTo(0, false);
+      requestAnimationFrame(() => positionIndicator(dock.querySelectorAll('.dock-tab')[0]));
+      scheduleThief();
+      buildTrees(); buildKnight(); buildFireflies(); buildBat();
+      buildSleepingCat();
+      startZLoop();
+      bindCatBed();
+      startIdleLoop();
+      requestAnimationFrame(tickFire);
+      setTimeout(shootingStarLoop, 6000);
+      setTimeout(batLoop, 12000);
+    } catch (e) { console.error('init failed:', e); }
   }, 200);
 });
 
