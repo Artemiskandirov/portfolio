@@ -878,13 +878,134 @@
   }
   /* sticky background plate on text-heavy tabs to lift legibility above forest */
   body.theme-fantasy .education-wrap,
-  body.theme-fantasy .list-wrap {
-    background: linear-gradient(180deg, rgba(10,14,26,0.55) 0%, rgba(10,14,26,0.7) 80%, rgba(10,14,26,0.4) 100%);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    padding: 18px 16px;
-    margin: -18px -16px;
+  body.theme-fantasy .list-wrap,
+  body.theme-fantasy .projects-wrap,
+  body.theme-fantasy .ov-wrap {
+    background: linear-gradient(180deg, rgba(10,14,26,0.72) 0%, rgba(10,14,26,0.85) 50%, rgba(10,14,26,0.6) 100%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 28px 26px;
+    margin-left: 0;
+    margin-right: auto;
+    max-width: min(620px, 56vw);
+    border: 1px solid rgba(255, 160, 80, 0.18);
+    box-shadow: 0 0 40px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.25);
+    /* torn parchment edges */
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600' preserveAspectRatio='none'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='3' seed='11'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='10'/%3E%3C/filter%3E%3Crect x='6' y='6' width='388' height='588' fill='%23fff' filter='url(%23t)'/%3E%3C/svg%3E");
+    mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600' preserveAspectRatio='none'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='3' seed='11'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='10'/%3E%3C/filter%3E%3Crect x='6' y='6' width='388' height='588' fill='%23fff' filter='url(%23t)'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
+  /* fantasy main content shift left + push padding from header */
+  body.theme-fantasy main {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  /* on small screens, restore center to keep readability */
+  @media (max-width: 900px) {
+    body.theme-fantasy .education-wrap,
+    body.theme-fantasy .list-wrap,
+    body.theme-fantasy .projects-wrap,
+    body.theme-fantasy .ov-wrap {
+      max-width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  /* === UNIQUE HOVERS PER SECTION IN FANTASY THEME === */
+  /* Overview — golden ember glow on links */
+  body.theme-fantasy [data-tab="overview"] .ov-link {
+    transition: color 0.3s, text-shadow 0.4s, transform 0.5s var(--easing-bounce);
+  }
+  body.theme-fantasy [data-tab="overview"] .ov-link:hover {
+    color: #ffd060;
+    text-shadow: 0 0 14px rgba(255, 200, 80, 0.6), 0 0 24px rgba(255, 138, 58, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Experience — torch flame on the avatar circle */
+  body.theme-fantasy [data-tab="experience"] .exp-row {
+    transition: background 0.4s, box-shadow 0.5s, transform 0.5s var(--easing-out);
+  }
+  body.theme-fantasy [data-tab="experience"] .exp-row:hover {
+    background: linear-gradient(90deg, rgba(255,138,58,0.10), transparent 70%);
+    box-shadow: inset 4px 0 0 #ff8a3a, 0 0 28px rgba(255, 138, 58, 0.22);
+    transform: translateX(6px);
+  }
+  body.theme-fantasy [data-tab="experience"] .exp-row:hover .exp-avatar {
+    box-shadow: 0 0 16px #ff8a3a, 0 0 28px rgba(255, 138, 58, 0.5);
+    transform: scale(1.15) rotate(-6deg);
+  }
+
+  /* Projects — sigil bloom around the card */
+  body.theme-fantasy [data-tab="projects"] .pcard {
+    transition: border-color 0.4s, box-shadow 0.6s var(--easing-out), transform 0.5s var(--easing-out);
+  }
+  body.theme-fantasy [data-tab="projects"] .pcard:hover:not(.expanded) {
+    border-color: #ffd060;
+    box-shadow:
+      0 0 0 1px rgba(255, 200, 80, 0.4),
+      0 0 40px rgba(255, 138, 58, 0.35),
+      0 14px 30px rgba(0, 0, 0, 0.55);
+    transform: translateY(-5px) scale(1.005);
+  }
+
+  /* Education — silver-blue rune shimmer on skills */
+  body.theme-fantasy [data-tab="education"] .skills-list li {
+    transition: background 0.4s, color 0.3s, text-shadow 0.4s, transform 0.4s var(--easing-bounce);
+  }
+  body.theme-fantasy [data-tab="education"] .skills-list li:hover {
+    color: #cde0ff;
+    background: rgba(140, 180, 240, 0.18);
+    text-shadow: 0 0 10px rgba(180, 210, 255, 0.7);
+    transform: translateY(-2px) scale(1.05);
+  }
+  body.theme-fantasy [data-tab="education"] .lang-item:hover .lvl {
+    color: #cde0ff;
+    text-shadow: 0 0 8px rgba(180, 210, 255, 0.6);
+  }
+  body.theme-fantasy [data-tab="education"] .edu-block {
+    transition: transform 0.4s var(--easing-out);
+  }
+  body.theme-fantasy [data-tab="education"] .edu-block:hover {
+    transform: translateX(6px);
+  }
+  body.theme-fantasy [data-tab="education"] .edu-block:hover .edu-school {
+    color: #ffd060;
+    text-shadow: 0 0 10px rgba(255, 200, 80, 0.5);
+  }
+
+  /* Social — green herald banner sweep */
+  body.theme-fantasy [data-tab="social"] .soc-row {
+    transition: background 0.4s, box-shadow 0.5s, transform 0.5s var(--easing-out);
+    position: relative;
+    overflow: hidden;
+  }
+  body.theme-fantasy [data-tab="social"] .soc-row::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(120, 200, 140, 0.18), transparent);
+    transition: left 0.7s var(--easing-out);
+    pointer-events: none;
+  }
+  body.theme-fantasy [data-tab="social"] .soc-row:hover {
+    box-shadow: inset 4px 0 0 #6ac888, 0 0 22px rgba(120, 200, 140, 0.25);
+    transform: translateX(6px);
+  }
+  body.theme-fantasy [data-tab="social"] .soc-row:hover::before { left: 100%; }
+  body.theme-fantasy [data-tab="social"] .soc-row:hover .soc-name {
+    color: #b0e8c0;
+    text-shadow: 0 0 8px rgba(140, 220, 170, 0.5);
+  }
+  body.theme-fantasy [data-tab="social"] .soc-row:hover .soc-arrow {
+    transform: translate(4px, -4px);
+    color: #6ac888;
+  }
+
   .ov-name .word { display: inline-block; overflow: hidden; vertical-align: top; }
   .ov-name .letter {
     display: inline-block;
@@ -4248,13 +4369,98 @@ function shootingStarLoop() {
   setTimeout(shootingStarLoop, 14000 + Math.random() * 16000);
 }
 
+/* === CAMPFIRE — 6-frame pixel animation === */
+const FIRE_FRAMES = [
+  // frame 1 — calm flame
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="9" y="3" width="2" height="2" fill="#fff5b0"/>'
+    + '<rect x="8" y="4" width="4" height="3" fill="#ffd060"/>'
+    + '<rect x="7" y="6" width="6" height="4" fill="#ffa030"/>'
+    + '<rect x="6" y="9" width="8" height="4" fill="#ff6018"/>'
+    + '<rect x="5" y="12" width="10" height="2" fill="#d04010"/>'
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'   // log
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>',
+  // frame 2 — taller
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="9" y="1" width="2" height="2" fill="#fff5b0"/>'
+    + '<rect x="8" y="3" width="4" height="3" fill="#ffd060"/>'
+    + '<rect x="7" y="5" width="6" height="5" fill="#ffa030"/>'
+    + '<rect x="6" y="9" width="8" height="4" fill="#ff6018"/>'
+    + '<rect x="5" y="12" width="10" height="2" fill="#d04010"/>'
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>',
+  // frame 3 — leaning right
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="10" y="2" width="2" height="2" fill="#fff5b0"/>'
+    + '<rect x="9" y="4" width="4" height="3" fill="#ffd060"/>'
+    + '<rect x="8" y="6" width="5" height="4" fill="#ffa030"/>'
+    + '<rect x="6" y="9" width="8" height="4" fill="#ff6018"/>'
+    + '<rect x="5" y="12" width="10" height="2" fill="#d04010"/>'
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>',
+  // frame 4 — leaning left
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="8" y="2" width="2" height="2" fill="#fff5b0"/>'
+    + '<rect x="7" y="4" width="4" height="3" fill="#ffd060"/>'
+    + '<rect x="7" y="6" width="5" height="4" fill="#ffa030"/>'
+    + '<rect x="6" y="9" width="8" height="4" fill="#ff6018"/>'
+    + '<rect x="5" y="12" width="10" height="2" fill="#d04010"/>'
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>',
+  // frame 5 — small with embers
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="9" y="4" width="2" height="1" fill="#fff5b0"/>'
+    + '<rect x="8" y="5" width="4" height="3" fill="#ffd060"/>'
+    + '<rect x="7" y="7" width="6" height="3" fill="#ffa030"/>'
+    + '<rect x="6" y="9" width="8" height="4" fill="#ff6018"/>'
+    + '<rect x="5" y="12" width="10" height="2" fill="#d04010"/>'
+    + '<rect x="6" y="2" width="1" height="1" fill="#ff8030"/>'    // ember
+    + '<rect x="13" y="3" width="1" height="1" fill="#ffa050"/>'   // ember
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>',
+  // frame 6 — wide flicker
+  '<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="width:100%;height:100%;display:block;image-rendering:pixelated">'
+    + '<rect x="9" y="2" width="2" height="2" fill="#fff5b0"/>'
+    + '<rect x="7" y="4" width="6" height="3" fill="#ffd060"/>'
+    + '<rect x="6" y="6" width="8" height="4" fill="#ffa030"/>'
+    + '<rect x="5" y="9" width="10" height="4" fill="#ff6018"/>'
+    + '<rect x="4" y="12" width="12" height="2" fill="#d04010"/>'
+    + '<rect x="4" y="14" width="12" height="2" fill="#6a2818"/>'
+    + '<rect x="3" y="15" width="14" height="2" fill="#4a1a10"/>'
+    + '<rect x="6" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '<rect x="12" y="16" width="2" height="1" fill="#8a4a20"/>'
+    + '</svg>'
+];
+
+let _lastFireFrame = -1;
+let _lastFireSwap = 0;
 function tickFire() {
   const el = document.getElementById('sceneCampfire');
   if (el) {
-    const frames = ['campfire1', 'campfire2', 'campfire3', 'campfire4', 'campfire5', 'campfire6'];
-    const t = Math.floor(Date.now() / 130) % frames.length;
-    el.dataset.frame = String(t);
-    // optionally spawn a spark
+    const now = Date.now();
+    if (now - _lastFireSwap > 130) {
+      const t = Math.floor(now / 130) % FIRE_FRAMES.length;
+      if (t !== _lastFireFrame) {
+        el.innerHTML = FIRE_FRAMES[t];
+        _lastFireFrame = t;
+      }
+      _lastFireSwap = now;
+    }
     if (Math.random() < 0.15) spawnSpark();
   }
   requestAnimationFrame(tickFire);
