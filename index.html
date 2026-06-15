@@ -702,6 +702,47 @@
 
   .header-right { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
+  /* LANGUAGE TOGGLE */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 11px;
+    border-radius: 100px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px) saturate(1.5);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: border-color 0.3s var(--easing), box-shadow 0.4s var(--easing);
+    height: 34px;
+  }
+  .lang-toggle:hover { border-color: var(--fg); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .lang-opt { color: var(--fg-dim); transition: color 0.3s var(--easing); }
+  .lang-opt.active { color: var(--fg); }
+  .lang-sep { color: var(--fg-dim); opacity: 0.5; }
+  body.theme-fantasy .lang-toggle {
+    background: rgba(20, 18, 30, 0.85);
+    border-color: var(--accent);
+    box-shadow: 0 0 14px rgba(255, 138, 58, 0.2);
+    border-radius: 0;
+    -webkit-mask: var(--torn-pill);
+    mask: var(--torn-pill);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  body.theme-fantasy .lang-opt { font-family: 'MedievalSharp', monospace; font-size: 13px; }
+  body.theme-fantasy .lang-opt.active { color: var(--accent); }
+  @media (max-width: 768px) {
+    .lang-toggle { height: 30px; padding: 5px 9px; font-size: 10px; }
+  }
+
   .status {
     display: inline-flex; align-items: center; gap: 8px;
     color: var(--fg-mid);
@@ -1165,6 +1206,8 @@
   .tab-view.active .pcard:nth-child(9) { animation-delay: 0.48s; }
   .tab-view.active .pcard:nth-child(10) { animation-delay: 0.53s; }
   .tab-view.active .pcard:nth-child(11) { animation-delay: 0.58s; }
+  .tab-view.active .pcard:nth-child(12) { animation-delay: 0.63s; }
+  .tab-view.active .pcard:nth-child(13) { animation-delay: 0.68s; }
   @keyframes cardReveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
   .pcard-text { padding: 22px 22px 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
@@ -1609,7 +1652,7 @@
     image-rendering: pixelated; will-change: transform, opacity;
   }
   .pixel-cat {
-    width: 64px; height: 64px;
+    width: 80px; height: 80px;
     z-index: 25;
     transform-origin: center bottom;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
@@ -1626,10 +1669,10 @@
     65%  { transform: scale(1) translateY(0); }
     100% { transform: scale(0.85) translateY(-12px); opacity: 0; }
   }
-  .pixel-thief { width: 72px; height: 72px; z-index: 60; opacity: 0; }
+  .pixel-thief { width: 84px; height: 84px; z-index: 60; opacity: 0; }
   .pixel-thief svg { width: 100%; height: 100%; display: block; }
   .pixel-edge-cat {
-    width: 90px; height: 90px;
+    width: 104px; height: 104px;
     z-index: 24;
     transition: transform 0.6s var(--easing-bounce), opacity 0.4s var(--easing);
     opacity: 0;
@@ -1680,72 +1723,6 @@
   }
   body.theme-fantasy .game-close { border-color: var(--accent); color: var(--accent); }
   .game-close:hover { background: var(--fg); color: var(--bg); transform: rotate(90deg); }
-  .game-board {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
-    margin-bottom: 18px;
-    background: var(--line); padding: 6px;
-    border-radius: 14px; aspect-ratio: 1;
-  }
-  body.theme-fantasy .game-board { background: var(--line-strong); }
-  .game-cell {
-    background: var(--bg-glass);
-    border-radius: 10px; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.3s var(--easing), transform 0.3s var(--easing-bounce);
-    position: relative; overflow: hidden;
-    image-rendering: pixelated;
-  }
-  body.theme-fantasy .game-cell { background: rgba(20, 16, 30, 0.7); }
-  .game-cell:hover:not(:disabled) { background: var(--bg); transform: scale(1.02); }
-  body.theme-fantasy .game-cell:hover:not(:disabled) { background: rgba(255, 138, 58, 0.15); }
-  .game-cell:disabled { cursor: default; }
-  .game-cell svg { width: 70%; height: 70%; image-rendering: pixelated; }
-  .game-cell.win { background: rgba(68, 184, 122, 0.18); animation: winPulse 0.6s var(--easing-bounce); }
-  body.theme-fantasy .game-cell.win { background: rgba(255, 138, 58, 0.4); }
-  .game-cell.cheat { animation: cheatShake 0.4s ease-in-out; }
-  @keyframes winPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-  @keyframes cheatShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-3px) rotate(-1deg); }
-    75% { transform: translateX(3px) rotate(1deg); }
-  }
-  .game-status { text-align: center; font-size: 13px; color: var(--fg-mid); margin-bottom: 14px; min-height: 18px; }
-  .game-status strong { color: var(--fg); font-weight: 600; }
-  body.theme-fantasy .game-status strong { color: var(--accent); }
-  .game-actions { display: flex; justify-content: center; gap: 10px; }
-  .game-btn-action {
-    padding: 8px 16px;
-    border-radius: 100px;
-    border: 1px solid var(--line);
-    background: var(--bg-glass); color: var(--fg);
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; font-weight: 500;
-    transition: all 0.3s var(--easing);
-  }
-  body.theme-fantasy .game-btn-action { border-color: var(--accent); }
-  body.theme-fantasy .game-btn-action {
-    -webkit-mask: var(--torn-pill);
-    mask: var(--torn-pill);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    border-radius: 0;
-  }
-  body.theme-fantasy .game-modal {
-    -webkit-mask: var(--torn-rect);
-    mask: var(--torn-rect);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    border-radius: 0;
-  }
-  .game-btn-action:hover { background: var(--fg); color: var(--bg); transform: translateY(-1px); }
-  body.theme-fantasy .game-btn-action:hover { background: var(--accent); color: #0a0e1a; }
-
-  /* GAME — multi-game tabs and Catch */
   .game-tabs {
     display: flex; gap: 4px;
     margin-bottom: 18px;
@@ -1779,90 +1756,171 @@
   .game-pane.active { display: block; animation: paneIn 0.3s var(--easing-out); }
   @keyframes paneIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* CATCH game */
-  .catch-board {
-    width: 100%;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #f7f5ee, #efece2);
-    border-radius: 14px;
-    border: 1px solid var(--line);
+  /* ============ GAME: PERFECT TIMING (Pounce/Strike) ============ */
+  .pg-hud {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px; gap: 10px;
+  }
+  .pg-stat { display: flex; flex-direction: column; gap: 2px; }
+  .pg-stat .k { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-dim); }
+  .pg-stat .v { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--fg); line-height: 1; }
+  body.theme-fantasy .pg-stat .v { color: var(--accent); }
+  .pg-combo {
+    font-family: var(--font-display); font-weight: 700; font-size: 18px;
+    color: var(--accent); text-align: center; min-height: 22px;
+    transition: transform 0.2s var(--easing-bounce); opacity: 0;
+  }
+  .pg-combo.show { opacity: 1; }
+  .pg-combo.bump { animation: comboBump 0.35s var(--easing-bounce); }
+  @keyframes comboBump { 0% { transform: scale(1); } 40% { transform: scale(1.5) rotate(-3deg); } 100% { transform: scale(1); } }
+
+  .pg-arena {
     position: relative;
-    overflow: hidden;
-    margin-bottom: 14px;
-  }
-  body.theme-fantasy .catch-board {
-    background: linear-gradient(135deg, #1a1830, #0a0e1a);
-    border-color: var(--line-strong);
-    border-radius: 0;
-  }
-  .catch-creature {
-    position: absolute;
-    width: 56px; height: 56px;
-    image-rendering: pixelated;
-    cursor: pointer;
-    will-change: transform, opacity;
-    user-select: none;
-    transition: transform 0.18s var(--easing-bounce);
-    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.18));
-  }
-  .catch-creature:hover { transform: scale(1.1); }
-  .catch-creature.popped {
-    pointer-events: none;
-    animation: popOut 0.45s var(--easing-out) forwards;
-  }
-  @keyframes popOut {
-    0%   { transform: scale(1) rotate(0); opacity: 1; }
-    50%  { transform: scale(1.4) rotate(8deg); opacity: 0.7; }
-    100% { transform: scale(0) rotate(-12deg); opacity: 0; }
-  }
-  .catch-points-burst {
-    position: absolute;
-    pointer-events: none;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--accent);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    animation: pointsBurst 0.9s var(--easing-out) forwards;
-  }
-  body.theme-fantasy .catch-points-burst { color: #ffd060; }
-  @keyframes pointsBurst {
-    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
-    20%  { transform: translate(-50%, -60%) scale(1.2); opacity: 1; }
-    100% { transform: translate(-50%, -120%) scale(0.9); opacity: 0; }
-  }
-
-  .catch-hud {
-    display: flex; justify-content: space-between;
-    margin-bottom: 12px;
-    font-family: var(--font-mono); font-size: 11px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .catch-hud .stat { display: flex; flex-direction: column; gap: 2px; }
-  .catch-hud .stat .k { color: var(--fg-dim); font-size: 9px; }
-  .catch-hud .stat .v { color: var(--fg); font-size: 18px; font-weight: 600; font-family: var(--font-display); }
-  body.theme-fantasy .catch-hud .stat .v { color: var(--accent); }
-
-  .catch-cta {
-    width: 100%;
-    padding: 12px;
-    border-radius: 100px;
+    background: linear-gradient(160deg, #f4f1e8, #e8e4d8);
     border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 36px 24px 28px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    min-height: 230px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  }
+  body.theme-fantasy .pg-arena {
+    background: linear-gradient(160deg, #1a1830, #0a0e1a);
+    border-color: var(--line-strong); border-radius: 0;
+  }
+  .pg-arena.shake { animation: arenaShake 0.4s ease-in-out; }
+  @keyframes arenaShake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px) rotate(-0.4deg); }
+    40% { transform: translateX(8px) rotate(0.4deg); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+
+  /* target creature in center */
+  .pg-target {
+    width: 78px; height: 78px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s var(--easing-bounce);
+    z-index: 2;
+  }
+  .pg-target.hit { animation: targetHit 0.5s var(--easing-bounce); }
+  @keyframes targetHit {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.45) rotate(8deg); }
+    100% { transform: scale(1); }
+  }
+  .pg-target.miss { animation: targetMiss 0.5s ease-in; }
+  @keyframes targetMiss {
+    0% { transform: scale(1) rotate(0); opacity: 1; }
+    100% { transform: scale(0.7) rotate(-20deg) translateY(20px); opacity: 0.3; }
+  }
+  .pg-target-icon { width: 100%; height: 100%; image-rendering: pixelated; }
+  .pg-target-icon svg { width: 100%; height: 100%; display: block; }
+
+  /* timing track */
+  .pg-track {
+    position: relative;
+    width: 100%; max-width: 360px; height: 44px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+    z-index: 2;
+  }
+  body.theme-fantasy .pg-track { background: rgba(255,255,255,0.06); border-radius: 0; }
+  .pg-zone {
+    position: absolute; top: 0; height: 100%;
+    background: linear-gradient(90deg, rgba(68,184,122,0.3), rgba(68,184,122,0.55), rgba(68,184,122,0.3));
+    border-left: 2px solid #44b87a; border-right: 2px solid #44b87a;
+    box-shadow: 0 0 16px rgba(68,184,122,0.5);
+  }
+  body.theme-fantasy .pg-zone {
+    background: linear-gradient(90deg, rgba(255,160,70,0.3), rgba(255,160,70,0.6), rgba(255,160,70,0.3));
+    border-color: #ffa040; box-shadow: 0 0 16px rgba(255,160,70,0.6);
+  }
+  .pg-zone.perfect-core {
+    background: linear-gradient(90deg, rgba(255,210,80,0.4), rgba(255,210,80,0.7), rgba(255,210,80,0.4));
+  }
+  .pg-marker {
+    position: absolute; top: -2px; height: calc(100% + 4px); width: 5px;
     background: var(--fg);
-    color: var(--bg);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 3;
+  }
+  body.theme-fantasy .pg-marker { background: #fff5e0; box-shadow: 0 0 12px rgba(255,220,150,0.8); }
+
+  .pg-flash {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 60%);
+    opacity: 0; z-index: 4;
+  }
+  .pg-flash.fire { animation: pgFlash 0.4s ease-out; }
+  @keyframes pgFlash { 0% { opacity: 0.8; } 100% { opacity: 0; } }
+  body.theme-fantasy .pg-flash { background: radial-gradient(circle, rgba(255,200,120,0.85), transparent 60%); }
+
+  .pg-msg {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-display); font-weight: 700; font-size: 15px;
+    letter-spacing: 0.02em; pointer-events: none; opacity: 0; z-index: 5;
+    white-space: nowrap;
+  }
+  .pg-msg.show { animation: pgMsgPop 1s var(--easing-out); }
+  @keyframes pgMsgPop {
+    0% { opacity: 0; transform: translate(-50%, 8px) scale(0.7); }
+    25% { opacity: 1; transform: translate(-50%, 0) scale(1.1); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -14px) scale(1); }
+  }
+
+  .pg-spark {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    background: #ffd060; pointer-events: none; z-index: 4;
+    box-shadow: 0 0 8px #ffae40;
+  }
+
+  .pg-cta, .ec-cta {
+    width: 100%; padding: 14px;
+    border-radius: 100px; border: 1px solid var(--line);
+    background: var(--fg); color: var(--bg);
     font-family: var(--font-mono); font-size: 11px;
     letter-spacing: 0.1em; text-transform: uppercase;
     cursor: pointer; font-weight: 600;
-    transition: transform 0.4s var(--easing-bounce), box-shadow 0.4s var(--easing);
+    transition: transform 0.4s var(--easing-bounce), box-shadow 0.4s var(--easing), background 0.3s;
   }
-  .catch-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
-  body.theme-fantasy .catch-cta {
-    background: var(--accent); color: #0a0e1a; border-color: var(--accent);
-    border-radius: 0;
+  .pg-cta:hover, .ec-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+  body.theme-fantasy .pg-cta, body.theme-fantasy .ec-cta {
+    background: var(--accent); color: #0a0e1a; border-color: var(--accent); border-radius: 0;
     -webkit-mask: var(--torn-pill); mask: var(--torn-pill);
     -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   }
+
+  /* ============ GAME: ECHO (memory) ============ */
+  .ec-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 16px;
+    aspect-ratio: 1.3;
+  }
+  .ec-pad {
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.15s var(--easing), filter 0.15s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+    background: var(--c, #ccc);
+    opacity: 0.45;
+  }
+  body.theme-fantasy .ec-pad { border-radius: 0; border-color: var(--line-strong); }
+  .ec-pad[data-pad="0"] { --c: #4a90e2; }
+  .ec-pad[data-pad="1"] { --c: #e85a6b; }
+  .ec-pad[data-pad="2"] { --c: #44b87a; }
+  .ec-pad[data-pad="3"] { --c: #f0a830; }
+  .ec-pad.lit { opacity: 1; filter: brightness(1.3); transform: scale(0.96); box-shadow: 0 0 30px var(--c); }
+  .ec-pad:active { transform: scale(0.94); }
+  .ec-grid.locked .ec-pad { cursor: default; }
+
   @media (max-width: 768px) {
     header { padding: 16px 16px; }
     .status { display: none; }
@@ -1944,6 +2002,11 @@
   <div class="brand" id="brand"></div>
   <div class="header-right">
     <span class="status"><span class="status-dot"></span><span id="statusText">open to work</span></span>
+    <button class="lang-toggle" id="langBtn" title="Language" aria-label="Switch language">
+      <span class="lang-opt" data-lang="en">EN</span>
+      <span class="lang-sep">/</span>
+      <span class="lang-opt" data-lang="ru">RU</span>
+    </button>
     <button class="theme-toggle" id="themeBtn" title="Switch realm" aria-label="Switch realm">
       <span class="theme-toggle-pill"></span>
       <span class="theme-toggle-side" data-side="cat">
@@ -2058,27 +2121,50 @@
     <div class="game-head">
       <div>
         <div class="game-title" id="gameTitleEl">Games</div>
-        <div class="game-sub" id="gameSubEl">Choose a game</div>
+        <div class="game-sub" id="gameSubEl">Pick a game</div>
       </div>
       <button class="game-close" id="gameClose">×</button>
     </div>
     <div class="game-tabs" id="gameTabs">
-      <button class="game-tab active" data-game="ttt">Tic-tac-toe</button>
-      <button class="game-tab" data-game="catch">Catch the cat</button>
+      <button class="game-tab active" data-game="pounce">Pounce</button>
+      <button class="game-tab" data-game="echo">Echo</button>
     </div>
-    <div class="game-pane active" id="paneTTT">
-      <div class="game-board" id="gameBoard"></div>
-      <div class="game-status" id="gameStatus">Your move.</div>
-      <div class="game-actions"><button class="game-btn-action" id="gameReset">New round</button></div>
-    </div>
-    <div class="game-pane" id="paneCatch">
-      <div class="catch-hud">
-        <div class="stat"><span class="k">Score</span><span class="v" id="catchScore">0</span></div>
-        <div class="stat"><span class="k">Best</span><span class="v" id="catchBest">0</span></div>
-        <div class="stat" style="text-align:right"><span class="k">Time</span><span class="v" id="catchTime">30</span></div>
+
+    <!-- GAME 1: PERFECT TIMING -->
+    <div class="game-pane active" id="panePounce">
+      <div class="pg-hud">
+        <div class="pg-stat"><span class="k" id="pgScoreLabel">Score</span><span class="v" id="pgScore">0</span></div>
+        <div class="pg-combo" id="pgCombo"></div>
+        <div class="pg-stat" style="text-align:right"><span class="k" id="pgBestLabel">Best</span><span class="v" id="pgBest">0</span></div>
       </div>
-      <div class="catch-board" id="catchBoard"></div>
-      <button class="catch-cta" id="catchStart">Start round</button>
+      <div class="pg-arena" id="pgArena">
+        <div class="pg-track">
+          <div class="pg-zone" id="pgZone"></div>
+          <div class="pg-marker" id="pgMarker"></div>
+        </div>
+        <div class="pg-target" id="pgTarget">
+          <div class="pg-target-icon" id="pgTargetIcon"></div>
+        </div>
+        <div class="pg-flash" id="pgFlash"></div>
+        <div class="pg-msg" id="pgMsg"></div>
+      </div>
+      <button class="pg-cta" id="pgCta">Tap to start</button>
+    </div>
+
+    <!-- GAME 2: ECHO (memory) -->
+    <div class="game-pane" id="paneEcho">
+      <div class="pg-hud">
+        <div class="pg-stat"><span class="k" id="ecLevelLabel">Level</span><span class="v" id="ecLevel">1</span></div>
+        <div class="pg-combo" id="ecStatus"></div>
+        <div class="pg-stat" style="text-align:right"><span class="k" id="ecBestLabel">Best</span><span class="v" id="ecBest">0</span></div>
+      </div>
+      <div class="ec-grid" id="ecGrid">
+        <button class="ec-pad" data-pad="0"></button>
+        <button class="ec-pad" data-pad="1"></button>
+        <button class="ec-pad" data-pad="2"></button>
+        <button class="ec-pad" data-pad="3"></button>
+      </div>
+      <button class="pg-cta" id="ecCta">Tap to start</button>
     </div>
   </div>
 </div>
@@ -2091,7 +2177,6 @@ let DATA = null;
 
 const FALLBACK_DATA = {
   "_comment": "EDIT THIS FILE TO CHANGE ANY TEXT OR LINK ON YOUR PORTFOLIO. After editing, push to Vercel — site updates automatically. HTML uses <strong>...</strong> for highlights, <br> for line breaks. **bold** in project narratives is the orange accent.",
-
   "site": {
     "title": "Artem Iskandirov — Product Designer",
     "description": "Product Designer. Uchi.ru / VK EdTech. Based in Kazan.",
@@ -2100,7 +2185,6 @@ const FALLBACK_DATA = {
     "splashCta": "Enter — sound on",
     "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
   },
-
   "tabs": {
     "labelOverview": "01 — Overview",
     "labelExperience": "02 — Experience",
@@ -2114,15 +2198,14 @@ const FALLBACK_DATA = {
     "dockSocial": "Social",
     "hint": "to switch"
   },
-
   "themes": {
     "cat": {
       "name": "Artem Iskandirov",
-      "bio": "Product designer working on <strong>kids edtech, retail AI, and design systems</strong>. Currently <strong>Senior</strong> at Uchi.ru / VK EdTech.",
+      "bio": "Product designer at <strong>Uchi.ru / VK EdTech</strong>. I work across <strong>B2C & B2B, mobile & web</strong> — kids edtech, retail AI and design systems. <strong>7+ years</strong> in product.",
       "meta": [
-        "<strong>7+ yrs</strong> design",
-        "Based in <strong>Kazan</strong>",
-        "Open to <strong>remote · hybrid · relocation</strong>"
+        "<strong>7+ yrs</strong> in product design",
+        "Based in <strong>Kazan</strong> · open to relocation",
+        "Open to <strong>remote · hybrid · on-site</strong>"
       ],
       "statusText": "open to work",
       "themeLabel": "Cat realm",
@@ -2139,7 +2222,7 @@ const FALLBACK_DATA = {
     },
     "fantasy": {
       "name": "Artem Iskandirov",
-      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold.",
+      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold, <strong>seven winters</strong> at the craft.",
       "meta": [
         "<strong>Seven winters</strong> on the craft",
         "From the city of <strong>Kazan</strong>",
@@ -2159,14 +2242,24 @@ const FALLBACK_DATA = {
       "catchSub": "30 seconds — tap as many as you can"
     }
   },
-
   "overviewLinks": [
-    { "label": "Email",     "url": "mailto:art.iskandirov@gmail.com" },
-    { "label": "Telegram",  "url": "https://t.me/artemiskandirov" },
-    { "label": "LinkedIn",  "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/" },
-    { "label": "Channel",   "url": "https://t.me/kidstechdesign" }
+    {
+      "label": "Email",
+      "url": "mailto:art.iskandirov@gmail.com"
+    },
+    {
+      "label": "Telegram",
+      "url": "https://t.me/artemiskandirov"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+    },
+    {
+      "label": "Channel",
+      "url": "https://t.me/kidstechdesign"
+    }
   ],
-
   "experience": [
     {
       "period": "2023 — now",
@@ -2209,22 +2302,27 @@ const FALLBACK_DATA = {
       "tag": "MedTech · 12 regions"
     }
   ],
-
   "projects": [
     {
       "id": "uchiru",
       "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
       "title": "Uchi.ru",
-      "subtitle": "Selflearning platform for kids",
+      "subtitle": "Self-learning platform for kids, grades 1–4",
       "co": "Uchi.ru / VK EdTech",
-      "sector": "Edtech",
+      "sector": "B2C · Edtech · Mobile",
       "period": "2023 → present",
-      "problem": "At the kids' core flow, **engagement was stagnating** because lessons felt monotonous after a few sessions.",
-      "approach": "I rebuilt the **learning loop with sound, gamification and a unified design system** across 1–4 grade.",
-      "outcome": "ARPU **+5%**, conversion rate **+7%**, won 1st AI hackathon",
+      "problem": "Engagement for young learners **stagnated** — lessons felt repetitive, and the product had no unified visual or sound language.",
+      "approach": "As Senior PD I **led the design system, sound UX and reward mechanics**, and ran a continuous stream of A/B-tested product hypotheses.",
+      "outcome": "New purchase flow **ARPU +5% · CR +7%** · won **1st place in the internal AI hackathon (₽500K prize)**",
       "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
       "state": "ongoing",
-      "tags": ["Edtech", "Design Systems", "Sound UX", "Gamification"],
+      "tags": [
+        "Edtech",
+        "Design System",
+        "Sound UX",
+        "Gamification",
+        "A/B testing"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/uchiru",
       "gallery": 4
     },
@@ -2232,16 +2330,22 @@ const FALLBACK_DATA = {
       "id": "miryavi",
       "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
       "title": "Miry Avi · Speech",
-      "subtitle": "Speech-therapy app for preschool kids",
+      "subtitle": "Speech-therapy app for preschoolers",
       "co": "Miry Avi",
-      "sector": "Kids · Speech",
+      "sector": "B2C · Kids · Part-time",
       "period": "2024 → present",
-      "problem": "Speech therapy at home felt like a chore — kids dropped off and parents lost track of progress.",
-      "approach": "I designed **game mechanics, characters and a parallel parent flow** to keep both sides engaged.",
-      "outcome": "D7 retention up, **4.7★ on the App Store** at MVP",
+      "problem": "Speech therapy at home is hard to sustain — kids lose interest and parents can't keep them practising.",
+      "approach": "I built the **game logic, level design and retention loops**, plus structural layouts handed off to illustrators.",
+      "outcome": "Subscriptions **+4%** from a payments redesign · DAU up via progressive grade unlocks",
       "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
       "state": "ongoing",
-      "tags": ["Kids", "Gamification", "Speech", "Mobile"],
+      "tags": [
+        "Kids",
+        "Gamification",
+        "Game Design",
+        "Mobile",
+        "Retention"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/miryavi",
       "gallery": 4
     },
@@ -2249,18 +2353,67 @@ const FALLBACK_DATA = {
       "id": "ailet",
       "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
       "title": "Ailet · JedAI",
-      "subtitle": "AI vision for retail & CPG",
+      "subtitle": "AI-vision platform for retail & CPG",
       "co": "Ailet",
-      "sector": "B2B SaaS",
+      "sector": "B2B SaaS · AI Vision",
       "period": "2021 — 2023",
-      "problem": "Field merchandisers across **P&G, Coca-Cola and Mars** struggled with dense data and slow audits in stores.",
-      "approach": "I led **the analytics web platform and the mobile field app** — patterns adopted across all modules.",
-      "outcome": "CSAT/CSI **+5pp**, support load **−8%**, task rate up",
+      "problem": "Field merchandisers and auditors at major CPG brands worked with **dense data and slow in-store audits**.",
+      "approach": "I designed the **analytics web platform and the mobile field app**, ran UX research in real stores, and turned design into proper dev-ready documentation.",
+      "outcome": "**CSAT/CSI +5pp** · support tickets **−8%** · steady task-completion growth in the field",
       "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
       "state": "shipped",
-      "tags": ["B2B SaaS", "AI Vision", "Field UX", "Web"],
+      "tags": [
+        "B2B SaaS",
+        "AI Vision",
+        "Field UX",
+        "Web",
+        "Mobile",
+        "Research"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/ailet",
       "gallery": 4
+    },
+    {
+      "id": "akbars",
+      "title": "Ak Bars · Investments",
+      "subtitle": "Investments section inside a banking app",
+      "co": "Ak Bars Digital",
+      "sector": "B2C · Fintech",
+      "period": "2020 — 2021",
+      "problem": "The bank wanted more users entering and completing **investment products**, but the flow had high drop-off.",
+      "approach": "I designed the **investments section** and a scalable UI architecture so new products could be added without redesign.",
+      "outcome": "Entries to investments **+11%** after the home redesign · checkout drop-off **−12%** · faster purchase flow",
+      "bg": "linear-gradient(135deg, #1a6ac0, #2aa0d8)",
+      "state": "shipped",
+      "tags": [
+        "Fintech",
+        "iOS",
+        "Android",
+        "Scalable UI"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
+    },
+    {
+      "id": "bars",
+      "title": "BARS · Medical IS",
+      "subtitle": "Medical information system, 12 regions",
+      "co": "BARS Group",
+      "sector": "B2G · MedTech",
+      "period": "2018 — 2020",
+      "problem": "A medical information system deployed across **12 Russian regions** was hard to use across many professional roles.",
+      "approach": "I redesigned interfaces for **doctors, nurses and admins**, researching 7+ role scenarios and adapting flows per role.",
+      "outcome": "**10,000+ users** · routine tasks **−10%** time · positive feedback in 3 of 5 pilot regions · onboarding without manuals",
+      "bg": "linear-gradient(135deg, #c03a5a, #e0687a)",
+      "state": "shipped",
+      "tags": [
+        "MedTech",
+        "B2G",
+        "Research",
+        "Complex UX"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
     },
     {
       "id": "conditional",
@@ -2269,28 +2422,36 @@ const FALLBACK_DATA = {
       "co": "Ailet",
       "sector": "No-code Tooling",
       "period": "2022",
-      "problem": "Analysts had to write **JSON formulas by hand** to ship rules — every change burned engineering time.",
-      "approach": "I turned the formula syntax into a **visual logic UI** non-tech users could drag together.",
-      "outcome": "**Zero engineering** dependency, time-to-configure dropped",
+      "problem": "Analysts had to hand-write **JSON formulas** to ship rules — every change burned engineering time.",
+      "approach": "I turned the formula syntax into a **visual logic builder** non-tech users could assemble themselves.",
+      "outcome": "**Zero engineering** dependency to configure rules · faster time-to-ship",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["No-code", "Tooling", "Sub-case"],
+      "tags": [
+        "No-code",
+        "Tooling",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/conditional",
       "gallery": 3
     },
     {
       "id": "portal",
       "title": "Portal redesign",
-      "subtitle": "Detail page restructure",
+      "subtitle": "Global redesign of a detail page",
       "co": "Ailet",
       "sector": "Web · Redesign",
       "period": "2022",
-      "problem": "The portal detail page was a wall — users couldn't find primary actions or filter what they needed.",
+      "problem": "The portal detail page was a wall of data — users couldn't find primary actions or filter.",
       "approach": "I rebuilt **information hierarchy, layout, primary CTAs and filters** from scratch.",
-      "outcome": "Task time down, NPS up",
+      "outcome": "Faster task completion, cleaner hierarchy",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["Web", "Redesign", "Sub-case"],
+      "tags": [
+        "Web",
+        "Redesign",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/portal",
       "gallery": 3
     },
@@ -2301,12 +2462,16 @@ const FALLBACK_DATA = {
       "co": "Ailet",
       "sector": "Mobile · Pattern",
       "period": "2022",
-      "problem": "Complex tabular data didn't fit on phones — merchandisers in the field had to zoom and pan endlessly.",
-      "approach": "I designed a **responsive table pattern** — adopted across every module of the product.",
-      "outcome": "Mobile usability up across the platform",
+      "problem": "Complex tabular data didn't fit on phones — field staff had to zoom and pan endlessly.",
+      "approach": "I designed a **responsive table pattern** adopted across every module.",
+      "outcome": "Usable dense data on mobile platform-wide",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["Mobile", "Pattern", "Sub-case"],
+      "tags": [
+        "Mobile",
+        "Pattern",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/mobileview",
       "gallery": 3
     },
@@ -2317,12 +2482,16 @@ const FALLBACK_DATA = {
       "co": "Ailet",
       "sector": "AI Vision · Data viz",
       "period": "2022",
-      "problem": "Auditors couldn't tell **what the AI saw** on a shelf photo — overlays were too dense and unreadable.",
-      "approach": "I designed **layered overlays** so anyone can read AI's recognition results on a real photo.",
-      "outcome": "Audit speed up significantly",
+      "problem": "Auditors couldn't tell **what the AI recognised** on a shelf photo — overlays were unreadable.",
+      "approach": "I designed **layered overlays** so anyone can read recognition results on a real photo.",
+      "outcome": "Faster, clearer shelf audits",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["AI Vision", "Data viz", "Sub-case"],
+      "tags": [
+        "AI Vision",
+        "Data viz",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/realogram",
       "gallery": 3
     },
@@ -2330,15 +2499,19 @@ const FALLBACK_DATA = {
       "id": "soundux",
       "title": "Sound UX",
       "subtitle": "Talk at Chulakov Design Meetup",
-      "co": "Speaking",
+      "co": "Public speaking",
       "sector": "Talk",
       "period": "Jul 2024",
       "problem": "Sound is **the most ignored interface layer** — designers leave it to engineers and lose product feel.",
-      "approach": "A 25-minute talk on **how sound shapes product feel** — lessons from Uchi.ru, kids UX, metrics.",
-      "outcome": "**300+ designers** in the audience",
+      "approach": "A talk on **how sound and voice affect product metrics** — and how to make it yourself or with neural nets.",
+      "outcome": "Shared real Uchi.ru sound-UX lessons with the design community",
       "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
       "state": "live",
-      "tags": ["Speaking", "Sound", "Talk"],
+      "tags": [
+        "Speaking",
+        "Sound",
+        "Talk"
+      ],
       "deeplink": "https://t.me/kidstechdesign/74",
       "gallery": 2
     },
@@ -2346,31 +2519,40 @@ const FALLBACK_DATA = {
       "id": "haptics",
       "title": "Custom Vibrations",
       "subtitle": "iOS app for crafting haptics",
-      "co": "Solo project",
+      "co": "Vibe-coding",
       "sector": "Side · iOS",
       "period": "2025",
-      "problem": "Designing haptic patterns means **describing them in slack** — nobody can feel a Figma frame.",
-      "approach": "I vibe-coded an iOS app in **Cursor + SwiftUI** to test custom haptics before pitching them.",
-      "outcome": "Tested 30+ patterns, picks ship to production",
+      "problem": "Designing haptic patterns means describing them in chat — nobody can feel a Figma frame.",
+      "approach": "I **vibe-coded an iOS app in Cursor + Xcode** to author and feel custom vibrations directly.",
+      "outcome": "A working tool to test haptics before pitching them",
       "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
       "state": "live",
-      "tags": ["Side", "iOS", "Haptics", "SwiftUI"],
+      "tags": [
+        "Side",
+        "iOS",
+        "Haptics",
+        "Cursor"
+      ],
       "deeplink": "https://t.me/kidstechdesign/113",
       "gallery": 2
     },
     {
       "id": "tg-digester",
       "title": "Telegram Digester",
-      "subtitle": "No-code summary bot",
-      "co": "Solo project",
+      "subtitle": "No-code channel-summary bot",
+      "co": "Vibe-coding",
       "sector": "Side · AI",
       "period": "2025",
-      "problem": "My channel feed grew faster than I could read it — important posts kept slipping through.",
-      "approach": "I assembled a **no-code TG bot** that ChatGPT summarises into one daily digest message.",
-      "outcome": "Daily digest in **1 message**",
+      "problem": "My channel feed grew faster than I could read it — important posts slipped through.",
+      "approach": "I built a **no-code Telegram bot with ChatGPT** that reads channels and sends me automatic digests.",
+      "outcome": "Daily digest of everything important in **one message**",
       "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
       "state": "live",
-      "tags": ["Side", "AI", "No-code"],
+      "tags": [
+        "Side",
+        "AI",
+        "No-code"
+      ],
       "deeplink": "https://t.me/kidstechdesign/121",
       "gallery": 2
     },
@@ -2378,20 +2560,23 @@ const FALLBACK_DATA = {
       "id": "bi-agent",
       "title": "BI Agent",
       "subtitle": "Chat-style insights over BI data",
-      "co": "Solo project",
+      "co": "Vibe-coding",
       "sector": "Side · AI",
       "period": "2025",
-      "problem": "Retail dashboards are dense — most managers want **the answer**, not the chart.",
-      "approach": "I designed and built an **LLM agent** that talks to BI data and answers questions in chat.",
-      "outcome": "Skip the dashboard, get the answer",
+      "problem": "Retail BI dashboards are dense — managers want **the answer**, not the whole chart.",
+      "approach": "I designed and built an **AI agent** that returns just the requested part of a BI dashboard, ChatGPT-style.",
+      "outcome": "Ask in plain language, get the exact slice of data back",
       "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
       "state": "live",
-      "tags": ["Side", "AI Agent", "Retail"],
+      "tags": [
+        "Side",
+        "AI Agent",
+        "Retail"
+      ],
       "deeplink": "https://t.me/kidstechdesign/117",
       "gallery": 2
     }
   ],
-
   "education": [
     {
       "year": "2018",
@@ -2404,23 +2589,44 @@ const FALLBACK_DATA = {
       "degree": "B.Sc., Nanotechnology · Kazan"
     }
   ],
-
   "skills": [
-    "Figma", "FigJam", "Sketch", "Framer",
-    "UI / UX", "Design Systems", "Prototyping",
-    "Photoshop", "Illustrator", "After Effects",
-    "Lottie", "Spline", "Blender", "3D",
-    "Cursor", "Xcode", "SwiftUI",
-    "Notion", "Confluence", "Jira", "Miro",
-    "Sound design", "Haptics",
-    "User research", "A/B testing", "Analytics"
+    "Figma",
+    "FigJam",
+    "Sketch",
+    "Framer",
+    "UI / UX",
+    "Design Systems",
+    "Prototyping",
+    "Photoshop",
+    "Illustrator",
+    "After Effects",
+    "Lottie",
+    "Spline",
+    "Blender",
+    "3D",
+    "Cursor",
+    "Xcode",
+    "SwiftUI",
+    "Notion",
+    "Confluence",
+    "Jira",
+    "Miro",
+    "Sound design",
+    "Haptics",
+    "User research",
+    "A/B testing",
+    "Analytics"
   ],
-
   "languages": [
-    { "name": "Russian", "level": "Native" },
-    { "name": "English", "level": "B1" }
+    {
+      "name": "Russian",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B1"
+    }
   ],
-
   "social": [
     {
       "side": "Telegram",
@@ -2458,7 +2664,6 @@ const FALLBACK_DATA = {
       "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
     }
   ],
-
   "labels": {
     "stateOngoing": "Ongoing",
     "stateLive": "Live",
@@ -2480,24 +2685,52 @@ const FALLBACK_DATA = {
     "catchTimeLabel": "Time",
     "catchCaught": "caught"
   },
-
   "catBubbles": {
-    "awake": ["hi.", "mrr?", "oh hello", "pet me", "meow.", "...?"],
-    "purring": ["purr...", "mmmm", "happy cat", "don't stop"],
-    "annoyed": ["enough.", "go away", "hmph", "rude."],
-    "playful": ["play with me!", "bouncy", "yay!", "weeee"],
-    "startled": ["eep!", "!!!", "agh!"]
+    "awake": [
+      "hi.",
+      "mrr?",
+      "oh hello",
+      "pet me",
+      "meow.",
+      "...?"
+    ],
+    "purring": [
+      "purr...",
+      "mmmm",
+      "happy cat",
+      "don't stop"
+    ],
+    "annoyed": [
+      "enough.",
+      "go away",
+      "hmph",
+      "rude."
+    ],
+    "playful": [
+      "play with me!",
+      "bouncy",
+      "yay!",
+      "weeee"
+    ],
+    "startled": [
+      "eep!",
+      "!!!",
+      "agh!"
+    ]
   }
 }
 ;
 
-async function loadData() {
+let currentLang = 'en';
+async function loadData(lang) {
+  if (lang) currentLang = lang;
+  const file = currentLang === 'ru' ? 'data.ru.json' : 'data.json';
   try {
-    const res = await fetch('data.json', { cache: 'no-cache' });
+    const res = await fetch(file, { cache: 'no-cache' });
     if (!res.ok) throw new Error('not ok');
     DATA = await res.json();
   } catch (e) {
-    console.warn('data.json not loaded, using fallback:', e);
+    console.warn('data file not loaded, using fallback:', e);
     DATA = FALLBACK_DATA;
   }
   // Apply site meta
@@ -3530,29 +3763,39 @@ const catAmbient = new CatAmbient(sfx);
 
 /* =============== PIXEL CREATURES =============== */
 const CAT_POSES = [
-  ["..BB........BB..",".BBBB......BBBB.",".BBEB......BEBB.",".BBBB......BBBB.","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","BBWWBBBBBBBBWWBB","BBWDBBBBBBBBDWBB","BBBBBBBNNBBBBBBB","BBBBBBMNNMBBBBBB","BBBBBMMMMMMBBBBB","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","BBB...BBBB...BBB","BB.....BB....BBB"],
-  ["................","................","...BB......BB...","..BBBB....BBBB..","..BEBB....BEBB..","..BBBBBBBBBBBB..",".BBBBBBBBBBBBBB.",".BBWWBBBBBBWWBB.",".BBWDBBNNBBDWBB.",".BBBBMMMMMMBBBB.","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB",".BBBBBBBBBBBBBB.","..BBBBBBBBBBBB..","................"],
-  ["................",".BB.............","BEB.............","BBB.BBBBBBBBBB..","BBBBBBBBBBBBBBB.","BBBBBBBBBBBBBBBB","BWDBBBBBBBBBBBBB","NMBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","BBBBBBBBBBBBBBBB","B.BBB....BB....B","B.BBB....BB....B","B.BBB....BB....B","B..BB....BB....B","................","................"]
+  // sitting front view
+  ["........................","...dd............dd.....","..doed..........deod....","..dood..........dood....","..doodd........ddood....","..dooooddddddddooood....",".dooooooooooooooooood...",".doooosooooooooosoood...",".dooEPoooooooooEPoood...",".dooEEoooooooooEEoood...",".doooooooonnoooooooood..",".dooooooomnnmoooooooood.",".dsoooooommmmooooooosd..",".doooooooooooooooooood..","..dooooLLLLLLLLoooood...","..doooLLLLLLLLLLooood...","...dooLLLLLLLLLLoood....","...dooooLLLLLLooooad....","....dooooooooooooad.....","....doodaoooooadoodd....","...dood...oo...dood.....","..dood....oo....dood....","..dd......dd......dd....","........................"],
+  // walking side view
+  ["........................","........................",".............dd...dd....","............deod.dood...","...........ddoodddood...","....dddddddoooooooood...","...dooooooooooooEPood...","..doooooooooooooooEood..","..dosooooooosooooonod...","..doooooooooooooommd....","..dooLLLLLLLLLLoooood...","..dooLLLLLLLLLLLLood....","..dooooooooooooooood....","..dood..dood.dood.dd....","..dod...dod..dod..d.....","..dd....dd...dd...d.....","........................","........................","........................","........................","........................","........................","........................","........................"],
+  // playful arched
+  ["........................","...dd..............dd...","..deod............doed..","..dood............dood..","..doodddddddddddddoood..",".dooooEPooooooEPooooood.",".doooEEooooooooEEooooad.",".dooooooonnoooooooooood.",".doooooomnnmooooooosood.",".dsooooommmmoooooooood..",".dooooooooooooooooood...","dooLLLLLLLLLLLLLLLoood..","dooLLLLLLLLLLLLLLLLood..","dooooLLLLLLLLLLLLoooad..","dood..ooooooooo..doodd..","dd.....oo...oo....dood..",".......dd...dd.....dd...","........................","........................","........................","........................","........................","........................","........................"]
 ];
+// each palette: o base, d darker shade, a accent shade, L cream belly, e ear pink, E eye-white, P pupil, n nose, m mouth, s stripe
 const CAT_PALETTES = [
-  { B: '#e07a3a', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#1a1a18' },
-  { B: '#2a2826', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#fafaf7' },
-  { B: '#8a8a82', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#1a1a18' },
-  { B: '#f0e0c0', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#7a5a3a' },
-  { B: '#7a5230', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#3a2818' },
-  { B: '#fafaf7', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#cccccc' },
-  { B: '#3a2a4a', E: '#ffb5be', W: '#fffaf0', D: '#fafaf7', N: '#ff7a8a', M: '#cccccc' },
-  { B: '#5a8a6a', E: '#ffb5be', W: '#fffaf0', D: '#1a1a18', N: '#ff7a8a', M: '#1a1a18' }
+  { o:'#ef8a44', d:'#c4682c', a:'#a85420', L:'#fff3df', e:'#ffb0bb', E:'#fff8ee', P:'#2a1a12', n:'#ff8294', m:'#3a2418', s:'#c4682c' },
+  { o:'#3a3633', d:'#262320', a:'#1a1714', L:'#f0ece4', e:'#ffb0bb', E:'#fff8ee', P:'#1a1a18', n:'#ff8294', m:'#888', s:'#1a1714' },
+  { o:'#9a9890', d:'#74726a', a:'#5a584f', L:'#fffaf0', e:'#ffb0bb', E:'#fff8ee', P:'#2a1a12', n:'#ff8294', m:'#3a3a38', s:'#74726a' },
+  { o:'#f2e2c0', d:'#d4c098', a:'#b09c70', L:'#fffdf4', e:'#ffb0bb', E:'#fff8ee', P:'#2a1a12', n:'#ff8294', m:'#9a7a4a', s:'#d4c098' },
+  { o:'#8a5a34', d:'#643c1e', a:'#4a2c14', L:'#f4e6d0', e:'#ffb0bb', E:'#fff8ee', P:'#2a1a12', n:'#ff8294', m:'#3a2414', s:'#643c1e' },
+  { o:'#fafaf7', d:'#d8d6cc', a:'#bbb9b0', L:'#ffffff', e:'#ffb0bb', E:'#f4f2ea', P:'#2a1a12', n:'#ff8294', m:'#aaa', s:'#d8d6cc' },
+  { o:'#5a4a72', d:'#3e3252', a:'#2a2038', L:'#e8e0f4', e:'#ffb0bb', E:'#fff8ee', P:'#1a1a18', n:'#ff8294', m:'#9a8ab0', s:'#3e3252' },
+  { o:'#5a9a72', d:'#3e7252', a:'#2a5238', L:'#e6f4ea', e:'#ffb0bb', E:'#fff8ee', P:'#2a1a12', n:'#ff8294', m:'#2a5238', s:'#3e7252' }
 ];
 const FANTASY_POSES = [
-  ["....HHHH........","....HHHH........","....HVVH........","....HEEH........","..AAAAAAAA......","..ABBBBBBA..SSS.","..ABBBBBBA..SSS.","..ABBBBBBA..SSS.","..ABBBBBBA..SSS.","....BBBB....SSS.","....BBBB........","..LLLLLLLL......","..LLLLLLLL......","....BB..BB......","...BBB..BBB.....","..BBB....BBB...."],
-  [".......H........","......HHH.......",".....HHHHH......","....HHHHHHH.....","...HHHHHHHHH....",".....HHHHH......","......FF........",".....FFFFF......",".....FWFWF......",".....FFFFF......","....FFFFFFF.....","....RRRRRRR.....","...RRRRRRRRR....","...RRRRRRRRR....","....RR...RR.....","....BB...BB....."],
-  [".XX..........XX.","XGXX........XXGX","XGGXX......XXGGX","XGGGXX....XXGGGX","XGGGGGGGGGGGGGGX",".XGGGGGGGGGGGGX.","..GGGRGGGGRGGG..","..GGGGGGGGGGGG..","..GGGGFFFFGGGG..","...GGGGGGGGGG...",".....GGGGGG.....","......GGGG......","......G..G......","......G..G......","................","................"]
+  // dragon
+  ["........................","......f..........f......",".....ff..........ff.....","....dod..........dod....","...dooddddddddddddood...","..doooooooooooooooood...","..dooEPoooooooooEPoood..","..dooEEoooooooooEEoood..","..dooooooooooooooooood..","..doooooootttttoooooad..","..dwoooooommmmmoooowd...",".dwwoooooooooooooowwd...",".dwwwobbbbbbbbbboowwwd..",".dwwoobbbbbbbbbboowwd...","..dooobbbbbbbbbbooood...","..doooobbbbbbbboooood...","..dooooooooooooooood....","...dooodaoooooadoood....","...dod....oo....dod.....","..ffof....oo....fofo....","..........dd............","........................","........................","........................"],
+  // slime
+  ["........................","........................","........................",".........llll...........",".......oollllloo........",".....ooooooooooooo......","....ooooooooooooooo.....","...oolooooooooooooooo...","..ooollooooooooooooooo..","..ooooooEPoooooEPooooo..",".oooooooEEoooooEEoooooo.",".oooooooooooooooooooooo.",".ooooooooommmmoooooooooo",".oooooooommmmmmooooooooo",".dooooooooooooooooooood.",".dddooooooooooooooooddd.","..ddddoooooooooooodddd..","...dddddddddddddddddd...",".....dddddddddddddd.....","........................","........................","........................","........................","........................"],
+  // goblin
+  ["........................","...d................d...","..dod..............dod..","..dood............dood..","..doodd..........ddood..","...doodddddddddddoood...","....dooooooooooooood....","....dEPoooooooooEPod....","....dEEoooooooooEEod....","....doooooonnooooood....","....dooooommmmoooood....","....doooootttttooood....",".....doooooooooooood....","......ddoooooooodd......","....dddooobbbbooooddd...","...dooooobbbbbbooooad...","...dooooobbbbbbooood....","...dooooooobbooooood....","....dood..oooo..dood....","....dod....oo....dod....","...dd......dd......dd...","........................","........................","........................"]
 ];
 const FANTASY_PALETTES = [
-  { H: '#c0c4cc', V: '#1a1a18', E: '#0d1424', A: '#a0a4ac', B: '#8a8e96', S: '#7a4a2a', L: '#5a4a3a' },
-  { H: '#1a1424', F: '#5a8c6a', W: '#fffaf0', R: '#2a1a3a', B: '#1a1a18' },
-  { X: '#3a1010', G: '#9a2020', R: '#ffd060', F: '#ff7a40' }
+  // dragon — emerald with cream belly, amber horns
+  { o:'#3a9a5a', d:'#27703f', a:'#1a5230', b:'#d8f0c0', w:'#2a6044', E:'#fff8ee', P:'#1a2a18', t:'#fffaf0', m:'#1a3020', f:'#ffc040' },
+  // slime — violet translucent
+  { o:'#7a5ac0', d:'#4e3a86', l:'#b9a0ee', E:'#fff8ee', P:'#1a1428', m:'#2a1a40' },
+  // goblin — green imp
+  { o:'#7aa83a', d:'#557527', a:'#3e5a1a', b:'#d0e8a0', E:'#fff8ee', P:'#1a2410', n:'#c4682c', m:'#2a3a14', t:'#fffaf0' }
 ];
 
 function makePixelSVG(pose, palette) {
@@ -3576,7 +3819,7 @@ function makeRandomCreatureSVG() {
 function spawnCreature(x, y) {
   const cat = document.createElement('div');
   cat.className = 'pixel-cat popping';
-  const size = 64;
+  const size = 80;
   const px = Math.max(8, Math.min(window.innerWidth - size - 8, x - size / 2));
   const py = Math.max(80, Math.min(window.innerHeight - size - 100, y - size / 2));
   cat.style.left = px + 'px';
@@ -4639,7 +4882,7 @@ function showEdgeCat(side, y) {
   if (edgeActive) return;
   edgeActive = true;
   edgeCat.innerHTML = makeRandomCreatureSVG();
-  const cs = 90;
+  const cs = 104;
   let yy = Math.max(80, Math.min(window.innerHeight - cs - 100, y - cs / 2));
   edgeCat.style.top = yy + 'px';
   if (side === 'left') {
@@ -4664,7 +4907,7 @@ function showEdgeCat(side, y) {
 function hideEdgeCat() {
   edgeCat.classList.remove('show');
   const isLeft = edgeCat.style.left !== 'auto' && edgeCat.style.left !== '';
-  const cs = 90;
+  const cs = 104;
   if (isLeft) edgeCat.style.transform = 'translateX(-' + cs + 'px) scaleX(1)';
   else edgeCat.style.transform = 'translateX(' + cs + 'px) scaleX(-1)';
   setTimeout(() => { edgeActive = false; }, 600);
@@ -4708,6 +4951,13 @@ function renderProjects() {
     const tagsHtml = p.tags.map(t => `<span class="pcard-tag">${t}</span>`).join('');
     const gItems = [];
     for (let i = 1; i <= p.gallery; i++) gItems.push(`<div class="pcard-gallery-item"><div class="placeholder">Frame ${i}</div></div>`);
+    // deeplink label depends on destination
+    let linkLabel = 'Open full case ↗';
+    if (/hh\.ru/.test(p.deeplink)) linkLabel = 'See on hh.ru ↗';
+    else if (/t\.me/.test(p.deeplink)) linkLabel = 'Open in Telegram ↗';
+    const galleryBlock = p.gallery > 0
+      ? `<div class="pcard-expand-title">Gallery — coming soon</div><div class="pcard-gallery">${gItems.join('')}</div>`
+      : '';
     card.innerHTML = `
       <div class="pcard-text">
         <div class="pcard-head">
@@ -4733,9 +4983,8 @@ function renderProjects() {
         ${visualInner}
       </div>
       <div class="pcard-expand">
-        <div class="pcard-expand-title">Gallery — coming soon</div>
-        <div class="pcard-gallery">${gItems.join('')}</div>
-        <a class="pcard-deeplink" href="${p.deeplink}" target="_blank" rel="noopener">Open full case ↗</a>
+        ${galleryBlock}
+        <a class="pcard-deeplink" href="${p.deeplink}" target="_blank" rel="noopener">${linkLabel}</a>
       </div>
     `;
     card.addEventListener('click', e => {
@@ -4825,22 +5074,9 @@ function renderOverviewLinks() {
   `).join('');
 }
 function renderGameLabels() {
-  if (!DATA || !DATA.labels) return;
-  const L = DATA.labels;
-  const setText = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
-  // Game tabs
-  document.querySelectorAll('.game-tab').forEach(t => {
-    if (t.dataset.game === 'ttt' && L.gameTabTtt) t.textContent = L.gameTabTtt;
-    if (t.dataset.game === 'catch' && L.gameTabCatch) t.textContent = L.gameTabCatch;
-  });
-  if (L.gameNewRound) { const r = document.getElementById('gameReset'); if (r) r.textContent = L.gameNewRound; }
-  if (L.gameStartRound) { const s = document.getElementById('catchStart'); if (s) s.textContent = L.gameStartRound; }
-  // Catch HUD labels
-  const hudKs = document.querySelectorAll('.catch-hud .stat .k');
-  if (hudKs.length === 3 && L.catchScoreLabel && L.catchBestLabel && L.catchTimeLabel) {
-    hudKs[0].textContent = L.catchScoreLabel;
-    hudKs[1].textContent = L.catchBestLabel;
-    hudKs[2].textContent = L.catchTimeLabel;
+  // new game engine manages its own labels via updateGameTexts()
+  if (typeof updateGameTexts === 'function') {
+    try { updateGameTexts(); } catch (e) {}
   }
 }
 function renderAll() {
@@ -5020,6 +5256,8 @@ themeBtn.addEventListener('click', () => {
     musicBtn.classList.remove('playing');
     sfx.click(TABS[activeIdx]);
   }
+  // refresh game visuals/text for the new theme
+  if (typeof updateGameTexts === 'function') { try { updateGameTexts(); } catch (e) {} }
 });
 
 musicBtn.addEventListener('click', () => {
@@ -5030,313 +5268,440 @@ musicBtn.addEventListener('click', () => {
   musicBtn.classList.toggle('playing', playing);
 });
 
-/* =============== GAME =============== */
-const gameOverlay = document.getElementById('gameOverlay');
-const gameBoard = document.getElementById('gameBoard');
-const gameStatus = document.getElementById('gameStatus');
-const gameBtn = document.getElementById('gameBtn');
-const gameClose = document.getElementById('gameClose');
-const gameReset = document.getElementById('gameReset');
-let gameState = Array(9).fill(null);
-let gameOver = false;
-let playerTurn = true;
-let cheated = false;
-
-function getXSVG() {
-  if (currentTheme === 'fantasy') {
-    const grid = ["................","................","..........SS....",".........SSS....","........SSS.....",".......SSS......","......SSS.......",".....SSS........","....SSS.........","...HHHHH........","..HHHHHHH.......","...HHHHH........","....HH..........","................","................","................"];
-    let r = '';
-    for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
-      const c = grid[y][x];
-      if (c === 'S') r += `<rect x="${x*4}" y="${y*4}" width="4" height="4" fill="#c0c4cc"/>`;
-      else if (c === 'H') r += `<rect x="${x*4}" y="${y*4}" width="4" height="4" fill="#7a4a2a"/>`;
-    }
-    return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">${r}</svg>`;
-  }
-  const grid = ["................","................","..XX........XX..","..XXX......XXX..","...XXX....XXX...","....XXX..XXX....",".....XXXXXX.....","......XXXX......","......XXXX......",".....XXXXXX.....","....XXX..XXX....","...XXX....XXX...","..XXX......XXX..","..XX........XX..","................","................"];
-  let r = '';
-  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
-    if (grid[y][x] === 'X') r += `<rect x="${x*4}" y="${y*4}" width="4" height="4" fill="#1a1a18"/>`;
-  }
-  return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">${r}</svg>`;
-}
-function getOSVG() {
-  if (currentTheme === 'fantasy') return makePixelSVG(FANTASY_POSES[2], FANTASY_PALETTES[2]);
-  return makePixelSVG(CAT_POSES[0], CAT_PALETTES[Math.floor(Math.random()*CAT_PALETTES.length)]);
-}
-
-function buildBoard() {
-  gameBoard.innerHTML = '';
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement('button');
-    cell.className = 'game-cell';
-    cell.dataset.idx = i;
-    cell.addEventListener('click', () => onCellClick(i));
-    gameBoard.appendChild(cell);
-  }
-}
-function renderBoard(highlightWin) {
-  [...gameBoard.children].forEach((cell, i) => {
-    cell.disabled = !!gameState[i] || gameOver || !playerTurn;
-    if (gameState[i] === 'X') cell.innerHTML = getXSVG();
-    else if (gameState[i] === 'O') cell.innerHTML = getOSVG();
-    else cell.innerHTML = '';
-    cell.classList.toggle('win', highlightWin && highlightWin.includes(i));
+/* === LANGUAGE TOGGLE === */
+function updateLangButton() {
+  document.querySelectorAll('.lang-opt').forEach(o => {
+    o.classList.toggle('active', o.dataset.lang === currentLang);
   });
 }
-const WIN_LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-function checkWinner(state) {
-  for (const line of WIN_LINES) {
-    const [a,b,c] = line;
-    if (state[a] && state[a] === state[b] && state[a] === state[c]) return { winner: state[a], line };
+async function switchLang(lang) {
+  if (lang === currentLang) return;
+  if (!sfx.ctx) { sfx.init(); sfx.resume(); }
+  await loadData(lang);
+  try { renderAll(); } catch (e) { console.error('renderAll after lang switch failed:', e); }
+  try { buildName(); } catch (e) {}
+  updateLangButton();
+  // reposition dock indicator after labels change width
+  setTimeout(() => positionIndicator(dock.querySelectorAll('.dock-tab')[activeIdx]), 80);
+  sfx.click(TABS[activeIdx]);
+}
+const langBtn = document.getElementById('langBtn');
+if (langBtn) {
+  langBtn.addEventListener('click', () => {
+    switchLang(currentLang === 'en' ? 'ru' : 'en');
+  });
+}
+updateLangButton();
+
+/* =============== GAMES =============== */
+const gameOverlay = document.getElementById('gameOverlay');
+const gameBtn = document.getElementById('gameBtn');
+const gameClose = document.getElementById('gameClose');
+
+/* target creature SVG for the timing game */
+function gameCreatureSVG() {
+  if (currentTheme === 'fantasy') {
+    // little dragon head
+    return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+      <rect x="6" y="6" width="12" height="9" fill="#7a3a14"/>
+      <rect x="5" y="8" width="14" height="6" fill="#9a4a1a"/>
+      <rect x="4" y="9" width="3" height="3" fill="#9a4a1a"/>
+      <rect x="8" y="3" width="2" height="3" fill="#5a2a0a"/>
+      <rect x="14" y="3" width="2" height="3" fill="#5a2a0a"/>
+      <rect x="9" y="9" width="2" height="2" fill="#ffd040"/>
+      <rect x="14" y="9" width="2" height="2" fill="#ffd040"/>
+      <rect x="3" y="10" width="2" height="1" fill="#ff5030"/>
+      <rect x="11" y="14" width="3" height="2" fill="#ff6030"/>
+    </svg>`;
   }
-  if (state.every(Boolean)) return { winner: 'draw', line: [] };
-  return null;
+  // fish
+  return `<svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+    <rect x="3" y="5" width="12" height="6" fill="#7ab0d8"/>
+    <rect x="4" y="4" width="9" height="1" fill="#9ac8e8"/>
+    <rect x="4" y="11" width="9" height="1" fill="#5a90b8"/>
+    <rect x="15" y="3" width="2" height="10" fill="#7ab0d8"/>
+    <rect x="17" y="2" width="2" height="3" fill="#7ab0d8"/>
+    <rect x="17" y="11" width="2" height="3" fill="#7ab0d8"/>
+    <rect x="19" y="1" width="1" height="4" fill="#7ab0d8"/>
+    <rect x="19" y="11" width="1" height="4" fill="#7ab0d8"/>
+    <rect x="5" y="7" width="2" height="2" fill="#1a1a18"/>
+  </svg>`;
 }
-function onCellClick(i) {
-  if (gameOver || !playerTurn || gameState[i]) return;
-  gameState[i] = 'X';
-  if (currentTheme === 'fantasy') sfx.swordSwing();
-  else sfx.click('projects');
-  renderBoard();
-  let res = checkWinner(gameState);
-  if (res) return endGame(res);
-  playerTurn = false;
-  setTimeout(opponentTurn, 500 + Math.random() * 400);
+
+/* ============ GAME 1: PERFECT TIMING ============ */
+const PG = {
+  arena: null, track: null, zone: null, marker: null, flash: null, msg: null,
+  target: null, targetIcon: null, cta: null, scoreEl: null, bestEl: null, comboEl: null,
+  running: false, raf: null,
+  pos: 0, dir: 1, speed: 0.9,
+  zoneStart: 30, zoneWidth: 34,
+  score: 0, best: 0, combo: 0,
+  awaitingStart: true
+};
+
+function pgInit() {
+  PG.arena = document.getElementById('pgArena');
+  PG.track = document.querySelector('.pg-track');
+  PG.zone = document.getElementById('pgZone');
+  PG.marker = document.getElementById('pgMarker');
+  PG.flash = document.getElementById('pgFlash');
+  PG.msg = document.getElementById('pgMsg');
+  PG.target = document.getElementById('pgTarget');
+  PG.targetIcon = document.getElementById('pgTargetIcon');
+  PG.cta = document.getElementById('pgCta');
+  PG.scoreEl = document.getElementById('pgScore');
+  PG.bestEl = document.getElementById('pgBest');
+  PG.comboEl = document.getElementById('pgCombo');
+  if (!PG.arena) return;
+  PG.targetIcon.innerHTML = gameCreatureSVG();
+  PG.cta.addEventListener('click', pgCtaClick);
+  // tap anywhere in arena to hit
+  PG.arena.addEventListener('click', e => {
+    if (e.target === PG.cta) return;
+    if (PG.running) pgTap();
+  });
+  pgPlaceZone();
 }
-function opponentTurn() {
-  if (gameOver) return;
-  const empty = [];
-  gameState.forEach((v, i) => { if (!v) empty.push(i); });
-  if (!empty.length) return;
-  const xCount = gameState.filter(v => v === 'X').length;
-  if (!cheated && xCount >= 2 && Math.random() < 0.25) {
-    const xs = []; gameState.forEach((v, i) => { if (v === 'X') xs.push(i); });
-    const target = xs[Math.floor(Math.random() * xs.length)];
-    gameState[target] = 'O';
-    cheated = true;
-    const cell = gameBoard.children[target];
-    cell.classList.add('cheat');
-    setTimeout(() => cell.classList.remove('cheat'), 500);
-    if (currentTheme === 'fantasy') sfx.dragonRoar(); else sfx.meow5();
-    gameStatus.innerHTML = CONTENT[currentTheme].statusCheat;
-    renderBoard();
-    let res = checkWinner(gameState);
-    if (res) return endGame(res);
-    playerTurn = true;
-    renderBoard();
-    return;
-  }
-  let move = findMove('O') ?? findMove('X') ?? pickStrat(empty);
-  gameState[move] = 'O';
-  if (currentTheme === 'fantasy') sfx.flameWhoosh(); else sfx.meow2();
-  gameStatus.textContent = CONTENT[currentTheme].yourMove;
-  renderBoard();
-  let res = checkWinner(gameState);
-  if (res) return endGame(res);
-  playerTurn = true;
-  renderBoard();
+
+function pgPlaceZone() {
+  // random zone position, leave margins
+  PG.zoneWidth = Math.max(12, 34 - PG.score * 1.4);
+  PG.zoneStart = 12 + Math.random() * (76 - PG.zoneWidth);
+  PG.zone.style.left = PG.zoneStart + '%';
+  PG.zone.style.width = PG.zoneWidth + '%';
 }
-function findMove(mark) {
-  for (const line of WIN_LINES) {
-    const [a,b,c] = line;
-    const vals = [gameState[a], gameState[b], gameState[c]];
-    const marks = vals.filter(v => v === mark).length;
-    const empties = vals.filter(v => v === null).length;
-    if (marks === 2 && empties === 1) {
-      if (gameState[a] === null) return a;
-      if (gameState[b] === null) return b;
-      if (gameState[c] === null) return c;
+
+function pgCtaClick() {
+  if (PG.running) return;
+  pgStart();
+}
+
+function pgStart() {
+  PG.running = true;
+  PG.awaitingStart = false;
+  PG.score = 0;
+  PG.combo = 0;
+  PG.speed = 0.9;
+  PG.pos = 0; PG.dir = 1;
+  PG.scoreEl.textContent = '0';
+  PG.cta.textContent = currentLang === 'ru' ? 'Тапай в зелёную зону!' : 'Tap in the zone!';
+  PG.comboEl.classList.remove('show');
+  pgPlaceZone();
+  pgLoop();
+  if (currentTheme === 'fantasy') sfx.battleHorn && sfx.battleHorn();
+  else sfx.trill && sfx.trill();
+}
+
+function pgLoop() {
+  if (!PG.running) return;
+  PG.pos += PG.dir * PG.speed;
+  if (PG.pos >= 100) { PG.pos = 100; PG.dir = -1; }
+  if (PG.pos <= 0) { PG.pos = 0; PG.dir = 1; }
+  PG.marker.style.left = PG.pos + '%';
+  PG.raf = requestAnimationFrame(pgLoop);
+}
+
+function pgTap() {
+  const center = PG.zoneStart + PG.zoneWidth / 2;
+  const dist = Math.abs(PG.pos - center);
+  const half = PG.zoneWidth / 2;
+  const perfectThresh = Math.max(2.5, half * 0.28);
+
+  if (dist <= half) {
+    // hit
+    let pts, label, isPerfect = false;
+    if (dist <= perfectThresh) {
+      isPerfect = true;
+      PG.combo += 1;
+      pts = 2 + PG.combo;
+      label = currentLang === 'ru' ? 'ИДЕАЛЬНО!' : 'PERFECT!';
+    } else {
+      PG.combo += 1;
+      pts = 1 + Math.floor(PG.combo / 2);
+      label = currentLang === 'ru' ? 'есть!' : 'nice!';
     }
+    PG.score += pts;
+    PG.scoreEl.textContent = String(PG.score);
+    pgShowMsg(label, isPerfect);
+    pgHitFx(isPerfect);
+    pgUpdateCombo();
+    // ramp difficulty
+    PG.speed = Math.min(3.4, 0.9 + PG.score * 0.12);
+    pgPlaceZone();
+    // rising pitch with combo
+    pgHitSound(isPerfect, PG.combo);
+  } else {
+    pgMiss();
   }
-  return null;
 }
-function pickStrat(empty) {
-  const priority = [4, 0, 2, 6, 8, 1, 3, 5, 7];
-  for (const i of priority) if (empty.includes(i)) return i;
-  return empty[0];
+
+function pgUpdateCombo() {
+  if (PG.combo >= 2) {
+    PG.comboEl.textContent = (currentLang === 'ru' ? 'комбо ×' : 'combo ×') + PG.combo;
+    PG.comboEl.classList.add('show');
+    PG.comboEl.classList.remove('bump'); void PG.comboEl.offsetWidth; PG.comboEl.classList.add('bump');
+  } else {
+    PG.comboEl.classList.remove('show');
+  }
 }
-function endGame(res) {
-  gameOver = true;
-  const c = CONTENT[currentTheme];
-  if (res.winner === 'X') { gameStatus.innerHTML = c.statusYouWin; sfx.win(); }
-  else if (res.winner === 'O') { gameStatus.innerHTML = c.statusCatWin; sfx.lose(); }
-  else { gameStatus.innerHTML = c.statusDraw; sfx.draw(); }
-  renderBoard(res.line);
+
+function pgShowMsg(text, perfect) {
+  PG.msg.textContent = text;
+  PG.msg.style.color = perfect ? (currentTheme === 'fantasy' ? '#ffd060' : '#44b87a') : 'var(--fg-mid)';
+  PG.msg.classList.remove('show'); void PG.msg.offsetWidth; PG.msg.classList.add('show');
 }
-function resetGame() {
-  gameState = Array(9).fill(null);
-  gameOver = false; playerTurn = true; cheated = false;
-  gameStatus.textContent = CONTENT[currentTheme].yourMove;
-  renderBoard();
+
+function pgHitFx(perfect) {
+  PG.target.classList.remove('hit'); void PG.target.offsetWidth; PG.target.classList.add('hit');
+  if (perfect) {
+    PG.flash.classList.remove('fire'); void PG.flash.offsetWidth; PG.flash.classList.add('fire');
+    pgSparks(10);
+  } else {
+    pgSparks(4);
+  }
 }
+
+function pgSparks(n) {
+  const rect = PG.target.getBoundingClientRect();
+  const arenaRect = PG.arena.getBoundingClientRect();
+  const cx = rect.left - arenaRect.left + rect.width/2;
+  const cy = rect.top - arenaRect.top + rect.height/2;
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement('div');
+    s.className = 'pg-spark';
+    s.style.left = cx + 'px';
+    s.style.top = cy + 'px';
+    PG.arena.appendChild(s);
+    const ang = Math.random() * Math.PI * 2;
+    const vel = 30 + Math.random() * 50;
+    const dx = Math.cos(ang) * vel;
+    const dy = Math.sin(ang) * vel;
+    s.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+    requestAnimationFrame(() => {
+      s.style.transform = `translate(${dx}px, ${dy}px) scale(0)`;
+      s.style.opacity = '0';
+    });
+    setTimeout(() => s.remove(), 650);
+  }
+}
+
+function pgHitSound(perfect, combo) {
+  if (!sfx.ctx) return;
+  const baseSemi = Math.min(24, combo * 2);
+  if (currentTheme === 'fantasy') {
+    if (perfect) { sfx._metalClank && sfx._metalClank(0.14); sfx.fanfareCall && combo % 4 === 0 && sfx.fanfareCall(); }
+    else sfx._woodHit && sfx._woodHit(0.08);
+  } else {
+    if (perfect) { sfx.chirp && sfx.chirp(); }
+    else sfx._tone && sfx._tone({ freq: 440 * Math.pow(2, baseSemi/12), dur: 0.12, vol: 0.08, type: 'triangle', decay: 0.1 });
+  }
+}
+
+function pgMiss() {
+  PG.running = false;
+  if (PG.raf) cancelAnimationFrame(PG.raf);
+  PG.target.classList.remove('miss'); void PG.target.offsetWidth; PG.target.classList.add('miss');
+  PG.arena.classList.remove('shake'); void PG.arena.offsetWidth; PG.arena.classList.add('shake');
+  // near miss feedback
+  const center = PG.zoneStart + PG.zoneWidth / 2;
+  const dist = Math.abs(PG.pos - center);
+  const soClose = dist < PG.zoneWidth;
+  pgShowMsg(soClose ? (currentLang === 'ru' ? 'так близко!' : 'so close!') : (currentLang === 'ru' ? 'мимо' : 'missed'), false);
+  PG.msg.style.color = '#e85a6b';
+  sfx.lose && sfx.lose();
+  // best
+  let isNewBest = false;
+  if (PG.score > PG.best) { PG.best = PG.score; PG.bestEl.textContent = String(PG.best); isNewBest = true; }
+  setTimeout(() => {
+    PG.target.classList.remove('miss');
+    PG.targetIcon.innerHTML = gameCreatureSVG();
+    if (isNewBest && PG.score > 0) {
+      PG.cta.textContent = currentLang === 'ru' ? '🔥 НОВЫЙ РЕКОРД! Ещё раз' : '🔥 NEW BEST! Play again';
+    } else {
+      PG.cta.textContent = currentLang === 'ru' ? `${PG.score} очков · Ещё раз` : `${PG.score} pts · Play again`;
+    }
+    PG.comboEl.classList.remove('show');
+  }, 600);
+}
+
+/* ============ GAME 2: ECHO (memory) ============ */
+const EC = {
+  grid: null, pads: [], cta: null, levelEl: null, bestEl: null, statusEl: null,
+  seq: [], input: [], level: 0, best: 0,
+  showing: false, accepting: false
+};
+const EC_FREQS = [330, 392, 494, 587]; // E4 G4 B4 D5 — pleasant chord tones
+
+function ecInit() {
+  EC.grid = document.getElementById('ecGrid');
+  EC.cta = document.getElementById('ecCta');
+  EC.levelEl = document.getElementById('ecLevel');
+  EC.bestEl = document.getElementById('ecBest');
+  EC.statusEl = document.getElementById('ecStatus');
+  if (!EC.grid) return;
+  EC.pads = Array.from(EC.grid.querySelectorAll('.ec-pad'));
+  EC.pads.forEach(p => {
+    p.addEventListener('click', () => ecPadPress(parseInt(p.dataset.pad)));
+  });
+  EC.cta.addEventListener('click', ecStart);
+}
+
+function ecLight(idx, dur) {
+  const pad = EC.pads[idx];
+  if (!pad) return;
+  pad.classList.add('lit');
+  ecTone(idx);
+  setTimeout(() => pad.classList.remove('lit'), dur);
+}
+
+function ecTone(idx) {
+  if (!sfx.ctx) return;
+  if (currentTheme === 'fantasy') {
+    sfx._tone && sfx._tone({ freq: EC_FREQS[idx] * 0.75, dur: 0.32, vol: 0.1, type: 'triangle', decay: 0.28, lp: 1600 });
+  } else {
+    sfx._tone && sfx._tone({ freq: EC_FREQS[idx], dur: 0.3, vol: 0.09, type: 'sine', decay: 0.26 });
+  }
+}
+
+function ecStart() {
+  EC.seq = []; EC.level = 0;
+  EC.cta.style.visibility = 'hidden';
+  ecNextRound();
+}
+
+function ecNextRound() {
+  EC.level += 1;
+  EC.levelEl.textContent = String(EC.level);
+  EC.input = [];
+  EC.seq.push(Math.floor(Math.random() * 4));
+  EC.statusEl.textContent = currentLang === 'ru' ? 'смотри…' : 'watch…';
+  EC.statusEl.classList.add('show');
+  ecPlaySequence();
+}
+
+function ecPlaySequence() {
+  EC.showing = true;
+  EC.accepting = false;
+  EC.grid.classList.add('locked');
+  const speed = Math.max(320, 620 - EC.level * 20);
+  EC.seq.forEach((idx, i) => {
+    setTimeout(() => ecLight(idx, speed * 0.6), i * speed + 300);
+  });
+  setTimeout(() => {
+    EC.showing = false;
+    EC.accepting = true;
+    EC.grid.classList.remove('locked');
+    EC.statusEl.textContent = currentLang === 'ru' ? 'повтори!' : 'repeat!';
+  }, EC.seq.length * speed + 300);
+}
+
+function ecPadPress(idx) {
+  if (!EC.accepting) return;
+  ecLight(idx, 200);
+  EC.input.push(idx);
+  const step = EC.input.length - 1;
+  if (EC.input[step] !== EC.seq[step]) { ecFail(); return; }
+  if (EC.input.length === EC.seq.length) {
+    EC.accepting = false;
+    if (EC.level > EC.best) { EC.best = EC.level; EC.bestEl.textContent = String(EC.best); }
+    EC.statusEl.textContent = currentLang === 'ru' ? '✓ дальше' : '✓ nice';
+    if (currentTheme === 'fantasy') sfx.fanfareCall && sfx.fanfareCall();
+    else sfx.trill && sfx.trill();
+    setTimeout(ecNextRound, 700);
+  }
+}
+
+function ecFail() {
+  EC.accepting = false;
+  EC.grid.classList.add('locked');
+  // flash all pads red-ish then reveal correct
+  EC.pads.forEach(p => { p.style.filter = 'grayscale(0.7) brightness(0.6)'; });
+  sfx.lose && sfx.lose();
+  if (currentTheme === 'fantasy') setTimeout(() => sfx.dragonRoar && sfx.dragonRoar(), 200);
+  EC.statusEl.textContent = (currentLang === 'ru' ? 'уровень ' : 'reached lvl ') + EC.level;
+  setTimeout(() => {
+    EC.pads.forEach(p => { p.style.filter = ''; });
+    EC.grid.classList.remove('locked');
+    EC.cta.style.visibility = 'visible';
+    EC.cta.textContent = currentLang === 'ru' ? `Уровень ${EC.level} · Ещё раз` : `Level ${EC.level} · Play again`;
+  }, 1400);
+}
+
+/* ============ GAME SHELL ============ */
+let currentGameTab = 'pounce';
+function switchGameTab(name) {
+  currentGameTab = name;
+  document.querySelectorAll('.game-tab').forEach(t => t.classList.toggle('active', t.dataset.game === name));
+  document.getElementById('panePounce').classList.toggle('active', name === 'pounce');
+  document.getElementById('paneEcho').classList.toggle('active', name === 'echo');
+  // stop timing game if leaving
+  if (name !== 'pounce' && PG.running) { PG.running = false; if (PG.raf) cancelAnimationFrame(PG.raf); }
+  updateGameTexts();
+}
+
+function updateGameTexts() {
+  const isRu = currentLang === 'ru';
+  const fant = currentTheme === 'fantasy';
+  // titles
+  const titleEl = document.getElementById('gameTitleEl');
+  const subEl = document.getElementById('gameSubEl');
+  if (currentGameTab === 'pounce') {
+    if (fant) { titleEl.textContent = isRu ? 'Точный удар' : 'Perfect Strike'; subEl.textContent = isRu ? 'Бей, когда метка в зоне' : 'Strike when the marker hits the zone'; }
+    else { titleEl.textContent = isRu ? 'Точный прыжок' : 'Perfect Pounce'; subEl.textContent = isRu ? 'Прыгай, когда метка в зоне' : 'Pounce when the marker hits the zone'; }
+  } else {
+    if (fant) { titleEl.textContent = isRu ? 'Эхо рун' : 'Rune Echo'; subEl.textContent = isRu ? 'Повтори последовательность' : 'Repeat the sequence'; }
+    else { titleEl.textContent = isRu ? 'Эхо' : 'Echo'; subEl.textContent = isRu ? 'Повтори последовательность' : 'Repeat the sequence'; }
+  }
+  // tab labels
+  document.querySelectorAll('.game-tab').forEach(t => {
+    if (t.dataset.game === 'pounce') t.textContent = fant ? (isRu ? 'Удар' : 'Strike') : (isRu ? 'Прыжок' : 'Pounce');
+    if (t.dataset.game === 'echo') t.textContent = isRu ? 'Эхо' : 'Echo';
+  });
+  // hud labels
+  const setT = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  setT('pgScoreLabel', isRu ? 'Очки' : 'Score');
+  setT('pgBestLabel', isRu ? 'Рекорд' : 'Best');
+  setT('ecLevelLabel', isRu ? 'Уровень' : 'Level');
+  setT('ecBestLabel', isRu ? 'Рекорд' : 'Best');
+  // CTAs (only when idle)
+  if (!PG.running) { const c = document.getElementById('pgCta'); if (c && PG.score === 0) c.textContent = isRu ? 'Тап — старт' : 'Tap to start'; }
+  const ec = document.getElementById('ecCta'); if (ec && EC.level === 0) ec.textContent = isRu ? 'Тап — старт' : 'Tap to start';
+  // refresh target creature for theme
+  if (PG.targetIcon && !PG.running) PG.targetIcon.innerHTML = gameCreatureSVG();
+}
+
 function openGame() {
-  resetGame();
-  switchGameTab('ttt');
   gameOverlay.classList.add('show');
   if (!sfx.ctx) { sfx.init(); sfx.resume(); }
-  if (currentTheme === 'fantasy') sfx.swordSwing();
+  switchGameTab('pounce');
+  if (currentTheme === 'fantasy') sfx.swordSwing && sfx.swordSwing();
   else sfx.click('projects');
 }
 function closeGame() {
   gameOverlay.classList.remove('show');
-  catchStop();
+  if (PG.running) { PG.running = false; if (PG.raf) cancelAnimationFrame(PG.raf); }
 }
+
 gameBtn.addEventListener('click', openGame);
 gameClose.addEventListener('click', closeGame);
-gameReset.addEventListener('click', () => { resetGame(); sfx.click('projects'); });
 gameOverlay.addEventListener('click', e => { if (e.target === gameOverlay) closeGame(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && gameOverlay.classList.contains('show')) closeGame();
-});
-
-/* === GAME TABS === */
-function switchGameTab(name) {
-  document.querySelectorAll('.game-tab').forEach(t => t.classList.toggle('active', t.dataset.game === name));
-  document.getElementById('paneTTT').classList.toggle('active', name === 'ttt');
-  document.getElementById('paneCatch').classList.toggle('active', name === 'catch');
-  if (name === 'ttt') {
-    document.getElementById('gameTitleEl').textContent = currentTheme === 'fantasy' ? CONTENT.fantasy.gameTitle : CONTENT.cat.gameTitle;
-    document.getElementById('gameSubEl').textContent = currentTheme === 'fantasy' ? CONTENT.fantasy.gameSub : CONTENT.cat.gameSub;
-  } else {
-    document.getElementById('gameTitleEl').textContent = (CONTENT[currentTheme] && CONTENT[currentTheme].catchTitle) || (currentTheme === 'fantasy' ? 'Catch the dragon' : 'Catch the cat');
-    document.getElementById('gameSubEl').textContent = (CONTENT[currentTheme] && CONTENT[currentTheme].catchSub) || '30 seconds — tap as many as you can';
+  // spacebar to tap in timing game
+  if (e.code === 'Space' && gameOverlay.classList.contains('show') && currentGameTab === 'pounce') {
+    e.preventDefault();
+    if (PG.running) pgTap(); else pgStart();
   }
-  if (name !== 'catch') catchStop();
-}
+});
 document.querySelectorAll('.game-tab').forEach(t => {
-  t.addEventListener('click', () => {
-    switchGameTab(t.dataset.game);
-    sfx.click('projects');
-  });
+  t.addEventListener('click', () => { switchGameTab(t.dataset.game); sfx.click('projects'); });
 });
 
-/* === CATCH THE CAT GAME === */
-const catchBoard = document.getElementById('catchBoard');
-const catchScoreEl = document.getElementById('catchScore');
-const catchBestEl = document.getElementById('catchBest');
-const catchTimeEl = document.getElementById('catchTime');
-const catchStartBtn = document.getElementById('catchStart');
-let catchScore = 0, catchBest = 0, catchTime = 30;
-let catchTimer = null, catchSpawnTimer = null, catchActive = false;
-
-function catchSpawnCreature() {
-  if (!catchActive || !catchBoard) return;
-  const c = document.createElement('div');
-  c.className = 'catch-creature';
-  c.innerHTML = makeRandomCreatureSVG();
-  const rect = catchBoard.getBoundingClientRect();
-  const x = Math.random() * (rect.width - 56);
-  const y = Math.random() * (rect.height - 56);
-  c.style.left = x + 'px';
-  c.style.top = y + 'px';
-  // small random rotation for life
-  const rot = (Math.random() - 0.5) * 12;
-  c.style.transform = `rotate(${rot}deg)`;
-  c.addEventListener('click', e => {
-    e.stopPropagation();
-    if (c.classList.contains('popped')) return;
-    c.classList.add('popped');
-    catchScore += 1;
-    catchScoreEl.textContent = catchScore;
-    // points burst
-    const burst = document.createElement('div');
-    burst.className = 'catch-points-burst';
-    burst.textContent = '+1';
-    burst.style.left = (x + 28) + 'px';
-    burst.style.top = (y + 8) + 'px';
-    catchBoard.appendChild(burst);
-    setTimeout(() => burst.remove(), 900);
-    // sound
-    if (currentTheme === 'fantasy') sfx.randomFantasySound();
-    else sfx.randomCatSound();
-    setTimeout(() => c.remove(), 480);
-  });
-  catchBoard.appendChild(c);
-  // auto-disappear if not clicked
-  const lifetime = 1400 + Math.random() * 800;
-  setTimeout(() => {
-    if (c.parentNode && !c.classList.contains('popped')) {
-      c.style.transition = 'opacity 0.4s';
-      c.style.opacity = '0';
-      setTimeout(() => c.remove(), 420);
-    }
-  }, lifetime);
-}
-
-function catchStart() {
-  if (catchActive) return;
-  catchActive = true;
-  catchScore = 0;
-  catchTime = 30;
-  catchScoreEl.textContent = '0';
-  catchTimeEl.textContent = '30';
-  catchBoard.innerHTML = '';
-  catchStartBtn.textContent = 'Stop';
-  // ramping spawn rate — easier at start, harder as time goes
-  let spawnInterval = 700;
-  const spawnTick = () => {
-    if (!catchActive) return;
-    catchSpawnCreature();
-    if (Math.random() < 0.35) catchSpawnCreature(); // sometimes burst
-    // ramp up over time
-    spawnInterval = Math.max(280, 700 - (30 - catchTime) * 14);
-    catchSpawnTimer = setTimeout(spawnTick, spawnInterval);
-  };
-  spawnTick();
-  // 1-second timer
-  catchTimer = setInterval(() => {
-    catchTime -= 1;
-    catchTimeEl.textContent = String(catchTime);
-    if (catchTime <= 0) catchEnd();
-  }, 1000);
-  // first spawn sound
-  if (currentTheme === 'fantasy') sfx.fanfareCall();
-  else sfx.trill();
-}
-
-function catchEnd() {
-  catchActive = false;
-  if (catchTimer) clearInterval(catchTimer);
-  if (catchSpawnTimer) clearTimeout(catchSpawnTimer);
-  if (catchScore > catchBest) {
-    catchBest = catchScore;
-    catchBestEl.textContent = catchBest;
-  }
-  catchStartBtn.textContent = 'Play again';
-  // win sound + heart shower
-  sfx.win();
-  // celebrate by popping any remaining creatures
-  catchBoard.querySelectorAll('.catch-creature:not(.popped)').forEach(el => el.classList.add('popped'));
-  setTimeout(() => {
-    if (!catchActive) catchBoard.innerHTML = `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;font-family:var(--font-display);color:var(--fg)"><div style="font-size:36px;font-weight:700">${catchScore}</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg-mid)">caught</div></div>`;
-  }, 500);
-}
-
-function catchStop() {
-  if (!catchActive) return;
-  catchActive = false;
-  if (catchTimer) clearInterval(catchTimer);
-  if (catchSpawnTimer) clearTimeout(catchSpawnTimer);
-  catchStartBtn.textContent = 'Start round';
-}
-
-if (catchStartBtn) {
-  catchStartBtn.addEventListener('click', () => {
-    if (catchActive) {
-      catchStop();
-      catchBoard.innerHTML = '';
-      catchStartBtn.textContent = 'Start round';
-    } else {
-      catchStart();
-    }
-  });
-}
-
-loadData().catch(e => console.warn(e));
+// init both games once DOM is ready
+pgInit();
+ecInit();
 
 /* =============== INIT =============== */
-buildBoard();
 buildName();
 renderOverviewContent();
 renderProjects();

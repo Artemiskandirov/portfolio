@@ -1,6 +1,5 @@
 {
   "_comment": "EDIT THIS FILE TO CHANGE ANY TEXT OR LINK ON YOUR PORTFOLIO. After editing, push to Vercel — site updates automatically. HTML uses <strong>...</strong> for highlights, <br> for line breaks. **bold** in project narratives is the orange accent.",
-
   "site": {
     "title": "Artem Iskandirov — Product Designer",
     "description": "Product Designer. Uchi.ru / VK EdTech. Based in Kazan.",
@@ -9,7 +8,6 @@
     "splashCta": "Enter — sound on",
     "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
   },
-
   "tabs": {
     "labelOverview": "01 — Overview",
     "labelExperience": "02 — Experience",
@@ -23,15 +21,14 @@
     "dockSocial": "Social",
     "hint": "to switch"
   },
-
   "themes": {
     "cat": {
       "name": "Artem Iskandirov",
-      "bio": "Product designer working on <strong>kids edtech, retail AI, and design systems</strong>. Currently <strong>Senior</strong> at Uchi.ru / VK EdTech.",
+      "bio": "Product designer at <strong>Uchi.ru / VK EdTech</strong>. I work across <strong>B2C & B2B, mobile & web</strong> — kids edtech, retail AI and design systems. <strong>7+ years</strong> in product.",
       "meta": [
-        "<strong>7+ yrs</strong> design",
-        "Based in <strong>Kazan</strong>",
-        "Open to <strong>remote · hybrid · relocation</strong>"
+        "<strong>7+ yrs</strong> in product design",
+        "Based in <strong>Kazan</strong> · open to relocation",
+        "Open to <strong>remote · hybrid · on-site</strong>"
       ],
       "statusText": "open to work",
       "themeLabel": "Cat realm",
@@ -48,7 +45,7 @@
     },
     "fantasy": {
       "name": "Artem Iskandirov",
-      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold.",
+      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold, <strong>seven winters</strong> at the craft.",
       "meta": [
         "<strong>Seven winters</strong> on the craft",
         "From the city of <strong>Kazan</strong>",
@@ -68,14 +65,24 @@
       "catchSub": "30 seconds — tap as many as you can"
     }
   },
-
   "overviewLinks": [
-    { "label": "Email",     "url": "mailto:art.iskandirov@gmail.com" },
-    { "label": "Telegram",  "url": "https://t.me/artemiskandirov" },
-    { "label": "LinkedIn",  "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/" },
-    { "label": "Channel",   "url": "https://t.me/kidstechdesign" }
+    {
+      "label": "Email",
+      "url": "mailto:art.iskandirov@gmail.com"
+    },
+    {
+      "label": "Telegram",
+      "url": "https://t.me/artemiskandirov"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+    },
+    {
+      "label": "Channel",
+      "url": "https://t.me/kidstechdesign"
+    }
   ],
-
   "experience": [
     {
       "period": "2023 — now",
@@ -118,22 +125,27 @@
       "tag": "MedTech · 12 regions"
     }
   ],
-
   "projects": [
     {
       "id": "uchiru",
       "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
       "title": "Uchi.ru",
-      "subtitle": "Selflearning platform for kids",
+      "subtitle": "Self-learning platform for kids, grades 1–4",
       "co": "Uchi.ru / VK EdTech",
-      "sector": "Edtech",
+      "sector": "B2C · Edtech · Mobile",
       "period": "2023 → present",
-      "problem": "At the kids' core flow, **engagement was stagnating** because lessons felt monotonous after a few sessions.",
-      "approach": "I rebuilt the **learning loop with sound, gamification and a unified design system** across 1–4 grade.",
-      "outcome": "ARPU **+5%**, conversion rate **+7%**, won 1st AI hackathon",
+      "problem": "Engagement for young learners **stagnated** — lessons felt repetitive, and the product had no unified visual or sound language.",
+      "approach": "As Senior PD I **led the design system, sound UX and reward mechanics**, and ran a continuous stream of A/B-tested product hypotheses.",
+      "outcome": "New purchase flow **ARPU +5% · CR +7%** · won **1st place in the internal AI hackathon (₽500K prize)**",
       "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
       "state": "ongoing",
-      "tags": ["Edtech", "Design Systems", "Sound UX", "Gamification"],
+      "tags": [
+        "Edtech",
+        "Design System",
+        "Sound UX",
+        "Gamification",
+        "A/B testing"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/uchiru",
       "gallery": 4
     },
@@ -141,16 +153,22 @@
       "id": "miryavi",
       "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
       "title": "Miry Avi · Speech",
-      "subtitle": "Speech-therapy app for preschool kids",
+      "subtitle": "Speech-therapy app for preschoolers",
       "co": "Miry Avi",
-      "sector": "Kids · Speech",
+      "sector": "B2C · Kids · Part-time",
       "period": "2024 → present",
-      "problem": "Speech therapy at home felt like a chore — kids dropped off and parents lost track of progress.",
-      "approach": "I designed **game mechanics, characters and a parallel parent flow** to keep both sides engaged.",
-      "outcome": "D7 retention up, **4.7★ on the App Store** at MVP",
+      "problem": "Speech therapy at home is hard to sustain — kids lose interest and parents can't keep them practising.",
+      "approach": "I built the **game logic, level design and retention loops**, plus structural layouts handed off to illustrators.",
+      "outcome": "Subscriptions **+4%** from a payments redesign · DAU up via progressive grade unlocks",
       "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
       "state": "ongoing",
-      "tags": ["Kids", "Gamification", "Speech", "Mobile"],
+      "tags": [
+        "Kids",
+        "Gamification",
+        "Game Design",
+        "Mobile",
+        "Retention"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/miryavi",
       "gallery": 4
     },
@@ -158,18 +176,67 @@
       "id": "ailet",
       "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
       "title": "Ailet · JedAI",
-      "subtitle": "AI vision for retail & CPG",
+      "subtitle": "AI-vision platform for retail & CPG",
       "co": "Ailet",
-      "sector": "B2B SaaS",
+      "sector": "B2B SaaS · AI Vision",
       "period": "2021 — 2023",
-      "problem": "Field merchandisers across **P&G, Coca-Cola and Mars** struggled with dense data and slow audits in stores.",
-      "approach": "I led **the analytics web platform and the mobile field app** — patterns adopted across all modules.",
-      "outcome": "CSAT/CSI **+5pp**, support load **−8%**, task rate up",
+      "problem": "Field merchandisers and auditors at major CPG brands worked with **dense data and slow in-store audits**.",
+      "approach": "I designed the **analytics web platform and the mobile field app**, ran UX research in real stores, and turned design into proper dev-ready documentation.",
+      "outcome": "**CSAT/CSI +5pp** · support tickets **−8%** · steady task-completion growth in the field",
       "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
       "state": "shipped",
-      "tags": ["B2B SaaS", "AI Vision", "Field UX", "Web"],
+      "tags": [
+        "B2B SaaS",
+        "AI Vision",
+        "Field UX",
+        "Web",
+        "Mobile",
+        "Research"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/ailet",
       "gallery": 4
+    },
+    {
+      "id": "akbars",
+      "title": "Ak Bars · Investments",
+      "subtitle": "Investments section inside a banking app",
+      "co": "Ak Bars Digital",
+      "sector": "B2C · Fintech",
+      "period": "2020 — 2021",
+      "problem": "The bank wanted more users entering and completing **investment products**, but the flow had high drop-off.",
+      "approach": "I designed the **investments section** and a scalable UI architecture so new products could be added without redesign.",
+      "outcome": "Entries to investments **+11%** after the home redesign · checkout drop-off **−12%** · faster purchase flow",
+      "bg": "linear-gradient(135deg, #1a6ac0, #2aa0d8)",
+      "state": "shipped",
+      "tags": [
+        "Fintech",
+        "iOS",
+        "Android",
+        "Scalable UI"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
+    },
+    {
+      "id": "bars",
+      "title": "BARS · Medical IS",
+      "subtitle": "Medical information system, 12 regions",
+      "co": "BARS Group",
+      "sector": "B2G · MedTech",
+      "period": "2018 — 2020",
+      "problem": "A medical information system deployed across **12 Russian regions** was hard to use across many professional roles.",
+      "approach": "I redesigned interfaces for **doctors, nurses and admins**, researching 7+ role scenarios and adapting flows per role.",
+      "outcome": "**10,000+ users** · routine tasks **−10%** time · positive feedback in 3 of 5 pilot regions · onboarding without manuals",
+      "bg": "linear-gradient(135deg, #c03a5a, #e0687a)",
+      "state": "shipped",
+      "tags": [
+        "MedTech",
+        "B2G",
+        "Research",
+        "Complex UX"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
     },
     {
       "id": "conditional",
@@ -178,28 +245,36 @@
       "co": "Ailet",
       "sector": "No-code Tooling",
       "period": "2022",
-      "problem": "Analysts had to write **JSON formulas by hand** to ship rules — every change burned engineering time.",
-      "approach": "I turned the formula syntax into a **visual logic UI** non-tech users could drag together.",
-      "outcome": "**Zero engineering** dependency, time-to-configure dropped",
+      "problem": "Analysts had to hand-write **JSON formulas** to ship rules — every change burned engineering time.",
+      "approach": "I turned the formula syntax into a **visual logic builder** non-tech users could assemble themselves.",
+      "outcome": "**Zero engineering** dependency to configure rules · faster time-to-ship",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["No-code", "Tooling", "Sub-case"],
+      "tags": [
+        "No-code",
+        "Tooling",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/conditional",
       "gallery": 3
     },
     {
       "id": "portal",
       "title": "Portal redesign",
-      "subtitle": "Detail page restructure",
+      "subtitle": "Global redesign of a detail page",
       "co": "Ailet",
       "sector": "Web · Redesign",
       "period": "2022",
-      "problem": "The portal detail page was a wall — users couldn't find primary actions or filter what they needed.",
+      "problem": "The portal detail page was a wall of data — users couldn't find primary actions or filter.",
       "approach": "I rebuilt **information hierarchy, layout, primary CTAs and filters** from scratch.",
-      "outcome": "Task time down, NPS up",
+      "outcome": "Faster task completion, cleaner hierarchy",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["Web", "Redesign", "Sub-case"],
+      "tags": [
+        "Web",
+        "Redesign",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/portal",
       "gallery": 3
     },
@@ -210,12 +285,16 @@
       "co": "Ailet",
       "sector": "Mobile · Pattern",
       "period": "2022",
-      "problem": "Complex tabular data didn't fit on phones — merchandisers in the field had to zoom and pan endlessly.",
-      "approach": "I designed a **responsive table pattern** — adopted across every module of the product.",
-      "outcome": "Mobile usability up across the platform",
+      "problem": "Complex tabular data didn't fit on phones — field staff had to zoom and pan endlessly.",
+      "approach": "I designed a **responsive table pattern** adopted across every module.",
+      "outcome": "Usable dense data on mobile platform-wide",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["Mobile", "Pattern", "Sub-case"],
+      "tags": [
+        "Mobile",
+        "Pattern",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/mobileview",
       "gallery": 3
     },
@@ -226,12 +305,16 @@
       "co": "Ailet",
       "sector": "AI Vision · Data viz",
       "period": "2022",
-      "problem": "Auditors couldn't tell **what the AI saw** on a shelf photo — overlays were too dense and unreadable.",
-      "approach": "I designed **layered overlays** so anyone can read AI's recognition results on a real photo.",
-      "outcome": "Audit speed up significantly",
+      "problem": "Auditors couldn't tell **what the AI recognised** on a shelf photo — overlays were unreadable.",
+      "approach": "I designed **layered overlays** so anyone can read recognition results on a real photo.",
+      "outcome": "Faster, clearer shelf audits",
       "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
       "state": "shipped",
-      "tags": ["AI Vision", "Data viz", "Sub-case"],
+      "tags": [
+        "AI Vision",
+        "Data viz",
+        "Sub-case"
+      ],
       "deeplink": "https://artemiskandirovv.framer.website/realogram",
       "gallery": 3
     },
@@ -239,15 +322,19 @@
       "id": "soundux",
       "title": "Sound UX",
       "subtitle": "Talk at Chulakov Design Meetup",
-      "co": "Speaking",
+      "co": "Public speaking",
       "sector": "Talk",
       "period": "Jul 2024",
       "problem": "Sound is **the most ignored interface layer** — designers leave it to engineers and lose product feel.",
-      "approach": "A 25-minute talk on **how sound shapes product feel** — lessons from Uchi.ru, kids UX, metrics.",
-      "outcome": "**300+ designers** in the audience",
+      "approach": "A talk on **how sound and voice affect product metrics** — and how to make it yourself or with neural nets.",
+      "outcome": "Shared real Uchi.ru sound-UX lessons with the design community",
       "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
       "state": "live",
-      "tags": ["Speaking", "Sound", "Talk"],
+      "tags": [
+        "Speaking",
+        "Sound",
+        "Talk"
+      ],
       "deeplink": "https://t.me/kidstechdesign/74",
       "gallery": 2
     },
@@ -255,31 +342,40 @@
       "id": "haptics",
       "title": "Custom Vibrations",
       "subtitle": "iOS app for crafting haptics",
-      "co": "Solo project",
+      "co": "Vibe-coding",
       "sector": "Side · iOS",
       "period": "2025",
-      "problem": "Designing haptic patterns means **describing them in slack** — nobody can feel a Figma frame.",
-      "approach": "I vibe-coded an iOS app in **Cursor + SwiftUI** to test custom haptics before pitching them.",
-      "outcome": "Tested 30+ patterns, picks ship to production",
+      "problem": "Designing haptic patterns means describing them in chat — nobody can feel a Figma frame.",
+      "approach": "I **vibe-coded an iOS app in Cursor + Xcode** to author and feel custom vibrations directly.",
+      "outcome": "A working tool to test haptics before pitching them",
       "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
       "state": "live",
-      "tags": ["Side", "iOS", "Haptics", "SwiftUI"],
+      "tags": [
+        "Side",
+        "iOS",
+        "Haptics",
+        "Cursor"
+      ],
       "deeplink": "https://t.me/kidstechdesign/113",
       "gallery": 2
     },
     {
       "id": "tg-digester",
       "title": "Telegram Digester",
-      "subtitle": "No-code summary bot",
-      "co": "Solo project",
+      "subtitle": "No-code channel-summary bot",
+      "co": "Vibe-coding",
       "sector": "Side · AI",
       "period": "2025",
-      "problem": "My channel feed grew faster than I could read it — important posts kept slipping through.",
-      "approach": "I assembled a **no-code TG bot** that ChatGPT summarises into one daily digest message.",
-      "outcome": "Daily digest in **1 message**",
+      "problem": "My channel feed grew faster than I could read it — important posts slipped through.",
+      "approach": "I built a **no-code Telegram bot with ChatGPT** that reads channels and sends me automatic digests.",
+      "outcome": "Daily digest of everything important in **one message**",
       "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
       "state": "live",
-      "tags": ["Side", "AI", "No-code"],
+      "tags": [
+        "Side",
+        "AI",
+        "No-code"
+      ],
       "deeplink": "https://t.me/kidstechdesign/121",
       "gallery": 2
     },
@@ -287,20 +383,23 @@
       "id": "bi-agent",
       "title": "BI Agent",
       "subtitle": "Chat-style insights over BI data",
-      "co": "Solo project",
+      "co": "Vibe-coding",
       "sector": "Side · AI",
       "period": "2025",
-      "problem": "Retail dashboards are dense — most managers want **the answer**, not the chart.",
-      "approach": "I designed and built an **LLM agent** that talks to BI data and answers questions in chat.",
-      "outcome": "Skip the dashboard, get the answer",
+      "problem": "Retail BI dashboards are dense — managers want **the answer**, not the whole chart.",
+      "approach": "I designed and built an **AI agent** that returns just the requested part of a BI dashboard, ChatGPT-style.",
+      "outcome": "Ask in plain language, get the exact slice of data back",
       "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
       "state": "live",
-      "tags": ["Side", "AI Agent", "Retail"],
+      "tags": [
+        "Side",
+        "AI Agent",
+        "Retail"
+      ],
       "deeplink": "https://t.me/kidstechdesign/117",
       "gallery": 2
     }
   ],
-
   "education": [
     {
       "year": "2018",
@@ -313,23 +412,44 @@
       "degree": "B.Sc., Nanotechnology · Kazan"
     }
   ],
-
   "skills": [
-    "Figma", "FigJam", "Sketch", "Framer",
-    "UI / UX", "Design Systems", "Prototyping",
-    "Photoshop", "Illustrator", "After Effects",
-    "Lottie", "Spline", "Blender", "3D",
-    "Cursor", "Xcode", "SwiftUI",
-    "Notion", "Confluence", "Jira", "Miro",
-    "Sound design", "Haptics",
-    "User research", "A/B testing", "Analytics"
+    "Figma",
+    "FigJam",
+    "Sketch",
+    "Framer",
+    "UI / UX",
+    "Design Systems",
+    "Prototyping",
+    "Photoshop",
+    "Illustrator",
+    "After Effects",
+    "Lottie",
+    "Spline",
+    "Blender",
+    "3D",
+    "Cursor",
+    "Xcode",
+    "SwiftUI",
+    "Notion",
+    "Confluence",
+    "Jira",
+    "Miro",
+    "Sound design",
+    "Haptics",
+    "User research",
+    "A/B testing",
+    "Analytics"
   ],
-
   "languages": [
-    { "name": "Russian", "level": "Native" },
-    { "name": "English", "level": "B1" }
+    {
+      "name": "Russian",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B1"
+    }
   ],
-
   "social": [
     {
       "side": "Telegram",
@@ -367,7 +487,6 @@
       "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
     }
   ],
-
   "labels": {
     "stateOngoing": "Ongoing",
     "stateLive": "Live",
@@ -389,12 +508,37 @@
     "catchTimeLabel": "Time",
     "catchCaught": "caught"
   },
-
   "catBubbles": {
-    "awake": ["hi.", "mrr?", "oh hello", "pet me", "meow.", "...?"],
-    "purring": ["purr...", "mmmm", "happy cat", "don't stop"],
-    "annoyed": ["enough.", "go away", "hmph", "rude."],
-    "playful": ["play with me!", "bouncy", "yay!", "weeee"],
-    "startled": ["eep!", "!!!", "agh!"]
+    "awake": [
+      "hi.",
+      "mrr?",
+      "oh hello",
+      "pet me",
+      "meow.",
+      "...?"
+    ],
+    "purring": [
+      "purr...",
+      "mmmm",
+      "happy cat",
+      "don't stop"
+    ],
+    "annoyed": [
+      "enough.",
+      "go away",
+      "hmph",
+      "rude."
+    ],
+    "playful": [
+      "play with me!",
+      "bouncy",
+      "yay!",
+      "weeee"
+    ],
+    "startled": [
+      "eep!",
+      "!!!",
+      "agh!"
+    ]
   }
 }

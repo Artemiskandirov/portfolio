@@ -1,0 +1,544 @@
+{
+  "_comment": "РУССКАЯ ВЕРСИЯ. Редактируй любой текст/ссылку. После правок — пуш на Vercel. Используй <strong>...</strong> для выделения, <br> для переноса строк. **жирный** в описаниях проектов = оранжевый акцент.",
+  "site": {
+    "title": "Артём Искандиров — Продуктовый дизайнер",
+    "description": "Продуктовый дизайнер. Uchi.ru / VK EdTech. Казань.",
+    "brand": "Артём Искандиров",
+    "splashName": "Артём Искандиров",
+    "splashCta": "Войти — со звуком",
+    "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
+  },
+  "tabs": {
+    "labelOverview": "01 — Обзор",
+    "labelExperience": "02 — Опыт",
+    "labelProjects": "03 — Проекты",
+    "labelEducation": "04 — Образование",
+    "labelSocial": "05 — Контакты",
+    "dockOverview": "Обзор",
+    "dockExperience": "Опыт",
+    "dockProjects": "Проекты",
+    "dockEducation": "Образование",
+    "dockSocial": "Контакты",
+    "hint": "переключить"
+  },
+  "themes": {
+    "cat": {
+      "name": "Артём Искандиров",
+      "bio": "Продуктовый дизайнер в <strong>Uchi.ru / VK EdTech</strong>. Работаю с <strong>B2C и B2B, mobile и web</strong> — детский edtech, ритейл-AI и дизайн-системы. <strong>7+ лет</strong> в продукте.",
+      "meta": [
+        "<strong>7+ лет</strong> в продуктовом дизайне",
+        "Казань · готов к переезду",
+        "Открыт к <strong>удалёнке · гибриду · офису</strong>"
+      ],
+      "statusText": "открыт к предложениям",
+      "themeLabel": "Кот",
+      "gameLabel": "Игра с котом",
+      "gameTitle": "Крестики-нолики с котом",
+      "gameSub": "Вы — X · Кот — O · Кот жульничает",
+      "statusYouWin": "<strong>Вы выиграли!</strong> Кот недоволен.",
+      "statusCatWin": "<strong>Кот выиграл!</strong> Ну конечно.",
+      "statusDraw": "<strong>Ничья.</strong> Кот всё равно мурчит.",
+      "statusCheat": "Кот сжульничал! Украл ваш <strong>X</strong>.",
+      "yourMove": "Ваш ход.",
+      "catchTitle": "Поймай кота",
+      "catchSub": "30 секунд — поймайте как можно больше"
+    },
+    "fantasy": {
+      "name": "Артём Искандиров",
+      "bio": "Странствующий мастер интерфейсов — кую миры из <strong>детских сказаний, ритейл-прорицаний и дизайн-сигилов</strong>. Рыцарь-старшина крепости Uchi.ru, <strong>семь зим</strong> у ремесла.",
+      "meta": [
+        "<strong>Семь зим</strong> у ремесла",
+        "Из града <strong>Казань</strong>",
+        "Открыт к <strong>дальним дорогам · удалённым крепостям · переезду</strong>"
+      ],
+      "statusText": "в ожидании квеста",
+      "themeLabel": "Фэнтези",
+      "gameLabel": "Дуэль с драконом",
+      "gameTitle": "Дуэль с Драконом",
+      "gameSub": "Вы — Меч · Дракон — Сигил · Зверь нечестен",
+      "statusYouWin": "<strong>Дракон повержен.</strong> О вас сложат песни.",
+      "statusCatWin": "<strong>Дракон победил.</strong> Беги, смертный.",
+      "statusDraw": "<strong>Пат.</strong> Дракон рычит.",
+      "statusCheat": "Дракон жульничает! Забрал один из ваших сигилов.",
+      "yourMove": "Ваш ход, рыцарь.",
+      "catchTitle": "Поймай дракона",
+      "catchSub": "30 секунд — поймайте как можно больше"
+    }
+  },
+  "overviewLinks": [
+    {
+      "label": "Почта",
+      "url": "mailto:art.iskandirov@gmail.com"
+    },
+    {
+      "label": "Telegram",
+      "url": "https://t.me/artemiskandirov"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+    },
+    {
+      "label": "Канал",
+      "url": "https://t.me/kidstechdesign"
+    }
+  ],
+  "experience": [
+    {
+      "period": "2023 — сейчас",
+      "co": "uchi",
+      "initial": "U",
+      "name": "Uchi.ru / VK EdTech",
+      "role": "Senior Product Designer",
+      "tag": "Edtech · Mobile"
+    },
+    {
+      "period": "2024 — сейчас",
+      "co": "miry",
+      "initial": "M",
+      "name": "Miry Avi",
+      "role": "Senior Product Designer · part-time",
+      "tag": "Дети · Геймификация"
+    },
+    {
+      "period": "2021 — 2023",
+      "co": "ailet",
+      "initial": "A",
+      "name": "Ailet · JedAI",
+      "role": "Product Designer",
+      "tag": "B2B SaaS · AI Vision"
+    },
+    {
+      "period": "2020 — 2021",
+      "co": "akbars",
+      "initial": "AK",
+      "name": "Ak Bars",
+      "role": "Product Designer",
+      "tag": "Финтех · Инвестиции"
+    },
+    {
+      "period": "2018 — 2020",
+      "co": "bars",
+      "initial": "B",
+      "name": "BARS Group",
+      "role": "Product Designer",
+      "tag": "MedTech · 12 регионов"
+    }
+  ],
+  "projects": [
+    {
+      "id": "uchiru",
+      "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
+      "title": "Uchi.ru",
+      "subtitle": "Self-learning платформа для детей 1–4 класса",
+      "co": "Uchi.ru / VK EdTech",
+      "sector": "B2C · Edtech · Mobile",
+      "period": "2023 → сейчас",
+      "problem": "Вовлечённость младших школьников **остановилась** — уроки казались однообразными, у продукта не было единого визуального и звукового языка.",
+      "approach": "Как Senior PD я **вёл дизайн-систему, звуковой UX и механику наград**, запускал непрерывный поток продуктовых гипотез с A/B-тестами.",
+      "outcome": "Новый путь покупки **ARPU +5% · CR +7%** · **1-е место на внутреннем AI-хакатоне (приз ₽500K)**",
+      "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
+      "state": "ongoing",
+      "tags": [
+        "Edtech",
+        "Дизайн-система",
+        "Звуковой UX",
+        "Геймификация",
+        "A/B-тесты"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/uchiru",
+      "gallery": 4
+    },
+    {
+      "id": "miryavi",
+      "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
+      "title": "Miry Avi · Speech",
+      "subtitle": "Логопедическое приложение для дошкольников",
+      "co": "Miry Avi",
+      "sector": "B2C · Дети · Part-time",
+      "period": "2024 → сейчас",
+      "problem": "Логопедию дома сложно поддерживать — дети теряют интерес, а родители не могут заставить заниматься.",
+      "approach": "Я делал **логику игр, дизайн уровней и циклы удержания**, плюс структурные макеты для иллюстраторов.",
+      "outcome": "Подписки **+4%** после редизайна оплаты · рост DAU за счёт прогрессивных грейдов",
+      "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
+      "state": "ongoing",
+      "tags": [
+        "Дети",
+        "Геймификация",
+        "Гейм-дизайн",
+        "Mobile",
+        "Удержание"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/miryavi",
+      "gallery": 4
+    },
+    {
+      "id": "ailet",
+      "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
+      "title": "Ailet · JedAI",
+      "subtitle": "AI-vision платформа для ритейла и CPG",
+      "co": "Ailet",
+      "sector": "B2B SaaS · AI Vision",
+      "period": "2021 — 2023",
+      "problem": "Мерчендайзеры и аудиторы крупных CPG-брендов работали с **плотными данными и медленными аудитами** в магазинах.",
+      "approach": "Я проектировал **аналитическую веб-платформу и мобильное приложение для полей**, проводил UX-исследования в реальных магазинах, превращал дизайн в готовую для разработки документацию.",
+      "outcome": "**CSAT/CSI +5 п.п.** · обращений в поддержку **−8%** · устойчивый рост task-completion в полях",
+      "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
+      "state": "shipped",
+      "tags": [
+        "B2B SaaS",
+        "AI Vision",
+        "Field UX",
+        "Web",
+        "Mobile",
+        "Исследования"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/ailet",
+      "gallery": 4
+    },
+    {
+      "id": "akbars",
+      "title": "Ak Bars · Investments",
+      "subtitle": "Раздел инвестиций в банковском приложении",
+      "co": "Ak Bars Digital",
+      "sector": "B2C · Финтех",
+      "period": "2020 — 2021",
+      "problem": "Банк хотел больше пользователей, заходящих в **инвестиционные продукты**, но во флоу был высокий отказ.",
+      "approach": "Я спроектировал **раздел инвестиций** и масштабируемую UI-архитектуру, чтобы новые продукты добавлялись без редизайна.",
+      "outcome": "Переходы в инвестиции **+11%** после редизайна главной · отказы на оформлении **−12%** · быстрее путь покупки",
+      "bg": "linear-gradient(135deg, #1a6ac0, #2aa0d8)",
+      "state": "shipped",
+      "tags": [
+        "Финтех",
+        "iOS",
+        "Android",
+        "Масштабируемый UI"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
+    },
+    {
+      "id": "bars",
+      "title": "BARS · Medical IS",
+      "subtitle": "Медицинская информационная система, 12 регионов",
+      "co": "BARS Group",
+      "sector": "B2G · MedTech",
+      "period": "2018 — 2020",
+      "problem": "МИС, внедрённая в **12 регионах России**, была сложна в использовании для множества профессиональных ролей.",
+      "approach": "Я редизайнил интерфейсы для **врачей, медсестёр и администраторов**, исследовал 7+ ролевых сценариев и адаптировал флоу под каждую роль.",
+      "outcome": "**10 000+ пользователей** · типовые сценарии **−10%** времени · позитив в 3 из 5 пилотных регионов · онбординг без мануалов",
+      "bg": "linear-gradient(135deg, #c03a5a, #e0687a)",
+      "state": "shipped",
+      "tags": [
+        "MedTech",
+        "B2G",
+        "Исследования",
+        "Сложный UX"
+      ],
+      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
+      "gallery": 0
+    },
+    {
+      "id": "conditional",
+      "title": "Conditional",
+      "subtitle": "Визуальный конструктор логики для аналитиков",
+      "co": "Ailet",
+      "sector": "No-code инструмент",
+      "period": "2022",
+      "problem": "Аналитики писали **JSON-формулы вручную**, чтобы внедрить правила — каждое изменение жгло время разработки.",
+      "approach": "Я превратил синтаксис формул в **визуальный конструктор логики**, который нетехнические пользователи собирают сами.",
+      "outcome": "**Ноль зависимости** от разработки для настройки правил · быстрее time-to-ship",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": [
+        "No-code",
+        "Инструмент",
+        "Под-кейс"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/conditional",
+      "gallery": 3
+    },
+    {
+      "id": "portal",
+      "title": "Portal redesign",
+      "subtitle": "Глобальный редизайн страницы детализации",
+      "co": "Ailet",
+      "sector": "Web · Редизайн",
+      "period": "2022",
+      "problem": "Страница детализации была стеной данных — пользователи не находили действий и фильтров.",
+      "approach": "Я перестроил **иерархию информации, вёрстку, основные CTA и фильтры** с нуля.",
+      "outcome": "Быстрее выполнение задач, чистая иерархия",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": [
+        "Web",
+        "Редизайн",
+        "Под-кейс"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/portal",
+      "gallery": 3
+    },
+    {
+      "id": "mobileview",
+      "title": "Adaptive tables",
+      "subtitle": "Плотные данные на маленьких экранах",
+      "co": "Ailet",
+      "sector": "Mobile · Паттерн",
+      "period": "2022",
+      "problem": "Сложные таблицы не помещались на телефонах — сотрудникам в полях приходилось бесконечно зумить.",
+      "approach": "Я спроектировал **адаптивный паттерн таблиц**, принятый во всех модулях.",
+      "outcome": "Читаемые плотные данные на мобильных по всей платформе",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": [
+        "Mobile",
+        "Паттерн",
+        "Под-кейс"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/mobileview",
+      "gallery": 3
+    },
+    {
+      "id": "realogram",
+      "title": "Realogram",
+      "subtitle": "Просмотр распознавания товаров на полке",
+      "co": "Ailet",
+      "sector": "AI Vision · Data viz",
+      "period": "2022",
+      "problem": "Аудиторы не понимали, **что распознал AI** на фото полки — оверлеи были нечитаемы.",
+      "approach": "Я спроектировал **слоистые оверлеи**, чтобы любой мог прочитать результаты распознавания на реальном фото.",
+      "outcome": "Быстрее и понятнее аудит полок",
+      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
+      "state": "shipped",
+      "tags": [
+        "AI Vision",
+        "Data viz",
+        "Под-кейс"
+      ],
+      "deeplink": "https://artemiskandirovv.framer.website/realogram",
+      "gallery": 3
+    },
+    {
+      "id": "soundux",
+      "title": "Sound UX",
+      "subtitle": "Доклад на Chulakov Design Meetup",
+      "co": "Public speaking",
+      "sector": "Доклад",
+      "period": "Июль 2024",
+      "problem": "Звук — **самый игнорируемый слой интерфейса** — дизайнеры отдают его разработке и теряют ощущение продукта.",
+      "approach": "Доклад о том, **как звук и озвучка влияют на метрики продукта** — и как сделать это самому или нейросетями.",
+      "outcome": "Поделился реальным опытом звукового UX из Uchi.ru с дизайн-сообществом",
+      "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
+      "state": "live",
+      "tags": [
+        "Доклад",
+        "Звук",
+        "Speaking"
+      ],
+      "deeplink": "https://t.me/kidstechdesign/74",
+      "gallery": 2
+    },
+    {
+      "id": "haptics",
+      "title": "Custom Vibrations",
+      "subtitle": "iOS-приложение для создания вибраций",
+      "co": "Vibe-coding",
+      "sector": "Side · iOS",
+      "period": "2025",
+      "problem": "Дизайн хаптики — это описание словами в чате, никто не чувствует Figma-макет.",
+      "approach": "Я **вайбкодил iOS-приложение в Cursor + Xcode**, чтобы создавать и чувствовать кастомные вибрации напрямую.",
+      "outcome": "Рабочий инструмент для тестов хаптики до питча",
+      "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
+      "state": "live",
+      "tags": [
+        "Side",
+        "iOS",
+        "Хаптика",
+        "Cursor"
+      ],
+      "deeplink": "https://t.me/kidstechdesign/113",
+      "gallery": 2
+    },
+    {
+      "id": "tg-digester",
+      "title": "Telegram Digester",
+      "subtitle": "No-code бот-дайджест каналов",
+      "co": "Vibe-coding",
+      "sector": "Side · AI",
+      "period": "2025",
+      "problem": "Лента каналов росла быстрее, чем я успевал читать — важные посты ускользали.",
+      "approach": "Я собрал **no-code Telegram-бота с ChatGPT**, который читает каналы и шлёт автоматические дайджесты.",
+      "outcome": "Ежедневный дайджест всего важного в **одном сообщении**",
+      "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
+      "state": "live",
+      "tags": [
+        "Side",
+        "AI",
+        "No-code"
+      ],
+      "deeplink": "https://t.me/kidstechdesign/121",
+      "gallery": 2
+    },
+    {
+      "id": "bi-agent",
+      "title": "BI Agent",
+      "subtitle": "Инсайты по BI-данным в стиле чата",
+      "co": "Vibe-coding",
+      "sector": "Side · AI",
+      "period": "2025",
+      "problem": "Ритейл BI-дашборды плотные — менеджерам нужен **ответ**, а не весь график.",
+      "approach": "Я спроектировал и собрал **AI-агента**, который выдаёт только запрошенную часть BI-дашборда в стиле ChatGPT.",
+      "outcome": "Спроси на обычном языке — получи нужный срез данных",
+      "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
+      "state": "live",
+      "tags": [
+        "Side",
+        "AI-агент",
+        "Ритейл"
+      ],
+      "deeplink": "https://t.me/kidstechdesign/117",
+      "gallery": 2
+    }
+  ],
+  "education": [
+    {
+      "year": "2018",
+      "school": "КНИТУ-КАИ им. Туполева",
+      "degree": "Магистр, электроника и микроэлектроника · Казань"
+    },
+    {
+      "year": "2016",
+      "school": "КНИТУ-КАИ им. Туполева",
+      "degree": "Бакалавр, нанотехнологии · Казань"
+    }
+  ],
+  "skills": [
+    "Figma",
+    "FigJam",
+    "Sketch",
+    "Framer",
+    "UI / UX",
+    "Design Systems",
+    "Prototyping",
+    "Photoshop",
+    "Illustrator",
+    "After Effects",
+    "Lottie",
+    "Spline",
+    "Blender",
+    "3D",
+    "Cursor",
+    "Xcode",
+    "SwiftUI",
+    "Notion",
+    "Confluence",
+    "Jira",
+    "Miro",
+    "Sound design",
+    "Haptics",
+    "User research",
+    "A/B testing",
+    "Analytics"
+  ],
+  "languages": [
+    {
+      "name": "Русский",
+      "level": "Родной"
+    },
+    {
+      "name": "Английский",
+      "level": "B1"
+    }
+  ],
+  "social": [
+    {
+      "side": "Telegram",
+      "name": "@artemiskandirov",
+      "tag": "Личка",
+      "arrow": "открыть ↗",
+      "url": "https://t.me/artemiskandirov"
+    },
+    {
+      "side": "Канал",
+      "name": "@kidstechdesign",
+      "tag": "Заметки о дизайне",
+      "arrow": "открыть ↗",
+      "url": "https://t.me/kidstechdesign"
+    },
+    {
+      "side": "Почта",
+      "name": "art.iskandirov@gmail.com",
+      "tag": "Привет",
+      "arrow": "написать ↗",
+      "url": "mailto:art.iskandirov@gmail.com"
+    },
+    {
+      "side": "LinkedIn",
+      "name": "artem-iskandirov",
+      "tag": "Профиль",
+      "arrow": "открыть ↗",
+      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+    },
+    {
+      "side": "Резюме",
+      "name": "hh.ru resume",
+      "tag": "Полная версия",
+      "arrow": "открыть ↗",
+      "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    }
+  ],
+  "labels": {
+    "stateOngoing": "В работе",
+    "stateLive": "Live",
+    "stateShipped": "Завершён",
+    "toolsLabel": "Инструменты",
+    "languagesLabel": "Языки",
+    "galleryLabel": "Галерея — скоро",
+    "openCase": "Открыть кейс ↗",
+    "outcomePrefix": "В результате —",
+    "frameLabel": "Кадр",
+    "gameTabTtt": "Крестики-нолики",
+    "gameTabCatch": "Поймай кота",
+    "gameNewRound": "Новый раунд",
+    "gameStartRound": "Старт",
+    "gameStop": "Стоп",
+    "gamePlayAgain": "Ещё раз",
+    "catchScoreLabel": "Счёт",
+    "catchBestLabel": "Рекорд",
+    "catchTimeLabel": "Время",
+    "catchCaught": "поймано"
+  },
+  "catBubbles": {
+    "awake": [
+      "привет.",
+      "мрр?",
+      "о, привет",
+      "погладь",
+      "мяу.",
+      "...?"
+    ],
+    "purring": [
+      "мрррр...",
+      "ммм",
+      "довольный кот",
+      "не останавливайся"
+    ],
+    "annoyed": [
+      "хватит.",
+      "уйди",
+      "хмф",
+      "грубо."
+    ],
+    "playful": [
+      "поиграй со мной!",
+      "прыг",
+      "ура!",
+      "вииии"
+    ],
+    "startled": [
+      "ой!",
+      "!!!",
+      "ааа!"
+    ]
+  }
+}
