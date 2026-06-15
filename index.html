@@ -1173,230 +1173,95 @@
 
   /* PROJECTS — wide list, two-column inside each card */
   .projects-wrap { max-width: 1100px; margin: 0 auto; }
-  .projects-grid { display: flex; flex-direction: column; gap: 16px; }
-  .pcard {
-    color: var(--fg);
-    background: var(--bg-glass);
-    backdrop-filter: blur(14px) saturate(1.5);
-    -webkit-backdrop-filter: blur(14px) saturate(1.5);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 6px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    gap: 6px;
-    overflow: hidden;
-    transition: transform 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), border-color 0.4s var(--easing);
-    cursor: pointer;
+  /* PROJECTS — minimal list (mishanaer-style) */
+  .work-label {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--fg-dim); margin-bottom: 16px;
   }
-  body.theme-fantasy .pcard { background: rgba(20, 18, 30, 0.85); border-color: var(--line-strong); border-radius: 0; }
-  .pcard.expanded { cursor: default; border-color: var(--fg); }
-  body.theme-fantasy .pcard.expanded { border-color: var(--accent); box-shadow: 0 0 36px rgba(255,138,58,0.18); }
-  .pcard:hover:not(.expanded) { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); border-color: var(--fg-mid); }
-  body.theme-fantasy .pcard:hover:not(.expanded) { border-color: var(--accent); box-shadow: 0 0 28px rgba(255, 138, 58, 0.25); }
-  .tab-view.active .pcard { opacity: 0; animation: cardReveal 0.65s var(--easing-out) forwards; }
-  .tab-view.active .pcard:nth-child(1) { animation-delay: 0.08s; }
-  .tab-view.active .pcard:nth-child(2) { animation-delay: 0.13s; }
-  .tab-view.active .pcard:nth-child(3) { animation-delay: 0.18s; }
-  .tab-view.active .pcard:nth-child(4) { animation-delay: 0.23s; }
-  .tab-view.active .pcard:nth-child(5) { animation-delay: 0.28s; }
-  .tab-view.active .pcard:nth-child(6) { animation-delay: 0.33s; }
-  .tab-view.active .pcard:nth-child(7) { animation-delay: 0.38s; }
-  .tab-view.active .pcard:nth-child(8) { animation-delay: 0.43s; }
-  .tab-view.active .pcard:nth-child(9) { animation-delay: 0.48s; }
-  .tab-view.active .pcard:nth-child(10) { animation-delay: 0.53s; }
-  .tab-view.active .pcard:nth-child(11) { animation-delay: 0.58s; }
-  .tab-view.active .pcard:nth-child(12) { animation-delay: 0.63s; }
-  .tab-view.active .pcard:nth-child(13) { animation-delay: 0.68s; }
-  @keyframes cardReveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  body.theme-fantasy .work-label { color: var(--accent); font-family: 'Cinzel', serif; letter-spacing: 0.18em; }
+  .work-label-side { margin-top: 44px; }
 
-  .pcard-text { padding: 22px 22px 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-  .pcard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-  .pcard-titlewrap { min-width: 0; }
-  .pcard-title { font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; }
-  body.theme-fantasy .pcard-title { color: var(--fg); }
-  .pcard-subtitle { font-size: 13px; color: var(--fg-dim); margin-top: 4px; }
-  body.theme-fantasy .pcard-subtitle { color: var(--fg-mid); }
-
-  .pcard-meta-row {
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  }
-  .pcard-co {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; padding: 4px 10px;
-    background: rgba(0,0,0,0.05);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    color: var(--fg);
-    font-weight: 500;
-  }
-  body.theme-fantasy .pcard-co { background: rgba(255,138,58,0.08); border-color: rgba(255,138,58,0.3); color: var(--accent); border-radius: 0; -webkit-mask: var(--torn-pill); mask: var(--torn-pill); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-  .pcard-sector {
-    font-size: 12px; padding: 4px 10px;
-    background: rgba(0,0,0,0.04);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    color: var(--fg-mid);
-    font-weight: 500;
-  }
-  body.theme-fantasy .pcard-sector { background: rgba(40,30,50,0.5); border-color: var(--line-strong); color: var(--fg-mid); border-radius: 0; -webkit-mask: var(--torn-pill); mask: var(--torn-pill); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-  .pcard-status { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-left: 2px; }
-  .pcard-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--fg-dim); }
-  .pcard-status[data-state="live"] .pcard-status-dot { background: #44b87a; box-shadow: 0 0 6px rgba(68,184,122,0.6); }
-  .pcard-status[data-state="shipped"] .pcard-status-dot { background: #4a90e2; }
-  .pcard-status[data-state="ongoing"] .pcard-status-dot { background: #ffb85c; animation: blink 1.4s ease-in-out infinite; }
-  body.theme-fantasy .pcard-status[data-state="live"] .pcard-status-dot { background: var(--accent); }
-  body.theme-fantasy .pcard-status[data-state="ongoing"] .pcard-status-dot { background: var(--accent); }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-  .pcard-toggle {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--fg); font-size: 14px;
-    transition: all 0.5s var(--easing-bounce);
-    background: var(--bg-glass);
-    flex-shrink: 0; line-height: 0; font-weight: 500;
-  }
-  body.theme-fantasy .pcard-toggle {
-    border-color: var(--accent); color: var(--accent);
-    -webkit-mask: var(--torn-circle); mask: var(--torn-circle);
-    -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    border-radius: 0;
-  }
-  .pcard:hover:not(.expanded) .pcard-toggle { background: var(--fg); color: var(--bg); border-color: var(--fg); transform: scale(1.08); }
-  body.theme-fantasy .pcard:hover:not(.expanded) .pcard-toggle { background: var(--accent); color: var(--bg); }
-  .pcard.expanded .pcard-toggle { background: var(--fg); color: var(--bg); transform: rotate(45deg); }
-  body.theme-fantasy .pcard.expanded .pcard-toggle { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-
-  .pcard-narrative { display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .pcard-narrative p {
-    font-size: 15px; line-height: 1.5;
-    color: var(--fg-dim);
-    margin: 0;
-  }
-  body.theme-fantasy .pcard-narrative p { color: var(--fg-mid); }
-  .pcard-narrative .acc { color: var(--fg); font-weight: 500; }
-  body.theme-fantasy .pcard-narrative .acc { color: var(--fg); font-weight: 600; }
-  .pcard-outcome .acc { color: var(--accent); font-weight: 600; }
-  .pcard-outcome { color: var(--fg-mid) !important; font-weight: 500; }
-
-  .pcard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
-  .pcard-tag {
-    font-size: 12px;
-    padding: 5px 11px;
-    border-radius: 100px;
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--fg);
-    letter-spacing: 0;
-    text-transform: none;
-    font-family: var(--font-body);
-    font-weight: 500;
-    transition: background 0.3s var(--easing);
-  }
-  body.theme-fantasy .pcard-tag {
-    background: rgba(255, 138, 58, 0.10);
-    border: 1px solid rgba(255, 138, 58, 0.3);
-    color: var(--fg);
-    -webkit-mask: var(--torn-tag);
-    mask: var(--torn-tag);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    border-radius: 0;
-  }
-  .pcard:hover .pcard-tag { background: rgba(0,0,0,0.08); }
-
-  .pcard-visual {
-    border-radius: 18px;
-    overflow: hidden;
-    position: relative;
-    min-height: 280px;
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.6s var(--easing-out);
-  }
-  body.theme-fantasy .pcard-visual { border-radius: 0; }
-  .pcard-visual img {
-    width: 76%; max-width: 480px;
-    height: auto;
+  .work-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .work-row {
+    display: block; text-decoration: none; color: inherit;
+    padding: 18px 16px; margin: 0 -16px;
     border-radius: 14px;
-    box-shadow: 0 22px 48px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.1);
-    transition: transform 0.6s var(--easing-out);
-    object-fit: cover;
+    position: relative;
+    transition: background 0.4s var(--easing), transform 0.5s var(--easing-out);
+    opacity: 0;
   }
-  body.theme-fantasy .pcard-visual img { filter: sepia(0.2) contrast(1.05) brightness(0.85); border-radius: 6px; }
-  .pcard:hover:not(.expanded) .pcard-visual img { transform: translateY(-4px) scale(1.02); }
-  .pcard-visual-empty {
-    width: 88px; height: 88px;
-    border-radius: 22px;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: rgba(255,255,255,0.92);
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  .tab-view.active .work-row { animation: cardReveal 0.6s var(--easing-out) forwards; }
+  .tab-view.active .work-row:nth-child(1) { animation-delay: 0.05s; }
+  .tab-view.active .work-row:nth-child(2) { animation-delay: 0.12s; }
+  .tab-view.active .work-row:nth-child(3) { animation-delay: 0.19s; }
+  .tab-view.active .work-row:nth-child(4) { animation-delay: 0.26s; }
+  .work-row:hover { background: var(--accent-soft); transform: translateX(4px); }
+  body.theme-fantasy .work-row { border-radius: 0; }
+  body.theme-fantasy .work-row:hover {
+    background: linear-gradient(90deg, rgba(255,138,58,0.12), transparent 80%);
+    box-shadow: inset 3px 0 0 var(--accent);
   }
-  body.theme-fantasy .pcard-visual-empty { border-radius: 6px; backdrop-filter: blur(6px) saturate(1.5); }
+  .work-row-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    margin-bottom: 3px;
+  }
+  .work-title {
+    font-family: var(--font-display); font-size: 22px; font-weight: 600;
+    color: var(--fg); letter-spacing: -0.01em;
+  }
+  body.theme-fantasy .work-title { font-family: 'Cinzel', serif; color: var(--fg); }
+  .work-period {
+    font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .work-role {
+    font-size: 13px; color: var(--fg-mid); font-weight: 500; margin-bottom: 8px;
+  }
+  body.theme-fantasy .work-role { color: var(--accent); }
+  .work-line {
+    font-size: 15px; line-height: 1.55; color: var(--fg-mid); max-width: 64ch;
+  }
+  .work-line strong { color: var(--fg); font-weight: 600; }
+  body.theme-fantasy .work-line strong { color: var(--accent); }
+  .work-link {
+    display: inline-block; margin-top: 10px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+    color: var(--fg-dim);
+    transition: color 0.3s var(--easing), transform 0.3s var(--easing-bounce);
+  }
+  .work-row:hover .work-link { color: var(--accent); transform: translateX(3px); }
 
-  .pcard-expand {
-    grid-column: 1 / -1;
-    display: none; flex-direction: column; gap: 16px;
-    padding: 18px 22px 22px;
-    border-top: 1px solid var(--line);
-    background: rgba(0,0,0,0.02);
+  /* side projects — single line each */
+  .side-list { display: flex; flex-direction: column; gap: 1px; }
+  .side-row {
+    display: flex; align-items: baseline; gap: 12px;
+    text-decoration: none; color: inherit;
+    padding: 11px 16px; margin: 0 -16px;
+    border-radius: 10px;
+    transition: background 0.3s var(--easing), transform 0.4s var(--easing-out);
+    opacity: 0;
   }
-  body.theme-fantasy .pcard-expand { background: rgba(255,138,58,0.04); border-color: var(--line-strong); }
-  .pcard.expanded .pcard-expand { display: flex; animation: expandIn 0.5s var(--easing-out); }
-  @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-  .pcard-expand-title { font-family: var(--font-mono); font-size: 10px; color: var(--fg-dim); letter-spacing: 0.12em; text-transform: uppercase; }
-  body.theme-fantasy .pcard-expand-title { color: var(--accent); }
-  .pcard-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
-  .pcard-gallery-item {
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #efede6, #d6d4cc);
-    border-radius: 8px; overflow: hidden;
-    border: 1px solid var(--line);
-    transition: transform 0.4s var(--easing-out);
-    cursor: zoom-in;
+  .tab-view.active .side-row { animation: cardReveal 0.5s var(--easing-out) forwards; }
+  .tab-view.active .side-row:nth-child(1) { animation-delay: 0.32s; }
+  .tab-view.active .side-row:nth-child(2) { animation-delay: 0.37s; }
+  .tab-view.active .side-row:nth-child(3) { animation-delay: 0.42s; }
+  .tab-view.active .side-row:nth-child(4) { animation-delay: 0.47s; }
+  .side-row:hover { background: var(--accent-soft); transform: translateX(4px); }
+  body.theme-fantasy .side-row { border-radius: 0; }
+  body.theme-fantasy .side-row:hover { background: rgba(255,138,58,0.1); box-shadow: inset 3px 0 0 var(--accent); }
+  .side-title {
+    font-size: 15px; font-weight: 600; color: var(--fg); flex-shrink: 0; white-space: nowrap;
   }
-  body.theme-fantasy .pcard-gallery-item { background: linear-gradient(135deg, #1a1830, #0a0e1a); border-color: var(--line-strong); }
-  .pcard-gallery-item:hover { transform: translateY(-2px); }
-  .pcard-gallery-item .placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); font-size: 9px; color: var(--fg-dim);
-    letter-spacing: 0.1em; text-transform: uppercase;
+  body.theme-fantasy .side-title { font-family: 'Cinzel', serif; }
+  .side-line {
+    font-size: 14px; color: var(--fg-mid); flex: 1; line-height: 1.4;
   }
-  body.theme-fantasy .pcard-gallery-item .placeholder { color: var(--accent); }
-  .pcard-deeplink {
-    display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
-    padding: 8px 14px; border-radius: 100px;
-    background: var(--fg); color: var(--bg);
-    text-decoration: none;
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    font-weight: 500;
-    transition: transform 0.4s var(--easing-bounce), box-shadow 0.4s var(--easing-out);
+  .side-arrow {
+    font-family: var(--font-mono); font-size: 12px; color: var(--fg-dim); flex-shrink: 0;
+    transition: color 0.3s var(--easing), transform 0.3s var(--easing-bounce);
   }
-  body.theme-fantasy .pcard-deeplink {
-    background: var(--accent);
-    color: #0a0e1a;
-    -webkit-mask: var(--torn-pill);
-    mask: var(--torn-pill);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    border-radius: 0;
-  }
-  .pcard-deeplink:hover { transform: translateY(-2px); }
-  body.theme-fantasy .pcard-deeplink:hover { box-shadow: 0 0 18px rgba(255,138,58,0.5); }
+  .side-row:hover .side-arrow { color: var(--accent); transform: translate(2px, -2px); }
 
   /* EDUCATION */
   .education-wrap { max-width: 720px; margin: 0 auto; }
@@ -1940,14 +1805,13 @@
     .exp-avatar { width: 40px; height: 40px; border-radius: 10px; font-size: 14px; }
     .exp-name { font-size: 17px; }
     .exp-sub { font-size: 12px; }
-    .projects-grid { gap: 12px; }
-    .pcard { grid-template-columns: 1fr; padding: 4px; gap: 4px; }
-    .pcard-text { padding: 18px 16px 14px; gap: 12px; }
-    .pcard-title { font-size: 19px; }
-    .pcard-narrative p { font-size: 14px; }
-    .pcard-visual { min-height: 200px; }
-    .pcard-visual img { width: 86%; }
-    .pcard.expanded { }
+    .work-row { padding: 14px 12px; margin: 0 -12px; }
+    .work-title { font-size: 19px; }
+    .work-period { font-size: 10px; }
+    .work-line { font-size: 14px; }
+    .work-label-side { margin-top: 34px; }
+    .side-row { flex-direction: column; gap: 3px; padding: 12px; margin: 0 -12px; }
+    .side-row .side-arrow { display: none; }
     .soc-row { grid-template-columns: 70px 1fr; gap: 12px; padding: 16px 12px; margin: 0 -12px; }
     .soc-row .soc-tag { display: none; }
     .soc-name { font-size: 18px; }
@@ -2085,7 +1949,10 @@
   <section class="tab-view" data-tab="projects">
     <div class="projects-wrap">
       <div class="tab-label">03 — Projects</div>
-      <div class="projects-grid" id="projectsGrid"></div>
+      <div class="work-label" id="workLabel">Where I worked</div>
+      <div class="work-list" id="workList"></div>
+      <div class="work-label work-label-side" id="sideLabel">Side projects</div>
+      <div class="side-list" id="sideList"></div>
     </div>
   </section>
 
@@ -2302,281 +2169,6 @@ const FALLBACK_DATA = {
       "tag": "MedTech · 12 regions"
     }
   ],
-  "projects": [
-    {
-      "id": "uchiru",
-      "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
-      "title": "Uchi.ru",
-      "subtitle": "Self-learning platform for kids, grades 1–4",
-      "co": "Uchi.ru / VK EdTech",
-      "sector": "B2C · Edtech · Mobile",
-      "period": "2023 → present",
-      "problem": "Engagement for young learners **stagnated** — lessons felt repetitive, and the product had no unified visual or sound language.",
-      "approach": "As Senior PD I **led the design system, sound UX and reward mechanics**, and ran a continuous stream of A/B-tested product hypotheses.",
-      "outcome": "New purchase flow **ARPU +5% · CR +7%** · won **1st place in the internal AI hackathon (₽500K prize)**",
-      "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
-      "state": "ongoing",
-      "tags": [
-        "Edtech",
-        "Design System",
-        "Sound UX",
-        "Gamification",
-        "A/B testing"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/uchiru",
-      "gallery": 4
-    },
-    {
-      "id": "miryavi",
-      "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
-      "title": "Miry Avi · Speech",
-      "subtitle": "Speech-therapy app for preschoolers",
-      "co": "Miry Avi",
-      "sector": "B2C · Kids · Part-time",
-      "period": "2024 → present",
-      "problem": "Speech therapy at home is hard to sustain — kids lose interest and parents can't keep them practising.",
-      "approach": "I built the **game logic, level design and retention loops**, plus structural layouts handed off to illustrators.",
-      "outcome": "Subscriptions **+4%** from a payments redesign · DAU up via progressive grade unlocks",
-      "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
-      "state": "ongoing",
-      "tags": [
-        "Kids",
-        "Gamification",
-        "Game Design",
-        "Mobile",
-        "Retention"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/miryavi",
-      "gallery": 4
-    },
-    {
-      "id": "ailet",
-      "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
-      "title": "Ailet · JedAI",
-      "subtitle": "AI-vision platform for retail & CPG",
-      "co": "Ailet",
-      "sector": "B2B SaaS · AI Vision",
-      "period": "2021 — 2023",
-      "problem": "Field merchandisers and auditors at major CPG brands worked with **dense data and slow in-store audits**.",
-      "approach": "I designed the **analytics web platform and the mobile field app**, ran UX research in real stores, and turned design into proper dev-ready documentation.",
-      "outcome": "**CSAT/CSI +5pp** · support tickets **−8%** · steady task-completion growth in the field",
-      "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
-      "state": "shipped",
-      "tags": [
-        "B2B SaaS",
-        "AI Vision",
-        "Field UX",
-        "Web",
-        "Mobile",
-        "Research"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/ailet",
-      "gallery": 4
-    },
-    {
-      "id": "akbars",
-      "title": "Ak Bars · Investments",
-      "subtitle": "Investments section inside a banking app",
-      "co": "Ak Bars Digital",
-      "sector": "B2C · Fintech",
-      "period": "2020 — 2021",
-      "problem": "The bank wanted more users entering and completing **investment products**, but the flow had high drop-off.",
-      "approach": "I designed the **investments section** and a scalable UI architecture so new products could be added without redesign.",
-      "outcome": "Entries to investments **+11%** after the home redesign · checkout drop-off **−12%** · faster purchase flow",
-      "bg": "linear-gradient(135deg, #1a6ac0, #2aa0d8)",
-      "state": "shipped",
-      "tags": [
-        "Fintech",
-        "iOS",
-        "Android",
-        "Scalable UI"
-      ],
-      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
-      "gallery": 0
-    },
-    {
-      "id": "bars",
-      "title": "BARS · Medical IS",
-      "subtitle": "Medical information system, 12 regions",
-      "co": "BARS Group",
-      "sector": "B2G · MedTech",
-      "period": "2018 — 2020",
-      "problem": "A medical information system deployed across **12 Russian regions** was hard to use across many professional roles.",
-      "approach": "I redesigned interfaces for **doctors, nurses and admins**, researching 7+ role scenarios and adapting flows per role.",
-      "outcome": "**10,000+ users** · routine tasks **−10%** time · positive feedback in 3 of 5 pilot regions · onboarding without manuals",
-      "bg": "linear-gradient(135deg, #c03a5a, #e0687a)",
-      "state": "shipped",
-      "tags": [
-        "MedTech",
-        "B2G",
-        "Research",
-        "Complex UX"
-      ],
-      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
-      "gallery": 0
-    },
-    {
-      "id": "conditional",
-      "title": "Conditional",
-      "subtitle": "Visual logic builder for non-tech analysts",
-      "co": "Ailet",
-      "sector": "No-code Tooling",
-      "period": "2022",
-      "problem": "Analysts had to hand-write **JSON formulas** to ship rules — every change burned engineering time.",
-      "approach": "I turned the formula syntax into a **visual logic builder** non-tech users could assemble themselves.",
-      "outcome": "**Zero engineering** dependency to configure rules · faster time-to-ship",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "No-code",
-        "Tooling",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/conditional",
-      "gallery": 3
-    },
-    {
-      "id": "portal",
-      "title": "Portal redesign",
-      "subtitle": "Global redesign of a detail page",
-      "co": "Ailet",
-      "sector": "Web · Redesign",
-      "period": "2022",
-      "problem": "The portal detail page was a wall of data — users couldn't find primary actions or filter.",
-      "approach": "I rebuilt **information hierarchy, layout, primary CTAs and filters** from scratch.",
-      "outcome": "Faster task completion, cleaner hierarchy",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "Web",
-        "Redesign",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/portal",
-      "gallery": 3
-    },
-    {
-      "id": "mobileview",
-      "title": "Adaptive tables",
-      "subtitle": "Dense data on small screens",
-      "co": "Ailet",
-      "sector": "Mobile · Pattern",
-      "period": "2022",
-      "problem": "Complex tabular data didn't fit on phones — field staff had to zoom and pan endlessly.",
-      "approach": "I designed a **responsive table pattern** adopted across every module.",
-      "outcome": "Usable dense data on mobile platform-wide",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "Mobile",
-        "Pattern",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/mobileview",
-      "gallery": 3
-    },
-    {
-      "id": "realogram",
-      "title": "Realogram",
-      "subtitle": "Shelf recognition view",
-      "co": "Ailet",
-      "sector": "AI Vision · Data viz",
-      "period": "2022",
-      "problem": "Auditors couldn't tell **what the AI recognised** on a shelf photo — overlays were unreadable.",
-      "approach": "I designed **layered overlays** so anyone can read recognition results on a real photo.",
-      "outcome": "Faster, clearer shelf audits",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "AI Vision",
-        "Data viz",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/realogram",
-      "gallery": 3
-    },
-    {
-      "id": "soundux",
-      "title": "Sound UX",
-      "subtitle": "Talk at Chulakov Design Meetup",
-      "co": "Public speaking",
-      "sector": "Talk",
-      "period": "Jul 2024",
-      "problem": "Sound is **the most ignored interface layer** — designers leave it to engineers and lose product feel.",
-      "approach": "A talk on **how sound and voice affect product metrics** — and how to make it yourself or with neural nets.",
-      "outcome": "Shared real Uchi.ru sound-UX lessons with the design community",
-      "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
-      "state": "live",
-      "tags": [
-        "Speaking",
-        "Sound",
-        "Talk"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/74",
-      "gallery": 2
-    },
-    {
-      "id": "haptics",
-      "title": "Custom Vibrations",
-      "subtitle": "iOS app for crafting haptics",
-      "co": "Vibe-coding",
-      "sector": "Side · iOS",
-      "period": "2025",
-      "problem": "Designing haptic patterns means describing them in chat — nobody can feel a Figma frame.",
-      "approach": "I **vibe-coded an iOS app in Cursor + Xcode** to author and feel custom vibrations directly.",
-      "outcome": "A working tool to test haptics before pitching them",
-      "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "iOS",
-        "Haptics",
-        "Cursor"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/113",
-      "gallery": 2
-    },
-    {
-      "id": "tg-digester",
-      "title": "Telegram Digester",
-      "subtitle": "No-code channel-summary bot",
-      "co": "Vibe-coding",
-      "sector": "Side · AI",
-      "period": "2025",
-      "problem": "My channel feed grew faster than I could read it — important posts slipped through.",
-      "approach": "I built a **no-code Telegram bot with ChatGPT** that reads channels and sends me automatic digests.",
-      "outcome": "Daily digest of everything important in **one message**",
-      "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "AI",
-        "No-code"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/121",
-      "gallery": 2
-    },
-    {
-      "id": "bi-agent",
-      "title": "BI Agent",
-      "subtitle": "Chat-style insights over BI data",
-      "co": "Vibe-coding",
-      "sector": "Side · AI",
-      "period": "2025",
-      "problem": "Retail BI dashboards are dense — managers want **the answer**, not the whole chart.",
-      "approach": "I designed and built an **AI agent** that returns just the requested part of a BI dashboard, ChatGPT-style.",
-      "outcome": "Ask in plain language, get the exact slice of data back",
-      "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "AI Agent",
-        "Retail"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/117",
-      "gallery": 2
-    }
-  ],
   "education": [
     {
       "year": "2018",
@@ -2683,7 +2275,9 @@ const FALLBACK_DATA = {
     "catchScoreLabel": "Score",
     "catchBestLabel": "Best",
     "catchTimeLabel": "Time",
-    "catchCaught": "caught"
+    "catchCaught": "caught",
+    "workLabel": "Where I worked",
+    "sideLabel": "Side projects"
   },
   "catBubbles": {
     "awake": [
@@ -2717,7 +2311,63 @@ const FALLBACK_DATA = {
       "!!!",
       "agh!"
     ]
-  }
+  },
+  "work": [
+    {
+      "id": "uchiru",
+      "title": "Uchi.ru",
+      "role": "Senior Product Designer",
+      "period": "2023 — now",
+      "line": "Design system, gamification & sound UX for kids 1–4. New purchase flow ARPU +5%, CR +7%. Won 1st place at the internal AI hackathon.",
+      "link": "https://artemiskandirovv.framer.website/uchiru"
+    },
+    {
+      "id": "ailet",
+      "title": "Ailet · JedAI",
+      "role": "Product Designer",
+      "period": "2021 — 2023",
+      "line": "Analytics web platform + mobile field app for retail AI-vision. CSAT/CSI +5pp, support tickets −8%.",
+      "link": "https://artemiskandirovv.framer.website/ailet"
+    },
+    {
+      "id": "akbars",
+      "title": "Ak Bars",
+      "role": "Product Designer",
+      "period": "2020 — 2021",
+      "line": "Investments section in a banking app. Entries +11% after the home redesign, checkout drop-off −12%.",
+      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    },
+    {
+      "id": "bars",
+      "title": "BARS Group",
+      "role": "Product Designer",
+      "period": "2018 — 2020",
+      "line": "Medical information system across 12 regions, 10,000+ users. Routine tasks −10% time, onboarding without manuals.",
+      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    }
+  ],
+  "side": [
+    {
+      "title": "Custom Vibrations",
+      "line": "iOS app for crafting haptics — vibe-coded in Cursor + Xcode",
+      "link": "https://t.me/kidstechdesign/113"
+    },
+    {
+      "title": "Telegram Digester",
+      "line": "No-code bot that summarises channels into one daily digest",
+      "link": "https://t.me/kidstechdesign/121"
+    },
+    {
+      "title": "BI Agent",
+      "line": "AI agent that answers BI-data questions in chat, ChatGPT-style",
+      "link": "https://t.me/kidstechdesign/117"
+    },
+    {
+      "title": "Sound UX",
+      "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
+      "link": "https://t.me/kidstechdesign/74"
+    }
+  ]
 }
 ;
 
@@ -4928,7 +4578,7 @@ document.addEventListener('mousemove', e => {
 });
 
 /* =============== PROJECTS =============== */
-function getProjects() { return (DATA && DATA.projects) || FALLBACK_DATA.projects || []; }
+function getProjects() { return (DATA && DATA.projects) || []; }
 function stateLabel(s) { return getStateLabel(s); }
 function escHtml(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 function fmtNarrative(s) {
@@ -4938,63 +4588,56 @@ function fmtNarrative(s) {
   return parts.map((p, i) => i % 2 === 1 ? `<strong class="acc">${escHtml(p)}</strong>` : escHtml(p)).join('');
 }
 function renderProjects() {
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  getProjects().forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'pcard';
-    card.dataset.sound = 'projects';
-    const visualInner = p.cover
-      ? `<img src="${p.cover}" alt="${p.title}" loading="lazy" />`
-      : `<div class="pcard-visual-empty">${p.title.charAt(0)}</div>`;
-    const tagsHtml = p.tags.map(t => `<span class="pcard-tag">${t}</span>`).join('');
-    const gItems = [];
-    for (let i = 1; i <= p.gallery; i++) gItems.push(`<div class="pcard-gallery-item"><div class="placeholder">Frame ${i}</div></div>`);
-    // deeplink label depends on destination
-    let linkLabel = 'Open full case ↗';
-    if (/hh\.ru/.test(p.deeplink)) linkLabel = 'See on hh.ru ↗';
-    else if (/t\.me/.test(p.deeplink)) linkLabel = 'Open in Telegram ↗';
-    const galleryBlock = p.gallery > 0
-      ? `<div class="pcard-expand-title">Gallery — coming soon</div><div class="pcard-gallery">${gItems.join('')}</div>`
-      : '';
-    card.innerHTML = `
-      <div class="pcard-text">
-        <div class="pcard-head">
-          <div class="pcard-titlewrap">
-            <div class="pcard-title">${p.title}</div>
-            <div class="pcard-subtitle">${p.subtitle}</div>
-          </div>
-          <button class="pcard-toggle" aria-label="Expand">+</button>
-        </div>
-        <div class="pcard-meta-row">
-          <span class="pcard-co">${p.co}</span>
-          <span class="pcard-sector">${p.sector}</span>
-          <span class="pcard-status" data-state="${p.state}"><span class="pcard-status-dot"></span>${stateLabel(p.state)} · ${p.period}</span>
-        </div>
-        <div class="pcard-narrative">
-          <p>${fmtNarrative(p.problem)}</p>
-          <p>${fmtNarrative(p.approach)}</p>
-          <p class="pcard-outcome">As a result — ${fmtNarrative(p.outcome)}</p>
-        </div>
-        <div class="pcard-tags">${tagsHtml}</div>
+  const workList = document.getElementById('workList');
+  const sideList = document.getElementById('sideList');
+  if (!workList || !sideList) return;
+  const L = (DATA && DATA.labels) || {};
+  const wl = document.getElementById('workLabel'); if (wl && L.workLabel) wl.textContent = L.workLabel;
+  const sl = document.getElementById('sideLabel'); if (sl && L.sideLabel) sl.textContent = L.sideLabel;
+
+  const work = (DATA && DATA.work) || [];
+  const side = (DATA && DATA.side) || [];
+
+  const linkLabel = (url) => {
+    if (/hh\.ru/.test(url)) return 'hh.ru ↗';
+    if (/t\.me/.test(url)) return 'Telegram ↗';
+    return 'case ↗';
+  };
+
+  workList.innerHTML = '';
+  work.forEach(w => {
+    const row = document.createElement('a');
+    row.className = 'work-row';
+    row.href = w.link; row.target = '_blank'; row.rel = 'noopener';
+    row.dataset.sound = 'projects';
+    row.innerHTML = `
+      <div class="work-row-head">
+        <span class="work-title">${w.title}</span>
+        <span class="work-period">${w.period}</span>
       </div>
-      <div class="pcard-visual" style="background:${p.bg || 'linear-gradient(135deg, #6a8aaa, #b0c0d8)'}">
-        ${visualInner}
-      </div>
-      <div class="pcard-expand">
-        ${galleryBlock}
-        <a class="pcard-deeplink" href="${p.deeplink}" target="_blank" rel="noopener">${linkLabel}</a>
-      </div>
+      <div class="work-role">${w.role}</div>
+      <div class="work-line">${fmtNarrative(w.line)}</div>
+      <span class="work-link">${linkLabel(w.link)}</span>
     `;
-    card.addEventListener('click', e => {
-      if (e.target.closest('a.pcard-deeplink')) return;
-      if (e.target.closest('.pcard-gallery-item')) return;
-      card.classList.toggle('expanded');
-      sfx.click('projects');
-    });
-    card.addEventListener('mouseenter', () => sfx.hover('projects'));
-    grid.appendChild(card);
+    row.addEventListener('mouseenter', () => sfx.hover('projects'));
+    row.addEventListener('click', () => sfx.click('projects'));
+    workList.appendChild(row);
+  });
+
+  sideList.innerHTML = '';
+  side.forEach(s => {
+    const row = document.createElement('a');
+    row.className = 'side-row';
+    row.href = s.link; row.target = '_blank'; row.rel = 'noopener';
+    row.dataset.sound = 'projects';
+    row.innerHTML = `
+      <span class="side-title">${s.title}</span>
+      <span class="side-line">${s.line}</span>
+      <span class="side-arrow">↗</span>
+    `;
+    row.addEventListener('mouseenter', () => sfx.hover('projects'));
+    row.addEventListener('click', () => sfx.click('projects'));
+    sideList.appendChild(row);
   });
 }
 
@@ -5108,7 +4751,7 @@ function goTo(i, fromUser = true) {
   });
   const target = document.querySelector(`.tab-view[data-tab="${TABS[i]}"]`);
   if (target) {
-    target.querySelectorAll('.exp-row, .pcard, .soc-row').forEach(r => {
+    target.querySelectorAll('.exp-row, .work-row, .side-row, .soc-row').forEach(r => {
       r.style.animation = 'none'; void r.offsetHeight; r.style.animation = '';
     });
   }
@@ -5183,7 +4826,7 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 function isInteractive(target) {
-  return target.closest('a, button, header, .dock, .splash, [data-sound], .exp-row, .pcard, .soc-row, .skills-list li, .lang-item, .ov-photo, .ov-name, .pixel-cat, .pixel-thief, .pixel-edge-cat, kbd, .hint, .counter, .game-overlay, .scene-catbed');
+  return target.closest('a, button, header, .dock, .splash, [data-sound], .exp-row, .work-row, .side-row, .soc-row, .skills-list li, .lang-item, .ov-photo, .ov-name, .pixel-cat, .pixel-thief, .pixel-edge-cat, kbd, .hint, .counter, .game-overlay, .scene-catbed');
 }
 document.addEventListener('click', e => {
   if (isInteractive(e.target)) return;

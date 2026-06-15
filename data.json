@@ -125,281 +125,6 @@
       "tag": "MedTech · 12 regions"
     }
   ],
-  "projects": [
-    {
-      "id": "uchiru",
-      "cover": "https://framerusercontent.com/images/UnYNEj1PdVa1bQQV5ElSUHyBy1s.png",
-      "title": "Uchi.ru",
-      "subtitle": "Self-learning platform for kids, grades 1–4",
-      "co": "Uchi.ru / VK EdTech",
-      "sector": "B2C · Edtech · Mobile",
-      "period": "2023 → present",
-      "problem": "Engagement for young learners **stagnated** — lessons felt repetitive, and the product had no unified visual or sound language.",
-      "approach": "As Senior PD I **led the design system, sound UX and reward mechanics**, and ran a continuous stream of A/B-tested product hypotheses.",
-      "outcome": "New purchase flow **ARPU +5% · CR +7%** · won **1st place in the internal AI hackathon (₽500K prize)**",
-      "bg": "linear-gradient(135deg, #4a90e2, #7c5fce)",
-      "state": "ongoing",
-      "tags": [
-        "Edtech",
-        "Design System",
-        "Sound UX",
-        "Gamification",
-        "A/B testing"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/uchiru",
-      "gallery": 4
-    },
-    {
-      "id": "miryavi",
-      "cover": "https://framerusercontent.com/images/joTV1HS0QIi5jsHOgUeSdoRKDE.png",
-      "title": "Miry Avi · Speech",
-      "subtitle": "Speech-therapy app for preschoolers",
-      "co": "Miry Avi",
-      "sector": "B2C · Kids · Part-time",
-      "period": "2024 → present",
-      "problem": "Speech therapy at home is hard to sustain — kids lose interest and parents can't keep them practising.",
-      "approach": "I built the **game logic, level design and retention loops**, plus structural layouts handed off to illustrators.",
-      "outcome": "Subscriptions **+4%** from a payments redesign · DAU up via progressive grade unlocks",
-      "bg": "linear-gradient(135deg, #ffb85c, #ff7a6b)",
-      "state": "ongoing",
-      "tags": [
-        "Kids",
-        "Gamification",
-        "Game Design",
-        "Mobile",
-        "Retention"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/miryavi",
-      "gallery": 4
-    },
-    {
-      "id": "ailet",
-      "cover": "https://framerusercontent.com/images/gyyM2B6VzI58huiAbktdxAijaQA.png",
-      "title": "Ailet · JedAI",
-      "subtitle": "AI-vision platform for retail & CPG",
-      "co": "Ailet",
-      "sector": "B2B SaaS · AI Vision",
-      "period": "2021 — 2023",
-      "problem": "Field merchandisers and auditors at major CPG brands worked with **dense data and slow in-store audits**.",
-      "approach": "I designed the **analytics web platform and the mobile field app**, ran UX research in real stores, and turned design into proper dev-ready documentation.",
-      "outcome": "**CSAT/CSI +5pp** · support tickets **−8%** · steady task-completion growth in the field",
-      "bg": "linear-gradient(135deg, #2a4d3a, #6ab37a)",
-      "state": "shipped",
-      "tags": [
-        "B2B SaaS",
-        "AI Vision",
-        "Field UX",
-        "Web",
-        "Mobile",
-        "Research"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/ailet",
-      "gallery": 4
-    },
-    {
-      "id": "akbars",
-      "title": "Ak Bars · Investments",
-      "subtitle": "Investments section inside a banking app",
-      "co": "Ak Bars Digital",
-      "sector": "B2C · Fintech",
-      "period": "2020 — 2021",
-      "problem": "The bank wanted more users entering and completing **investment products**, but the flow had high drop-off.",
-      "approach": "I designed the **investments section** and a scalable UI architecture so new products could be added without redesign.",
-      "outcome": "Entries to investments **+11%** after the home redesign · checkout drop-off **−12%** · faster purchase flow",
-      "bg": "linear-gradient(135deg, #1a6ac0, #2aa0d8)",
-      "state": "shipped",
-      "tags": [
-        "Fintech",
-        "iOS",
-        "Android",
-        "Scalable UI"
-      ],
-      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
-      "gallery": 0
-    },
-    {
-      "id": "bars",
-      "title": "BARS · Medical IS",
-      "subtitle": "Medical information system, 12 regions",
-      "co": "BARS Group",
-      "sector": "B2G · MedTech",
-      "period": "2018 — 2020",
-      "problem": "A medical information system deployed across **12 Russian regions** was hard to use across many professional roles.",
-      "approach": "I redesigned interfaces for **doctors, nurses and admins**, researching 7+ role scenarios and adapting flows per role.",
-      "outcome": "**10,000+ users** · routine tasks **−10%** time · positive feedback in 3 of 5 pilot regions · onboarding without manuals",
-      "bg": "linear-gradient(135deg, #c03a5a, #e0687a)",
-      "state": "shipped",
-      "tags": [
-        "MedTech",
-        "B2G",
-        "Research",
-        "Complex UX"
-      ],
-      "deeplink": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836",
-      "gallery": 0
-    },
-    {
-      "id": "conditional",
-      "title": "Conditional",
-      "subtitle": "Visual logic builder for non-tech analysts",
-      "co": "Ailet",
-      "sector": "No-code Tooling",
-      "period": "2022",
-      "problem": "Analysts had to hand-write **JSON formulas** to ship rules — every change burned engineering time.",
-      "approach": "I turned the formula syntax into a **visual logic builder** non-tech users could assemble themselves.",
-      "outcome": "**Zero engineering** dependency to configure rules · faster time-to-ship",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "No-code",
-        "Tooling",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/conditional",
-      "gallery": 3
-    },
-    {
-      "id": "portal",
-      "title": "Portal redesign",
-      "subtitle": "Global redesign of a detail page",
-      "co": "Ailet",
-      "sector": "Web · Redesign",
-      "period": "2022",
-      "problem": "The portal detail page was a wall of data — users couldn't find primary actions or filter.",
-      "approach": "I rebuilt **information hierarchy, layout, primary CTAs and filters** from scratch.",
-      "outcome": "Faster task completion, cleaner hierarchy",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "Web",
-        "Redesign",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/portal",
-      "gallery": 3
-    },
-    {
-      "id": "mobileview",
-      "title": "Adaptive tables",
-      "subtitle": "Dense data on small screens",
-      "co": "Ailet",
-      "sector": "Mobile · Pattern",
-      "period": "2022",
-      "problem": "Complex tabular data didn't fit on phones — field staff had to zoom and pan endlessly.",
-      "approach": "I designed a **responsive table pattern** adopted across every module.",
-      "outcome": "Usable dense data on mobile platform-wide",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "Mobile",
-        "Pattern",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/mobileview",
-      "gallery": 3
-    },
-    {
-      "id": "realogram",
-      "title": "Realogram",
-      "subtitle": "Shelf recognition view",
-      "co": "Ailet",
-      "sector": "AI Vision · Data viz",
-      "period": "2022",
-      "problem": "Auditors couldn't tell **what the AI recognised** on a shelf photo — overlays were unreadable.",
-      "approach": "I designed **layered overlays** so anyone can read recognition results on a real photo.",
-      "outcome": "Faster, clearer shelf audits",
-      "bg": "linear-gradient(135deg, #2a4d3a, #4a8a6a)",
-      "state": "shipped",
-      "tags": [
-        "AI Vision",
-        "Data viz",
-        "Sub-case"
-      ],
-      "deeplink": "https://artemiskandirovv.framer.website/realogram",
-      "gallery": 3
-    },
-    {
-      "id": "soundux",
-      "title": "Sound UX",
-      "subtitle": "Talk at Chulakov Design Meetup",
-      "co": "Public speaking",
-      "sector": "Talk",
-      "period": "Jul 2024",
-      "problem": "Sound is **the most ignored interface layer** — designers leave it to engineers and lose product feel.",
-      "approach": "A talk on **how sound and voice affect product metrics** — and how to make it yourself or with neural nets.",
-      "outcome": "Shared real Uchi.ru sound-UX lessons with the design community",
-      "bg": "linear-gradient(135deg, #6a3aa0, #a050c0)",
-      "state": "live",
-      "tags": [
-        "Speaking",
-        "Sound",
-        "Talk"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/74",
-      "gallery": 2
-    },
-    {
-      "id": "haptics",
-      "title": "Custom Vibrations",
-      "subtitle": "iOS app for crafting haptics",
-      "co": "Vibe-coding",
-      "sector": "Side · iOS",
-      "period": "2025",
-      "problem": "Designing haptic patterns means describing them in chat — nobody can feel a Figma frame.",
-      "approach": "I **vibe-coded an iOS app in Cursor + Xcode** to author and feel custom vibrations directly.",
-      "outcome": "A working tool to test haptics before pitching them",
-      "bg": "linear-gradient(135deg, #c03a3a, #e06868)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "iOS",
-        "Haptics",
-        "Cursor"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/113",
-      "gallery": 2
-    },
-    {
-      "id": "tg-digester",
-      "title": "Telegram Digester",
-      "subtitle": "No-code channel-summary bot",
-      "co": "Vibe-coding",
-      "sector": "Side · AI",
-      "period": "2025",
-      "problem": "My channel feed grew faster than I could read it — important posts slipped through.",
-      "approach": "I built a **no-code Telegram bot with ChatGPT** that reads channels and sends me automatic digests.",
-      "outcome": "Daily digest of everything important in **one message**",
-      "bg": "linear-gradient(135deg, #2a8ad0, #5fbaef)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "AI",
-        "No-code"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/121",
-      "gallery": 2
-    },
-    {
-      "id": "bi-agent",
-      "title": "BI Agent",
-      "subtitle": "Chat-style insights over BI data",
-      "co": "Vibe-coding",
-      "sector": "Side · AI",
-      "period": "2025",
-      "problem": "Retail BI dashboards are dense — managers want **the answer**, not the whole chart.",
-      "approach": "I designed and built an **AI agent** that returns just the requested part of a BI dashboard, ChatGPT-style.",
-      "outcome": "Ask in plain language, get the exact slice of data back",
-      "bg": "linear-gradient(135deg, #1aa070, #50c8a0)",
-      "state": "live",
-      "tags": [
-        "Side",
-        "AI Agent",
-        "Retail"
-      ],
-      "deeplink": "https://t.me/kidstechdesign/117",
-      "gallery": 2
-    }
-  ],
   "education": [
     {
       "year": "2018",
@@ -506,7 +231,9 @@
     "catchScoreLabel": "Score",
     "catchBestLabel": "Best",
     "catchTimeLabel": "Time",
-    "catchCaught": "caught"
+    "catchCaught": "caught",
+    "workLabel": "Where I worked",
+    "sideLabel": "Side projects"
   },
   "catBubbles": {
     "awake": [
@@ -540,5 +267,61 @@
       "!!!",
       "agh!"
     ]
-  }
+  },
+  "work": [
+    {
+      "id": "uchiru",
+      "title": "Uchi.ru",
+      "role": "Senior Product Designer",
+      "period": "2023 — now",
+      "line": "Design system, gamification & sound UX for kids 1–4. New purchase flow ARPU +5%, CR +7%. Won 1st place at the internal AI hackathon.",
+      "link": "https://artemiskandirovv.framer.website/uchiru"
+    },
+    {
+      "id": "ailet",
+      "title": "Ailet · JedAI",
+      "role": "Product Designer",
+      "period": "2021 — 2023",
+      "line": "Analytics web platform + mobile field app for retail AI-vision. CSAT/CSI +5pp, support tickets −8%.",
+      "link": "https://artemiskandirovv.framer.website/ailet"
+    },
+    {
+      "id": "akbars",
+      "title": "Ak Bars",
+      "role": "Product Designer",
+      "period": "2020 — 2021",
+      "line": "Investments section in a banking app. Entries +11% after the home redesign, checkout drop-off −12%.",
+      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    },
+    {
+      "id": "bars",
+      "title": "BARS Group",
+      "role": "Product Designer",
+      "period": "2018 — 2020",
+      "line": "Medical information system across 12 regions, 10,000+ users. Routine tasks −10% time, onboarding without manuals.",
+      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+    }
+  ],
+  "side": [
+    {
+      "title": "Custom Vibrations",
+      "line": "iOS app for crafting haptics — vibe-coded in Cursor + Xcode",
+      "link": "https://t.me/kidstechdesign/113"
+    },
+    {
+      "title": "Telegram Digester",
+      "line": "No-code bot that summarises channels into one daily digest",
+      "link": "https://t.me/kidstechdesign/121"
+    },
+    {
+      "title": "BI Agent",
+      "line": "AI agent that answers BI-data questions in chat, ChatGPT-style",
+      "link": "https://t.me/kidstechdesign/117"
+    },
+    {
+      "title": "Sound UX",
+      "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
+      "link": "https://t.me/kidstechdesign/74"
+    }
+  ]
 }
