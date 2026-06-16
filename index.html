@@ -1174,6 +1174,12 @@
   /* PROJECTS — wide list, two-column inside each card */
   .projects-wrap { max-width: 1100px; margin: 0 auto; }
   /* PROJECTS — minimal list (mishanaer-style) */
+  .projects-intro {
+    font-size: 19px; line-height: 1.55; color: var(--fg);
+    max-width: 60ch; margin-bottom: 40px; font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  body.theme-fantasy .projects-intro { font-family: 'IM Fell English', Georgia, serif; font-size: 20px; }
   .work-label {
     font-family: var(--font-mono);
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -1949,6 +1955,7 @@
   <section class="tab-view" data-tab="projects">
     <div class="projects-wrap">
       <div class="tab-label">03 — Projects</div>
+      <p class="projects-intro" id="projectsIntro"></p>
       <div class="work-label" id="workLabel">Where I worked</div>
       <div class="work-list" id="workList"></div>
       <div class="work-label work-label-side" id="sideLabel">Side projects</div>
@@ -2277,7 +2284,8 @@ const FALLBACK_DATA = {
     "catchTimeLabel": "Time",
     "catchCaught": "caught",
     "workLabel": "Where I worked",
-    "sideLabel": "Side projects"
+    "sideLabel": "Side projects",
+    "projectsIntro": "Product designer with 7+ years across EdTech, retail AI, fintech and medtech. I ship measurable outcomes — from A/B-won purchase flows to systems used by tens of thousands of people. Currently Senior at Uchi.ru / VK EdTech."
   },
   "catBubbles": {
     "awake": [
@@ -2318,23 +2326,23 @@ const FALLBACK_DATA = {
       "title": "Uchi.ru",
       "role": "Senior Product Designer",
       "period": "2023 — now",
-      "line": "Design system, gamification & sound UX for kids 1–4. New purchase flow ARPU +5%, CR +7%. Won 1st place at the internal AI hackathon.",
-      "link": "https://artemiskandirovv.framer.website/uchiru"
+      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (**ARPU +5%, conversion +7%**), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**",
+      "link": "https://artemiskandirovv.framer.website/"
     },
     {
       "id": "ailet",
-      "title": "Ailet · JedAI",
+      "title": "Ailet",
       "role": "Product Designer",
       "period": "2021 — 2023",
-      "line": "Analytics web platform + mobile field app for retail AI-vision. CSAT/CSI +5pp, support tickets −8%.",
-      "link": "https://artemiskandirovv.framer.website/ailet"
+      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. **CSAT/CSI +5pp, support tickets −8%**, steady growth in task completion.",
+      "link": "https://artemiskandirovv.framer.website/"
     },
     {
       "id": "akbars",
       "title": "Ak Bars",
       "role": "Product Designer",
       "period": "2020 — 2021",
-      "line": "Investments section in a banking app. Entries +11% after the home redesign, checkout drop-off −12%.",
+      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. **Entries to investments +11%** after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow.",
       "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
     },
     {
@@ -2342,24 +2350,24 @@ const FALLBACK_DATA = {
       "title": "BARS Group",
       "role": "Product Designer",
       "period": "2018 — 2020",
-      "line": "Medical information system across 12 regions, 10,000+ users. Routine tasks −10% time, onboarding without manuals.",
+      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. **Routine tasks −10% time**, positive feedback in 3 of 5 pilot regions, onboarding without manuals.",
       "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
     }
   ],
   "side": [
     {
       "title": "Custom Vibrations",
-      "line": "iOS app for crafting haptics — vibe-coded in Cursor + Xcode",
+      "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
       "link": "https://t.me/kidstechdesign/113"
     },
     {
       "title": "Telegram Digester",
-      "line": "No-code bot that summarises channels into one daily digest",
+      "line": "No-code bot that summarises my channels into one daily digest",
       "link": "https://t.me/kidstechdesign/121"
     },
     {
       "title": "BI Agent",
-      "line": "AI agent that answers BI-data questions in chat, ChatGPT-style",
+      "line": "AI agent that answers retail BI-data questions in plain chat",
       "link": "https://t.me/kidstechdesign/117"
     },
     {
@@ -2383,6 +2391,11 @@ async function loadData(lang) {
     console.warn('data file not loaded, using fallback:', e);
     DATA = FALLBACK_DATA;
   }
+  applySiteMeta();
+}
+
+function applySiteMeta() {
+  if (!DATA) return;
   // Apply site meta
   if (DATA.site) {
     document.title = DATA.site.title || document.title;
@@ -4592,6 +4605,7 @@ function renderProjects() {
   const sideList = document.getElementById('sideList');
   if (!workList || !sideList) return;
   const L = (DATA && DATA.labels) || {};
+  const intro = document.getElementById('projectsIntro'); if (intro && L.projectsIntro) intro.textContent = L.projectsIntro;
   const wl = document.getElementById('workLabel'); if (wl && L.workLabel) wl.textContent = L.workLabel;
   const sl = document.getElementById('sideLabel'); if (sl && L.sideLabel) sl.textContent = L.sideLabel;
 
@@ -4723,14 +4737,15 @@ function renderGameLabels() {
   }
 }
 function renderAll() {
-  renderOverviewContent();
-  renderOverviewLinks();
-  renderExperience();
-  renderSocial();
-  renderEducation();
-  renderProjects();
-  renderGameLabels();
-  bindSounds();
+  const safe = (fn, name) => { try { fn(); } catch (e) { console.error(name + ' failed:', e); } };
+  safe(renderOverviewContent, 'renderOverviewContent');
+  safe(renderOverviewLinks, 'renderOverviewLinks');
+  safe(renderExperience, 'renderExperience');
+  safe(renderSocial, 'renderSocial');
+  safe(renderEducation, 'renderEducation');
+  safe(renderProjects, 'renderProjects');
+  safe(renderGameLabels, 'renderGameLabels');
+  safe(bindSounds, 'bindSounds');
 }
 
 /* =============== TABS =============== */
@@ -4839,22 +4854,16 @@ const splash = document.getElementById('splash');
 document.getElementById('splashEnter').addEventListener('click', async () => {
   sfx.init(); sfx.resume(); sfx.enter();
   splash.classList.add('hide');
-  // Make sure DATA exists. If load is still pending, race it against a 1.5s timeout.
-  // If it never resolves (404, 401, offline) — use the embedded FALLBACK_DATA so the site always renders.
-  if (!DATA) {
-    try {
-      await Promise.race([
-        loadData(),
-        new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 1500))
-      ]);
-    } catch (e) {
-      console.warn('using fallback data:', e);
-      DATA = FALLBACK_DATA;
-    }
-  }
+  // Render IMMEDIATELY from embedded data so the site is never empty
+  // (works even on file:// where fetch is blocked by CORS).
   if (!DATA) DATA = FALLBACK_DATA;
+  applySiteMeta();
   try { renderAll(); } catch (e) { console.error('renderAll failed:', e); }
   try { buildName(); } catch (e) { console.error('buildName failed:', e); }
+  // Then try to fetch external data.json in the background; if it loads, re-render.
+  loadData().then(() => {
+    try { renderAll(); buildName(); } catch (e) {}
+  }).catch(() => {});
   setTimeout(() => {
     try {
       goTo(0, false);
