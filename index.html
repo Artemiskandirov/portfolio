@@ -831,20 +831,25 @@
   main {
     flex: 1; position: relative;
     margin-top: 70px; margin-bottom: 100px;
-    overflow: hidden; z-index: 1;
+    overflow-y: auto; overflow-x: hidden; z-index: 1;
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
   }
   .tab-view {
-    position: absolute; inset: 0;
-    overflow-y: auto; overflow-x: hidden;
-    opacity: 0; transform: translateY(10px);
-    pointer-events: none;
-    transition: opacity 0.5s var(--easing-out), transform 0.6s var(--easing-out);
-    padding: 32px 28px 80px;
+    position: relative;
+    overflow: visible;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s var(--easing-out), transform 0.7s var(--easing-out);
+    padding: 60px 28px;
+    max-width: 760px;
+    margin: 0 auto;
+    scroll-margin-top: 20px;
   }
-  .tab-view.active {
+  .tab-view:first-child { padding-top: 40px; }
+  .tab-view + .tab-view { border-top: 1px solid var(--line); }
+  body.theme-fantasy .tab-view + .tab-view { border-top: 1px solid rgba(255,160,80,0.12); }
+  .tab-view.in-view {
     opacity: 1; transform: translateY(0);
-    pointer-events: auto;
-    transition-delay: 0.06s;
   }
   .tab-label {
     font-family: var(--font-mono);
@@ -857,7 +862,7 @@
   body.theme-fantasy .tab-label { color: var(--accent); }
   body.theme-fantasy .tab-label::before { content: '⚜ '; opacity: 0.6; }
   body.theme-fantasy .tab-label::after { content: ' ⚜'; opacity: 0.6; }
-  .tab-view.active .tab-label { opacity: 1; transform: translateY(0); }
+  .tab-view.in-view .tab-label { opacity: 1; transform: translateY(0); }
 
   /* OVERVIEW */
   .overview { max-width: 720px; margin: 0 auto; padding-top: 12px; }
@@ -1119,12 +1124,12 @@
     transition: background 0.5s var(--easing-out), border-radius 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), transform 0.4s var(--easing-out);
     cursor: default;
   }
-  .tab-view.active .exp-row { opacity: 0; animation: rowReveal 0.6s var(--easing-out) forwards; }
-  .tab-view.active .exp-row:nth-child(1) { animation-delay: 0.10s; }
-  .tab-view.active .exp-row:nth-child(2) { animation-delay: 0.18s; }
-  .tab-view.active .exp-row:nth-child(3) { animation-delay: 0.26s; }
-  .tab-view.active .exp-row:nth-child(4) { animation-delay: 0.34s; }
-  .tab-view.active .exp-row:nth-child(5) { animation-delay: 0.42s; }
+  .tab-view.in-view .exp-row { opacity: 0; animation: rowReveal 0.6s var(--easing-out) forwards; }
+  .tab-view.in-view .exp-row:nth-child(1) { animation-delay: 0.10s; }
+  .tab-view.in-view .exp-row:nth-child(2) { animation-delay: 0.18s; }
+  .tab-view.in-view .exp-row:nth-child(3) { animation-delay: 0.26s; }
+  .tab-view.in-view .exp-row:nth-child(4) { animation-delay: 0.34s; }
+  .tab-view.in-view .exp-row:nth-child(5) { animation-delay: 0.42s; }
   @keyframes rowReveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .exp-row:hover {
     background: var(--bg-glass);
@@ -1197,11 +1202,11 @@
     transition: background 0.4s var(--easing), transform 0.5s var(--easing-out);
     opacity: 0;
   }
-  .tab-view.active .work-row { animation: cardReveal 0.6s var(--easing-out) forwards; }
-  .tab-view.active .work-row:nth-child(1) { animation-delay: 0.05s; }
-  .tab-view.active .work-row:nth-child(2) { animation-delay: 0.12s; }
-  .tab-view.active .work-row:nth-child(3) { animation-delay: 0.19s; }
-  .tab-view.active .work-row:nth-child(4) { animation-delay: 0.26s; }
+  .tab-view.in-view .work-row { animation: cardReveal 0.6s var(--easing-out) forwards; }
+  .tab-view.in-view .work-row:nth-child(1) { animation-delay: 0.05s; }
+  .tab-view.in-view .work-row:nth-child(2) { animation-delay: 0.12s; }
+  .tab-view.in-view .work-row:nth-child(3) { animation-delay: 0.19s; }
+  .tab-view.in-view .work-row:nth-child(4) { animation-delay: 0.26s; }
   .work-row:hover { background: var(--accent-soft); transform: translateX(4px); }
   body.theme-fantasy .work-row { border-radius: 0; }
   body.theme-fantasy .work-row:hover {
@@ -1248,11 +1253,11 @@
     transition: background 0.3s var(--easing), transform 0.4s var(--easing-out);
     opacity: 0;
   }
-  .tab-view.active .side-row { animation: cardReveal 0.5s var(--easing-out) forwards; }
-  .tab-view.active .side-row:nth-child(1) { animation-delay: 0.32s; }
-  .tab-view.active .side-row:nth-child(2) { animation-delay: 0.37s; }
-  .tab-view.active .side-row:nth-child(3) { animation-delay: 0.42s; }
-  .tab-view.active .side-row:nth-child(4) { animation-delay: 0.47s; }
+  .tab-view.in-view .side-row { animation: cardReveal 0.5s var(--easing-out) forwards; }
+  .tab-view.in-view .side-row:nth-child(1) { animation-delay: 0.32s; }
+  .tab-view.in-view .side-row:nth-child(2) { animation-delay: 0.37s; }
+  .tab-view.in-view .side-row:nth-child(3) { animation-delay: 0.42s; }
+  .tab-view.in-view .side-row:nth-child(4) { animation-delay: 0.47s; }
   .side-row:hover { background: var(--accent-soft); transform: translateX(4px); }
   body.theme-fantasy .side-row { border-radius: 0; }
   body.theme-fantasy .side-row:hover { background: rgba(255,138,58,0.1); box-shadow: inset 3px 0 0 var(--accent); }
@@ -1331,12 +1336,12 @@
     transition: background 0.5s var(--easing-out), border-radius 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), transform 0.4s var(--easing-out);
     position: relative;
   }
-  .tab-view.active .soc-row { opacity: 0; animation: rowReveal 0.6s var(--easing-out) forwards; }
-  .tab-view.active .soc-row:nth-child(1) { animation-delay: 0.10s; }
-  .tab-view.active .soc-row:nth-child(2) { animation-delay: 0.16s; }
-  .tab-view.active .soc-row:nth-child(3) { animation-delay: 0.22s; }
-  .tab-view.active .soc-row:nth-child(4) { animation-delay: 0.28s; }
-  .tab-view.active .soc-row:nth-child(5) { animation-delay: 0.34s; }
+  .tab-view.in-view .soc-row { opacity: 0; animation: rowReveal 0.6s var(--easing-out) forwards; }
+  .tab-view.in-view .soc-row:nth-child(1) { animation-delay: 0.10s; }
+  .tab-view.in-view .soc-row:nth-child(2) { animation-delay: 0.16s; }
+  .tab-view.in-view .soc-row:nth-child(3) { animation-delay: 0.22s; }
+  .tab-view.in-view .soc-row:nth-child(4) { animation-delay: 0.28s; }
+  .tab-view.in-view .soc-row:nth-child(5) { animation-delay: 0.34s; }
   .soc-row:hover {
     background: var(--bg-glass);
     backdrop-filter: blur(14px) saturate(1.5);
@@ -2044,6 +2049,8 @@
 </div>
 
 <script>
+console.log('%c portfolio v101918 — scroll build ', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
+
 
 /* ===== CONTENT LOADER ===== */
 /* All editable text/links live in data.json. This sets up DATA before app code runs. */
@@ -2326,32 +2333,28 @@ const FALLBACK_DATA = {
       "title": "Uchi.ru",
       "role": "Senior Product Designer",
       "period": "2023 — now",
-      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (**ARPU +5%, conversion +7%**), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**",
-      "link": "https://artemiskandirovv.framer.website/"
+      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (**ARPU +5%, conversion +7%**), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
     },
     {
       "id": "ailet",
       "title": "Ailet",
       "role": "Product Designer",
       "period": "2021 — 2023",
-      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. **CSAT/CSI +5pp, support tickets −8%**, steady growth in task completion.",
-      "link": "https://artemiskandirovv.framer.website/"
+      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. **CSAT/CSI +5pp, support tickets −8%**, steady growth in task completion."
     },
     {
       "id": "akbars",
       "title": "Ak Bars",
       "role": "Product Designer",
       "period": "2020 — 2021",
-      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. **Entries to investments +11%** after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow.",
-      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. **Entries to investments +11%** after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
     },
     {
       "id": "bars",
       "title": "BARS Group",
       "role": "Product Designer",
       "period": "2018 — 2020",
-      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. **Routine tasks −10% time**, positive feedback in 3 of 5 pilot regions, onboarding without manuals.",
-      "link": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
+      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. **Routine tasks −10% time**, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
     }
   ],
   "side": [
@@ -4471,7 +4474,7 @@ function buildName() {
 let thiefBusy = false;
 function getStealableLetters() {
   const cs = [];
-  document.querySelectorAll('.tab-view.active .ov-name .letter').forEach(el => {
+  document.querySelectorAll('.ov-name .letter').forEach(el => {
     if (el.classList.contains('stolen')) return;
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) return;
@@ -4620,21 +4623,18 @@ function renderProjects() {
 
   workList.innerHTML = '';
   work.forEach(w => {
-    const row = document.createElement('a');
+    const row = document.createElement('div');
     row.className = 'work-row';
-    row.href = w.link; row.target = '_blank'; row.rel = 'noopener';
     row.dataset.sound = 'projects';
     row.innerHTML = `
       <div class="work-row-head">
-        <span class="work-title">${w.title}</span>
-        <span class="work-period">${w.period}</span>
+        <span class="work-title">${escHtml(w.title)}</span>
+        <span class="work-period">${escHtml(w.period)}</span>
       </div>
-      <div class="work-role">${w.role}</div>
+      <div class="work-role">${escHtml(w.role)}</div>
       <div class="work-line">${fmtNarrative(w.line)}</div>
-      <span class="work-link">${linkLabel(w.link)}</span>
     `;
     row.addEventListener('mouseenter', () => sfx.hover('projects'));
-    row.addEventListener('click', () => sfx.click('projects'));
     workList.appendChild(row);
   });
 
@@ -4758,25 +4758,25 @@ let activeIdx = 0;
 function goTo(i, fromUser = true) {
   if (i < 0) i = TABS.length - 1;
   if (i >= TABS.length) i = 0;
-  if (i === activeIdx && fromUser) return;
-  document.querySelectorAll('.tab-view').forEach(v => {
-    const isActive = v.dataset.tab === TABS[i];
-    v.classList.toggle('active', isActive);
-    if (isActive) v.scrollTop = 0;
-  });
   const target = document.querySelector(`.tab-view[data-tab="${TABS[i]}"]`);
   if (target) {
-    target.querySelectorAll('.exp-row, .work-row, .side-row, .soc-row').forEach(r => {
-      r.style.animation = 'none'; void r.offsetHeight; r.style.animation = '';
-    });
+    const mainEl = document.querySelector('main');
+    const top = target.offsetTop - 10;
+    mainEl.scrollTo({ top, behavior: fromUser ? 'smooth' : 'auto' });
   }
+  setActive(i, fromUser);
+}
+function setActive(i, fromUser) {
+  if (i === activeIdx && !fromUser) return;
   const tabs = [...dock.querySelectorAll('.dock-tab')];
   tabs.forEach((t, idx) => t.classList.toggle('active', idx === i));
   positionIndicator(tabs[i]);
-  curEl.textContent = String(i + 1).padStart(2, '0');
-  curEl.classList.remove('bump'); void curEl.offsetHeight; curEl.classList.add('bump');
+  if (i !== activeIdx) {
+    curEl.textContent = String(i + 1).padStart(2, '0');
+    curEl.classList.remove('bump'); void curEl.offsetHeight; curEl.classList.add('bump');
+    if (fromUser) sfx.switch_tab(i);
+  }
   activeIdx = i;
-  if (fromUser) sfx.switch_tab(i);
 }
 function positionIndicator(tab) {
   if (!tab) return;
@@ -4784,6 +4784,47 @@ function positionIndicator(tab) {
   const pr = dock.getBoundingClientRect();
   indicator.style.transform = `translateX(${r.left - pr.left - 5}px)`;
   indicator.style.width = `${r.width}px`;
+}
+
+/* === SCROLL SPY — highlight dock tab + reveal sections on scroll === */
+function initScrollSpy() {
+  const mainEl = document.querySelector('main');
+  const sections = [...document.querySelectorAll('.tab-view')];
+  if (!mainEl || !sections.length) return;
+
+  // reveal on enter
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in-view');
+        // re-trigger row animations
+        en.target.querySelectorAll('.exp-row, .work-row, .side-row, .soc-row').forEach(r => {
+          r.style.animation = 'none'; void r.offsetHeight; r.style.animation = '';
+        });
+      }
+    });
+  }, { root: mainEl, threshold: 0.12 });
+  sections.forEach(s => revealObs.observe(s));
+
+  // scroll-spy: which section is most centered
+  let spyTick = false;
+  mainEl.addEventListener('scroll', () => {
+    if (spyTick) return;
+    spyTick = true;
+    requestAnimationFrame(() => {
+      spyTick = false;
+      const mid = mainEl.scrollTop + mainEl.clientHeight * 0.35;
+      let best = 0, bestDist = Infinity;
+      sections.forEach((s, idx) => {
+        const center = s.offsetTop + s.offsetHeight / 2;
+        const dist = Math.abs(center - (mainEl.scrollTop + mainEl.clientHeight / 2));
+        // prefer the section whose top has passed the 35% line
+        if (s.offsetTop <= mid) { best = idx; }
+        if (dist < bestDist) bestDist = dist;
+      });
+      if (best !== activeIdx) setActive(best, false);
+    });
+  }, { passive: true });
 }
 dock.querySelectorAll('.dock-tab').forEach((tab, i) => {
   tab.addEventListener('click', e => {
@@ -4866,7 +4907,10 @@ document.getElementById('splashEnter').addEventListener('click', async () => {
   }).catch(() => {});
   setTimeout(() => {
     try {
-      goTo(0, false);
+      initScrollSpy();
+      const first = document.querySelector('.tab-view[data-tab="overview"]');
+      if (first) first.classList.add('in-view');
+      setActive(0, false);
       requestAnimationFrame(() => positionIndicator(dock.querySelectorAll('.dock-tab')[0]));
       scheduleThief();
       buildTrees(); buildKnight(); buildFireflies(); buildBat();
