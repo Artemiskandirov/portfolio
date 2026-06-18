@@ -233,13 +233,16 @@
     100% { opacity: 0.9; transform: scale(0.98); }
   }
 
-  /* KNIGHT — fixed positioning lifts it OUT of .scene stacking context so it's clickable above main */
+  /* KNIGHT — body-level element; fixed + z-index:6 keeps it above main (z:1), clickable & draggable */
   .scene-knight {
     position: fixed;
     bottom: 4%;
     left: 64%;
     width: 220px;
     height: 220px;
+    padding: 40px;
+    box-sizing: content-box;
+    margin: -40px;
     z-index: 6;
     pointer-events: auto;
     cursor: pointer;
@@ -463,7 +466,7 @@
     position: fixed;
     bottom: 8%;
     right: 6%;
-    z-index: 0;
+    z-index: 6;
     pointer-events: none;
     opacity: 0;
     transition: opacity 1s var(--easing-out);
@@ -472,9 +475,9 @@
   .catbed-cat {
     width: 180px;
     height: 180px;
-    padding: 36px;
+    padding: 48px;
     box-sizing: content-box;
-    margin: -36px;
+    margin: -48px;
     cursor: grab;
     animation: catbedBreathe 4.6s ease-in-out infinite;
     filter: drop-shadow(0 6px 10px rgba(120, 60, 20, 0.18));
@@ -850,8 +853,8 @@
     scroll-margin-top: 20px;
   }
   .tab-view:first-child { padding-top: 40px; }
-  .tab-view + .tab-view { border-top: 1px solid var(--line); }
-  body.theme-fantasy .tab-view + .tab-view { border-top: 1px solid rgba(255,160,80,0.12); }
+  .tab-view + .tab-view { border-top: none; }
+  body.theme-fantasy .tab-view + .tab-view { border-top: none; }
   .tab-view.in-view {
     opacity: 1; transform: translateY(0);
   }
@@ -895,8 +898,8 @@
   body.theme-fantasy .ov-photo img { filter: sepia(0.45) contrast(1.15) brightness(0.85); }
 
   .ov-name {
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 1.02; letter-spacing: -0.045em;
+    font-size: clamp(32px, 4.6vw, 52px);
+    line-height: 1.04; letter-spacing: -0.04em;
     font-weight: 600; margin-bottom: 22px;
     overflow: visible;
     word-break: break-word;
@@ -1030,31 +1033,24 @@
 
   /* Social — green herald banner sweep */
   body.theme-fantasy [data-tab="social"] .soc-row {
-    transition: background 0.4s, box-shadow 0.5s, transform 0.5s var(--easing-out);
+    transition: background 0.4s, box-shadow 0.5s, transform 0.4s var(--easing-out);
     position: relative;
-    overflow: hidden;
-  }
-  body.theme-fantasy [data-tab="social"] .soc-row::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(120, 200, 140, 0.18), transparent);
-    transition: left 0.7s var(--easing-out);
-    pointer-events: none;
   }
   body.theme-fantasy [data-tab="social"] .soc-row:hover {
-    box-shadow: inset 4px 0 0 #6ac888, 0 0 22px rgba(120, 200, 140, 0.25);
-    transform: translateX(6px);
-  }
-  body.theme-fantasy [data-tab="social"] .soc-row:hover::before { left: 100%; }
-  body.theme-fantasy [data-tab="social"] .soc-row:hover .soc-name {
-    color: #b0e8c0;
-    text-shadow: 0 0 8px rgba(140, 220, 170, 0.5);
+    box-shadow: inset 3px 0 0 var(--accent), 0 0 24px rgba(255,138,58,0.15);
+    transform: translateX(4px);
   }
   body.theme-fantasy [data-tab="social"] .soc-row:hover .soc-arrow {
-    transform: translate(4px, -4px);
-    color: #6ac888;
+    transform: translate(3px, -3px);
+    color: var(--accent);
+  }
+  /* Fantasy: square corners on hover (no rounding) */
+  body.theme-fantasy .soc-row:hover,
+  body.theme-fantasy .exp-row:hover,
+  body.theme-fantasy .work-row:hover,
+  body.theme-fantasy .edu-block:hover,
+  body.theme-fantasy .side-row:hover {
+    border-radius: 0;
   }
 
   .ov-name .word { display: inline-block; overflow: hidden; vertical-align: top; }
@@ -1084,12 +1080,13 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   .ov-meta {
-    display: flex; gap: 32px; flex-wrap: wrap;
+    display: flex; flex-direction: column; gap: 8px;
     font-family: var(--font-mono);
     font-size: 11px; color: var(--fg-dim);
     margin-bottom: 40px;
     opacity: 0; animation: fadeUp 0.8s var(--easing-out) 0.55s forwards;
   }
+  .ov-meta span { display: block; }
   .ov-meta span strong { color: var(--fg); font-weight: 600; }
   body.theme-fantasy .ov-meta span strong { color: var(--accent); }
 
@@ -1114,8 +1111,8 @@
 
   /* EXPERIENCE */
   .list-wrap { width: 100%; max-width: 760px; margin: 0 auto; box-sizing: border-box; }
-  .list { list-style: none; }
-  .list > *:last-child { border-bottom: 1px solid var(--line); }
+  .list { list-style: none; padding-left: 0 !important; padding: 0; margin: 0; }
+  .list > *:last-child { border-bottom: none; }
 
   .exp-row {
     display: grid;
@@ -1123,7 +1120,7 @@
     gap: 16px;
     padding: 18px 16px;
     margin: 0 -16px;
-    border-top: 1px solid var(--line);
+    border-top: none;
     align-items: center;
     color: var(--fg);
     transition: background 0.5s var(--easing-out), border-radius 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), transform 0.4s var(--easing-out);
@@ -1204,7 +1201,7 @@
     padding: 24px 18px; margin: 0 -18px;
     border-radius: 16px;
     position: relative;
-    border-top: 1px solid var(--line);
+    border-top: none;
     transition: background 0.5s var(--easing-out), border-radius 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), transform 0.4s var(--easing-out);
     opacity: 1;
   }
@@ -1379,11 +1376,11 @@
   .education-wrap { width: 100%; max-width: 760px; margin: 0 auto; box-sizing: border-box; }
   .edu-block {
     padding: 22px 0;
-    border-top: 1px solid var(--line);
+    border-top: none;
     display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 20px;
     transition: padding 0.4s var(--easing-out);
   }
-  .edu-block:last-of-type { border-bottom: 1px solid var(--line); }
+  .edu-block:last-of-type { border-bottom: none; }
   .edu-block:hover { padding-left: 8px; }
   .edu-year { font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim); }
   .edu-school { font-size: 24px; line-height: 1.1; margin-bottom: 4px; font-weight: 500; letter-spacing: -0.02em; }
@@ -1392,7 +1389,7 @@
   .section-mini > * { min-width: 0; }
   .section-mini-label { font-family: var(--font-mono); font-size: 10px; color: var(--fg-dim); letter-spacing: 0.14em; text-transform: uppercase; padding-top: 4px; }
   body.theme-fantasy .section-mini-label { color: var(--accent); }
-  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; padding-left: 0 !important; padding: 0; margin: 0; }
   .skills-list li {
     list-style: none;
     color: var(--fg-mid); font-size: 13px;
@@ -1438,7 +1435,7 @@
   .soc-row {
     display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; gap: 20px;
     padding: 22px 16px; margin: 0 -16px;
-    border-top: 1px solid var(--line);
+    border-top: none;
     align-items: baseline;
     text-decoration: none; color: var(--fg);
     transition: background 0.5s var(--easing-out), border-radius 0.5s var(--easing-out), box-shadow 0.5s var(--easing-out), transform 0.4s var(--easing-out);
@@ -1915,9 +1912,9 @@
     .tab-view { padding: 22px 18px 40px; }
     .tab-label { margin-bottom: 28px; }
     .ov-photo { width: 76px; height: 76px; margin-bottom: 24px; }
-    .ov-name { font-size: clamp(38px, 11vw, 60px); letter-spacing: -0.04em; }
+    .ov-name { font-size: clamp(30px, 9vw, 44px); letter-spacing: -0.035em; }
     .ov-bio { font-size: 16px; }
-    .ov-meta { gap: 16px; font-size: 10px; }
+    .ov-meta { gap: 8px; font-size: 10px; }
     .exp-row { grid-template-columns: 64px 40px 1fr; gap: 10px; padding: 14px 12px; margin: 0 -12px; }
     .exp-row .exp-tag { display: none; }
     .exp-row .exp-side { font-size: 10px; }
@@ -1970,11 +1967,13 @@
   <div class="scene-trees" id="sceneTrees"></div>
   <div class="scene-fireflies" id="sceneFireflies"></div>
   <div class="scene-campfire-glow"></div>
-  <div class="scene-knight" id="sceneKnight"></div>
   <div class="scene-campfire" id="sceneCampfire"></div>
   <div class="scene-bat" id="sceneBat"></div>
   <div id="sparks"></div>
 </div>
+
+<!-- Knight lives at body level so its fixed z-index escapes the .scene (z:0) stacking context and stays clickable above main -->
+<div class="scene-knight" id="sceneKnight" aria-hidden="true"></div>
 
 <div class="splash" id="splash">
   <div class="splash-name" id="splashName"><span>Artem Iskandirov</span></div>
@@ -2092,7 +2091,7 @@
   <button class="dock-tab" data-tab="social" role="tab">Social</button>
 </nav>
 
-<div class="counter"><span id="cur">01</span> / 05</div>
+<div class="counter"><span id="cur">01</span> / <span id="total">04</span></div>
 <div class="hint"><kbd>←</kbd><kbd>→</kbd><span style="margin-left:6px;opacity:0.7" id="hintText">to switch</span></div>
 
 <div class="game-overlay" id="gameOverlay">
@@ -2149,7 +2148,7 @@
 </div>
 
 <script>
-console.log('%c portfolio v6 hardgrid', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
+console.log('%c portfolio v10 no-dividers+scream', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
 
 
 /* ===== CONTENT LOADER ===== */
@@ -3854,7 +3853,9 @@ const catState = {
   lastClickAt: 0,
   doubleClickThreshold: 350,
   idleTimer: null,
-  awakeUntil: 0
+  awakeUntil: 0,
+  lastScream: 0,
+  lastScreamBubble: 0
 };
 
 function setCatMood(mood, durationMs) {
@@ -4088,7 +4089,37 @@ function startDrag(clientX, clientY) {
   bed.style.top = r.top + 'px';
   bed.style.right = 'auto'; bed.style.bottom = 'auto';
   catState.dragOffset = { x: clientX - r.left, y: clientY - r.top };
-  spawnBubble('playful'); sfx.trill && sfx.trill();
+  catState.lastScream = 0; catState.lastScreamBubble = 0;
+  catScream();
+}
+const CAT_SCREAM_LINES = ['AAAA', 'MROWW!', 'put me DOWN', 'EEEEK', 'nooo', 'HELP', 'wheeee', 'aaaH', 'unhand me', 'MEOWW'];
+function spawnScreamBubble() {
+  const bed = document.getElementById('sceneCatBed');
+  if (!bed) return;
+  const b = document.createElement('div');
+  b.className = 'catbed-bubble';
+  b.textContent = CAT_SCREAM_LINES[Math.floor(Math.random() * CAT_SCREAM_LINES.length)];
+  const w = bed.offsetWidth || 180;
+  b.style.left = (w * 0.30) + 'px';
+  b.style.top = '-22px';
+  bed.appendChild(b);
+  requestAnimationFrame(() => b.classList.add('show'));
+  setTimeout(() => b.remove(), 1400);
+}
+function catScream() {
+  if (typeof sfx === 'undefined' || !sfx) return;
+  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
+  const now = Date.now();
+  if (now - catState.lastScream > 300) {
+    catState.lastScream = now;
+    const r = Math.random();
+    if (r < 0.5) sfx.yowl && sfx.yowl();
+    else { const m = sfx['meow' + (2 + Math.floor(Math.random() * 3))]; m && m.call(sfx); }
+  }
+  if (now - catState.lastScreamBubble > 850) {
+    catState.lastScreamBubble = now;
+    spawnScreamBubble();
+  }
 }
 function moveDrag(clientX, clientY) {
   const bed = document.getElementById('sceneCatBed');
@@ -4098,6 +4129,7 @@ function moveDrag(clientX, clientY) {
   bed.style.left = Math.max(0, Math.min(window.innerWidth - bed.offsetWidth, x)) + 'px';
   bed.style.top = Math.max(0, Math.min(window.innerHeight - bed.offsetHeight, y)) + 'px';
   spawnPaw(clientX, clientY + 24);
+  catScream();
 }
 function endDrag() {
   const cat = document.getElementById('catBedCat');
@@ -4200,7 +4232,14 @@ const knightState = {
   lastClickAt: 0,
   doubleClickThreshold: 350,
   idleTimer: null,
-  hoverWelcome: false
+  hoverWelcome: false,
+  pressed: false,
+  dragging: false,
+  dragStart: null,
+  dragOffset: { x: 0, y: 0 },
+  homeRect: null,
+  lastScream: 0,
+  lastScreamBubble: 0
 };
 
 const KNIGHT_LINES = {
@@ -4210,7 +4249,8 @@ const KNIGHT_LINES = {
   annoyed:  ['enough.', 'do not test me.', 'stay your hand.', 'you press your luck.'],
   battle:   ['for the realm!', 'have at thee!', 'taste my blade!', 'no quarter!'],
   weather:  ['cold night.', 'the watch is long.', 'too quiet tonight.', 'the wolves are restless.', 'something stirs in the woods.'],
-  fire:     ['warm fire, this.', 'tend the embers.', 'the flame keeps wolves at bay.']
+  fire:     ['warm fire, this.', 'tend the embers.', 'the flame keeps wolves at bay.'],
+  scream:   ['UNHAND ME!', 'put me DOWN!', 'WHAAA—', 'this is undignified!', 'my armor!', 'release me, knave!', 'AAARGH!', 'the indignity!', 'I yield! I YIELD!', 'sorcery!']
 };
 
 function pickKnightLine(category) {
@@ -4296,6 +4336,71 @@ function pokeKnight() {
   spawnKnightClang();
 }
 
+function knightScream() {
+  if (currentTheme !== 'fantasy') return;
+  if (typeof sfx === 'undefined' || !sfx) return;
+  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
+  const now = Date.now();
+  if (now - knightState.lastScream > 300) {
+    knightState.lastScream = now;
+    const r = Math.random();
+    if (r < 0.45) sfx.swordSwing && sfx.swordSwing();
+    else if (r < 0.75) sfx._metalClank && sfx._metalClank(0.14);
+    else sfx.battleHorn && sfx.battleHorn();
+  }
+  if (now - knightState.lastScreamBubble > 850) {
+    knightState.lastScreamBubble = now;
+    spawnKnightBubble('scream');
+  }
+}
+
+function startKnightDrag(clientX, clientY) {
+  const knight = document.getElementById('sceneKnight');
+  if (!knight) return;
+  knightState.dragging = true;
+  knight.classList.add('dragging');
+  const r = knight.getBoundingClientRect();
+  if (!knightState.homeRect) knightState.homeRect = { left: r.left, top: r.top };
+  knight.style.transition = 'none';
+  knight.style.margin = '0';
+  knight.style.left = r.left + 'px';
+  knight.style.top = r.top + 'px';
+  knight.style.right = 'auto';
+  knight.style.bottom = 'auto';
+  knightState.dragOffset = { x: clientX - r.left, y: clientY - r.top };
+  knightState.lastScream = 0; knightState.lastScreamBubble = 0;
+  knightScream();
+}
+function moveKnightDrag(clientX, clientY) {
+  const knight = document.getElementById('sceneKnight');
+  if (!knight || !knightState.dragging) return;
+  const x = clientX - knightState.dragOffset.x;
+  const y = clientY - knightState.dragOffset.y;
+  knight.style.left = Math.max(0, Math.min(window.innerWidth - knight.offsetWidth, x)) + 'px';
+  knight.style.top = Math.max(0, Math.min(window.innerHeight - knight.offsetHeight, y)) + 'px';
+  knightScream();
+}
+function endKnightDrag() {
+  const knight = document.getElementById('sceneKnight');
+  if (!knight || !knightState.dragging) return;
+  knightState.dragging = false;
+  knight.classList.remove('dragging');
+  const home = knightState.homeRect;
+  knight.style.transition = 'left 0.7s cubic-bezier(0.34, 1.4, 0.64, 1), top 0.7s cubic-bezier(0.34, 1.4, 0.64, 1)';
+  requestAnimationFrame(() => {
+    if (home) { knight.style.left = home.left + 'px'; knight.style.top = home.top + 'px'; }
+  });
+  setTimeout(() => {
+    knight.style.transition = '';
+    knight.style.left = ''; knight.style.top = '';
+    knight.style.right = ''; knight.style.bottom = '';
+    knight.style.margin = '';
+  }, 720);
+  knight.classList.remove('salute'); void knight.offsetHeight; knight.classList.add('salute');
+  setTimeout(() => knight.classList.remove('salute'), 1200);
+  knightSound('salute');
+}
+
 function bindKnight() {
   const knight = document.getElementById('sceneKnight');
   if (!knight) return;
@@ -4314,8 +4419,48 @@ function bindKnight() {
       knightSound('hover');
     }
   });
-  knight.addEventListener('click', pokeKnight);
-  knight.addEventListener('touchstart', e => { e.preventDefault(); pokeKnight(); }, { passive: false });
+  knight.addEventListener('click', e => { e.preventDefault(); });
+  knight.addEventListener('mousedown', e => {
+    if (currentTheme !== 'fantasy') return;
+    e.preventDefault();
+    knightState.pressed = true;
+    knightState.dragStart = { x: e.clientX, y: e.clientY };
+  });
+  document.addEventListener('mousemove', e => {
+    if (knightState.pressed && !knightState.dragging && knightState.dragStart) {
+      const dx = e.clientX - knightState.dragStart.x;
+      const dy = e.clientY - knightState.dragStart.y;
+      if (Math.hypot(dx, dy) > 8) startKnightDrag(knightState.dragStart.x, knightState.dragStart.y);
+    }
+    if (knightState.dragging) moveKnightDrag(e.clientX, e.clientY);
+  });
+  document.addEventListener('mouseup', () => {
+    if (knightState.dragging) endKnightDrag();
+    else if (knightState.pressed) pokeKnight();
+    knightState.pressed = false; knightState.dragStart = null;
+  });
+  knight.addEventListener('touchstart', e => {
+    if (currentTheme !== 'fantasy') return;
+    e.preventDefault();
+    const t = e.touches[0];
+    knightState.pressed = true;
+    knightState.dragStart = { x: t.clientX, y: t.clientY };
+  }, { passive: false });
+  document.addEventListener('touchmove', e => {
+    if (!knightState.pressed) return;
+    const t = e.touches[0];
+    if (!knightState.dragging && knightState.dragStart) {
+      const dx = t.clientX - knightState.dragStart.x;
+      const dy = t.clientY - knightState.dragStart.y;
+      if (Math.hypot(dx, dy) > 10) startKnightDrag(knightState.dragStart.x, knightState.dragStart.y);
+    }
+    if (knightState.dragging) { e.preventDefault(); moveKnightDrag(t.clientX, t.clientY); }
+  }, { passive: false });
+  document.addEventListener('touchend', () => {
+    if (knightState.dragging) endKnightDrag();
+    else if (knightState.pressed) pokeKnight();
+    knightState.pressed = false; knightState.dragStart = null;
+  });
 }
 
 function startKnightIdle() {
@@ -4910,6 +5055,8 @@ const TABS = ['overview', 'projects', 'education', 'social'];
 const dock = document.getElementById('dock');
 const indicator = document.getElementById('dockIndicator');
 const curEl = document.getElementById('cur');
+const totalEl = document.getElementById('total');
+if (totalEl) totalEl.textContent = String(TABS.length).padStart(2, '0');
 let activeIdx = 0;
 
 function goTo(i, fromUser = true) {
