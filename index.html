@@ -182,6 +182,35 @@
   }
 
   .scene-fireflies { position: absolute; inset: 0; }
+
+  /* BACKGROUND — ambient drifting motes + scroll progress (micro-interactions) */
+  .scroll-prog {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #fff));
+    transform: scaleX(0); transform-origin: 0 50%;
+    z-index: 60; pointer-events: none;
+    transition: transform 0.08s linear;
+  }
+  body.theme-fantasy .scroll-prog { background: linear-gradient(90deg, var(--accent), var(--accent-cool, #80a4d0)); box-shadow: 0 0 10px rgba(255,160,80,0.5); }
+
+  .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .ambient .mote {
+    position: absolute; border-radius: 50%;
+    background: rgba(42,77,58,0.16);
+    animation: moteDrift linear infinite;
+    will-change: transform, opacity;
+  }
+  body.theme-fantasy .ambient .mote {
+    background: rgba(255,170,90,0.4);
+    box-shadow: 0 0 6px rgba(255,170,90,0.55);
+  }
+  @keyframes moteDrift {
+    0% { transform: translateY(10px) translateX(0) scale(0.5); opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { transform: translateY(-112vh) translateX(var(--mx, 24px)) scale(1.1); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ambient { display: none; } }
   .firefly {
     position: absolute;
     width: 2px; height: 2px;
@@ -245,6 +274,7 @@
     margin: -40px;
     z-index: 6;
     pointer-events: auto;
+    touch-action: none;
     cursor: pointer;
     animation: knightBreathe 4.4s ease-in-out infinite;
     filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.55));
@@ -479,6 +509,7 @@
     box-sizing: content-box;
     margin: -48px;
     cursor: grab;
+    touch-action: none;
     animation: catbedBreathe 4.6s ease-in-out infinite;
     filter: drop-shadow(0 6px 10px rgba(120, 60, 20, 0.18));
     transition: transform 0.5s var(--easing-bounce), filter 0.4s var(--easing);
@@ -490,11 +521,30 @@
   }
   .catbed-cat:active { cursor: grabbing; }
   .catbed-cat:hover {
-    filter: drop-shadow(0 8px 14px rgba(120, 60, 20, 0.25)) brightness(1.05);
+    filter: drop-shadow(0 10px 16px rgba(120, 60, 20, 0.3)) brightness(1.08) saturate(1.06);
   }
   .catbed-cat.awake { animation: catbedAwake 1.6s var(--easing-out); }
   .catbed-cat.jump { animation: catbedJump 0.7s var(--easing-out); }
   .catbed-cat.wiggle { animation: catbedWiggle 0.8s ease-in-out; }
+  .catbed-cat.perk { animation: catbedPerk 0.6s var(--easing-bounce); }
+  .catbed-cat.tailflick { animation: catbedTail 0.7s ease-in-out; }
+  .catbed-cat.blink { animation: catbedBlink 0.5s ease-in-out; }
+  @keyframes catbedPerk {
+    0% { transform: translateY(0) scale(1); }
+    35% { transform: translateY(-9px) scale(1.06, 0.95); }
+    70% { transform: translateY(0) scale(0.97, 1.04); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  @keyframes catbedTail {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-2.5deg); }
+    50% { transform: rotate(2deg); }
+    75% { transform: rotate(-1deg); }
+  }
+  @keyframes catbedBlink {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.92); }
+  }
   .catbed-cat.purring { animation: catbedPurr 0.5s ease-in-out infinite; }
   .catbed-cat.startled { animation: catbedStartled 0.5s var(--easing-out); }
   .catbed-cat.snoozy { animation: catbedBreatheSlow 5.5s ease-in-out infinite; }
@@ -1116,7 +1166,7 @@
 
   .exp-row {
     display: grid;
-    grid-template-columns: 90px 48px 1fr auto;
+    grid-template-columns: 90px 48px minmax(0,1fr) auto;
     gap: 16px;
     padding: 18px 16px;
     margin: 0 -16px;
@@ -1254,6 +1304,15 @@
   }
   .work-line strong { color: var(--fg); font-weight: 600; }
   body.theme-fantasy .work-line strong { color: var(--accent); }
+  /* Apple-style blue highlight for key info (used sparingly via ==...==) */
+  .hl {
+    color: #0071e3; font-weight: 600;
+    background: rgba(0,113,227,0.10);
+    padding: 0.05em 0.34em; border-radius: 6px;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  body.theme-fantasy .hl { color: #6fb2ff; background: rgba(95,160,235,0.15); border-radius: 0; }
+  .lightbox-sub .hl { color: #4ea3ff; background: rgba(80,150,235,0.18); }
 
   /* mini gallery of preview tiles */
   .work-shots {
@@ -1270,6 +1329,7 @@
   }
   body.theme-fantasy .work-shot { border-radius: 0; border-color: var(--line-strong); background: rgba(255,138,58,0.08); }
   .work-shot svg { width: 100%; height: 100%; image-rendering: pixelated; }
+  .work-shot .shot-img, .side-thumb .shot-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; }
   .work-shot:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 0 8px 18px rgba(0,0,0,0.12); }
   .work-shot.opened {
     width: 180px; height: 180px;
@@ -1281,7 +1341,7 @@
   /* side projects — single line each */
   .side-list { display: flex; flex-direction: column; gap: 1px; }
   .side-row {
-    display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 16px;
+    display: grid; grid-template-columns: 52px minmax(0,1fr) auto; align-items: center; gap: 16px;
     text-decoration: none; color: inherit;
     padding: 14px 16px; margin: 0 -16px;
     border-radius: 12px;
@@ -1345,19 +1405,21 @@
   }
   body.theme-fantasy .lightbox.show { background: rgba(8, 10, 20, 0.9); }
   .lightbox-inner {
-    display: flex; flex-direction: column; align-items: center; gap: 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
     transform: scale(0.8); transition: transform 0.5s var(--easing-bounce);
-    max-width: 90vw;
+    max-width: 92vw; max-height: 94vh; padding: 0 10px;
   }
   .lightbox.show .lightbox-inner { transform: scale(1); }
   .lightbox-art {
-    width: min(60vh, 420px); height: min(60vh, 420px);
-    background: var(--bg); border-radius: 24px; padding: 8%;
+    width: min(86vw, 56vh, 440px); height: min(86vw, 56vh, 440px);
+    background: var(--bg); border-radius: 24px; padding: 6%;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    flex-shrink: 0; touch-action: none;
   }
   body.theme-fantasy .lightbox-art { background: #14121e; border-radius: 0; box-shadow: 0 0 60px rgba(255,138,58,0.3); }
   .lightbox-art svg { width: 100%; height: 100%; image-rendering: pixelated; }
+  .lightbox-art img { max-width: 100%; max-height: 100%; }
   .lightbox-cap { text-align: center; color: #fff; display: flex; flex-direction: column; gap: 6px; }
   .lightbox-title { font-family: var(--font-display); font-size: 26px; font-weight: 600; }
   body.theme-fantasy .lightbox-title { font-family: 'Cinzel', serif; color: var(--accent); }
@@ -1371,6 +1433,38 @@
     transition: transform 0.4s var(--easing-bounce), background 0.3s;
   }
   .lightbox-close:hover { transform: rotate(90deg); background: rgba(255,255,255,0.18); }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.08);
+    color: #fff; font-size: 30px; line-height: 1; cursor: pointer; z-index: 201;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s var(--easing-bounce), background 0.3s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-nav.prev { left: 24px; }
+  .lightbox-nav.next { right: 24px; }
+  .lightbox-nav.prev:hover { transform: translateY(-50%) translateX(-3px); }
+  .lightbox-nav.next:hover { transform: translateY(-50%) translateX(3px); }
+  body.theme-fantasy .lightbox-nav { border-radius: 0; border-color: var(--accent); color: var(--accent); }
+  .lightbox-count { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
+  .lightbox-cap { max-width: min(90vw, 560px); }
+  .lightbox-sub { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.5; }
+  .lightbox-sub strong { color: #fff; font-weight: 600; }
+  body.theme-fantasy .lightbox-sub strong { color: var(--accent); }
+  .lightbox-art.swap { animation: lbSwap 0.35s var(--easing-out); }
+  @keyframes lbSwap { 0% { opacity: 0.35; transform: scale(0.97); } 100% { opacity: 1; transform: scale(1); } }
+  @media (max-width: 768px) {
+    .lightbox { touch-action: pan-y; }
+    .lightbox-inner { gap: 14px; }
+    .lightbox-art { width: min(82vw, 46vh); height: min(82vw, 46vh); }
+    .lightbox-title { font-size: 20px; }
+    .lightbox-sub { font-size: 13px; }
+    .lightbox-cap { max-width: 88vw; }
+    .lightbox-nav { width: 42px; height: 42px; font-size: 24px; }
+    .lightbox-nav.prev { left: 8px; } .lightbox-nav.next { right: 8px; }
+    .lightbox-close { top: 14px; right: 14px; }
+  }
 
   /* EDUCATION */
   .education-wrap { width: 100%; max-width: 760px; margin: 0 auto; box-sizing: border-box; }
@@ -1460,7 +1554,7 @@
   .soc-row:hover + .soc-row { border-top-color: transparent; }
   .soc-side { font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim); }
   body.theme-fantasy .soc-side { color: var(--accent); }
-  .soc-name { font-size: 22px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 500; transition: transform 0.5s var(--easing-out); }
+  .soc-name { font-size: 22px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 500; transition: transform 0.5s var(--easing-out); overflow-wrap: anywhere; min-width: 0; }
   .soc-row:hover .soc-name { transform: translateX(4px); }
   .soc-tag { font-family: var(--font-mono); font-size: 10px; color: var(--fg-dim); letter-spacing: 0.08em; text-transform: uppercase; transition: opacity 0.3s var(--easing); }
   .soc-arrow { position: absolute; right: 16px; top: 50%; transform: translate(-12px, -50%); opacity: 0; transition: all 0.5s var(--easing-bounce); font-weight: 500; pointer-events: none; }
@@ -1659,7 +1753,52 @@
     opacity: 0;
   }
   .pixel-edge-cat svg { width: 100%; height: 100%; display: block; }
+  .pixel-cat .creature-img, .pixel-thief .creature-img, .pixel-edge-cat .creature-img { width: 100%; height: 100%; object-fit: contain; display: block; }
   .pixel-edge-cat.show { opacity: 1; }
+
+  /* PET INVITE — tooltip offering to play games (cat/knight click) */
+  .pet-invite {
+    position: fixed; z-index: 45; max-width: 230px;
+    padding: 12px 14px; border-radius: 16px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(18px) saturate(1.6);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    border: 1px solid var(--line);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.16);
+    opacity: 0; transform: translateY(8px) scale(0.92);
+    transform-origin: bottom center;
+    transition: opacity 0.3s var(--easing-out), transform 0.45s var(--easing-bounce);
+    pointer-events: none;
+  }
+  .pet-invite.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .pet-invite-close {
+    position: absolute; top: 5px; right: 7px;
+    width: 20px; height: 20px; border-radius: 50%; padding: 0;
+    border: none; background: transparent; color: var(--fg-dim);
+    font-size: 16px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s, transform 0.25s var(--easing-bounce);
+  }
+  .pet-invite-close:hover { color: var(--fg); transform: rotate(90deg); }
+  .pet-invite-text { font-size: 13px; font-weight: 600; color: var(--fg); margin: 0 14px 10px 0; line-height: 1.35; }
+  .pet-invite-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 15px; border-radius: 100px; border: none; cursor: pointer;
+    background: var(--accent); color: #fff;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+    transition: transform 0.3s var(--easing-bounce), box-shadow 0.3s, filter 0.2s;
+  }
+  .pet-invite-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); filter: brightness(1.05); }
+  .pet-invite::after {
+    content: ''; position: absolute; bottom: -7px; left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 14px; height: 14px; background: var(--bg-glass);
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    display: var(--tail-display, block);
+  }
+  body.theme-fantasy .pet-invite { border-radius: 0; border-color: var(--accent); background: #181428; box-shadow: 0 0 32px rgba(255,138,58,0.3); }
+  body.theme-fantasy .pet-invite::after { background: #181428; border-color: var(--accent); }
+  body.theme-fantasy .pet-invite-btn { background: var(--accent); color: #0a0e1a; border-radius: 0; }
 
   /* GAME */
   .game-overlay {
@@ -1812,9 +1951,9 @@
   body.theme-fantasy .pg-track { background: rgba(255,255,255,0.06); border-radius: 0; }
   .pg-zone {
     position: absolute; top: 0; height: 100%;
-    background: linear-gradient(90deg, rgba(68,184,122,0.3), rgba(68,184,122,0.55), rgba(68,184,122,0.3));
-    border-left: 2px solid #44b87a; border-right: 2px solid #44b87a;
-    box-shadow: 0 0 16px rgba(68,184,122,0.5);
+    background: linear-gradient(90deg, rgba(111,154,106,0.28), rgba(111,154,106,0.5), rgba(111,154,106,0.28));
+    border-left: 2px solid #6f9a6a; border-right: 2px solid #6f9a6a;
+    box-shadow: 0 0 16px rgba(111,154,106,0.45);
   }
   body.theme-fantasy .pg-zone {
     background: linear-gradient(90deg, rgba(255,160,70,0.3), rgba(255,160,70,0.6), rgba(255,160,70,0.3));
@@ -1885,22 +2024,70 @@
     aspect-ratio: 1.3;
   }
   .ec-pad {
-    border: 2px solid var(--line);
-    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
     cursor: pointer;
-    transition: transform 0.15s var(--easing), filter 0.15s, box-shadow 0.2s;
+    transition: transform 0.12s var(--easing), filter 0.15s, box-shadow 0.25s, opacity 0.2s;
     position: relative; overflow: hidden;
-    background: var(--c, #ccc);
-    opacity: 0.45;
+    background-color: var(--c, #ccc);
+    background-image:
+      radial-gradient(circle at 38% 30%, rgba(255,255,255,0.38), rgba(255,255,255,0) 55%),
+      linear-gradient(160deg, rgba(255,255,255,0.10), rgba(0,0,0,0.20));
+    opacity: 0.62;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
   }
-  body.theme-fantasy .ec-pad { border-radius: 0; border-color: var(--line-strong); }
-  .ec-pad[data-pad="0"] { --c: #4a90e2; }
-  .ec-pad[data-pad="1"] { --c: #e85a6b; }
-  .ec-pad[data-pad="2"] { --c: #44b87a; }
-  .ec-pad[data-pad="3"] { --c: #f0a830; }
-  .ec-pad.lit { opacity: 1; filter: brightness(1.3); transform: scale(0.96); box-shadow: 0 0 30px var(--c); }
+  body.theme-fantasy .ec-pad { border-radius: 0; border-color: rgba(255,255,255,0.08); }
+  /* Cat theme — warm, muted, distinguishable (sage / terracotta / dusty-blue / gold) */
+  .ec-pad[data-pad="0"] { --c: #6a9bbf; }
+  .ec-pad[data-pad="1"] { --c: #c2714f; }
+  .ec-pad[data-pad="2"] { --c: #6f9a6a; }
+  .ec-pad[data-pad="3"] { --c: #d9a441; }
+  /* Fantasy theme — glowing jewel tones (cool-blue / ember / gold / violet) */
+  body.theme-fantasy .ec-pad[data-pad="0"] { --c: #80a4d0; }
+  body.theme-fantasy .ec-pad[data-pad="1"] { --c: #e0683f; }
+  body.theme-fantasy .ec-pad[data-pad="2"] { --c: #ffd060; }
+  body.theme-fantasy .ec-pad[data-pad="3"] { --c: #9a7bc8; }
+  .ec-pad.lit { opacity: 1; filter: brightness(1.22) saturate(1.12); transform: scale(0.97); box-shadow: 0 0 34px var(--c), inset 0 0 22px rgba(255,255,255,0.28); }
   .ec-pad:active { transform: scale(0.94); }
   .ec-grid.locked .ec-pad { cursor: default; }
+
+  /* ============ GAME: CAT RUNNER (platformer) ============ */
+  .run-hud { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 10px; }
+  .run-stat { display: flex; flex-direction: column; gap: 2px; }
+  .run-stat .k { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-dim); }
+  .run-stat .v { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--fg); line-height: 1; }
+  body.theme-fantasy .run-stat .v { color: var(--accent); }
+  .run-wrap {
+    position: relative; border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, #eef3f6 0%, #e6ede7 100%);
+  }
+  body.theme-fantasy .run-wrap { border-radius: 0; border-color: var(--line-strong); background: linear-gradient(180deg, #0d1426 0%, #070a14 100%); }
+  .run-canvas { display: block; width: 100%; height: 240px; touch-action: none; cursor: pointer; }
+  .run-overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    background: rgba(250,250,247,0.5); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    transition: opacity 0.3s var(--easing-out);
+  }
+  body.theme-fantasy .run-overlay { background: rgba(8,11,20,0.5); }
+  .run-overlay.hide { opacity: 0; pointer-events: none; }
+  .run-msg { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--fg); text-align: center; padding: 0 20px; line-height: 1.25; }
+  body.theme-fantasy .run-msg { color: var(--accent); }
+  .run-cta {
+    padding: 12px 30px; border-radius: 100px; border: none;
+    background: var(--fg); color: var(--bg);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; font-weight: 600;
+    transition: transform 0.4s var(--easing-bounce), box-shadow 0.4s;
+  }
+  .run-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+  body.theme-fantasy .run-cta {
+    background: var(--accent); color: #0a0e1a; border-radius: 0;
+    -webkit-mask: var(--torn-pill); mask: var(--torn-pill); -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  }
+  .run-hint { margin-top: 12px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-dim); }
+  body.theme-fantasy .run-hint { color: var(--accent); }
 
   @media (max-width: 768px) {
     header { padding: 16px 16px; }
@@ -1915,7 +2102,7 @@
     .ov-name { font-size: clamp(30px, 9vw, 44px); letter-spacing: -0.035em; }
     .ov-bio { font-size: 16px; }
     .ov-meta { gap: 8px; font-size: 10px; }
-    .exp-row { grid-template-columns: 64px 40px 1fr; gap: 10px; padding: 14px 12px; margin: 0 -12px; }
+    .exp-row { grid-template-columns: 64px 40px minmax(0,1fr); gap: 10px; padding: 14px 12px; margin: 0 -12px; }
     .exp-row .exp-tag { display: none; }
     .exp-row .exp-side { font-size: 10px; }
     .exp-avatar { width: 40px; height: 40px; border-radius: 10px; font-size: 14px; }
@@ -1928,11 +2115,11 @@
     .work-label-side { margin-top: 34px; }
     .side-row { flex-direction: column; gap: 3px; padding: 12px; margin: 0 -12px; }
     .side-row .side-arrow { display: none; }
-    .soc-row { grid-template-columns: 70px 1fr; gap: 12px; padding: 16px 12px; margin: 0 -12px; }
+    .soc-row { grid-template-columns: 70px minmax(0,1fr); gap: 12px; padding: 16px 12px; margin: 0 -12px; }
     .soc-row .soc-tag { display: none; }
     .soc-name { font-size: 18px; }
     .soc-arrow { display: none; }
-    .edu-block, .section-mini { grid-template-columns: 64px 1fr; gap: 12px; }
+    .edu-block, .section-mini { grid-template-columns: 64px minmax(0,1fr); gap: 12px; }
     .edu-school { font-size: 20px; }
     .lang-item { font-size: 18px; }
     .dock { bottom: 12px; left: 12px; right: 12px; transform: none; padding: 4px; max-width: calc(100vw - 24px); width: auto; display: flex; justify-content: space-between; }
@@ -2103,52 +2290,23 @@
       </div>
       <button class="game-close" id="gameClose">×</button>
     </div>
-    <div class="game-tabs" id="gameTabs">
-      <button class="game-tab active" data-game="pounce">Pounce</button>
-      <button class="game-tab" data-game="echo">Echo</button>
+    <div class="run-hud">
+      <div class="run-stat"><span class="k" id="runScoreLabel">Score</span><span class="v" id="runScore">0</span></div>
+      <div class="run-stat" style="text-align:right"><span class="k" id="runBestLabel">Best</span><span class="v" id="runBest">0</span></div>
     </div>
-
-    <!-- GAME 1: PERFECT TIMING -->
-    <div class="game-pane active" id="panePounce">
-      <div class="pg-hud">
-        <div class="pg-stat"><span class="k" id="pgScoreLabel">Score</span><span class="v" id="pgScore">0</span></div>
-        <div class="pg-combo" id="pgCombo"></div>
-        <div class="pg-stat" style="text-align:right"><span class="k" id="pgBestLabel">Best</span><span class="v" id="pgBest">0</span></div>
+    <div class="run-wrap" id="runWrap">
+      <canvas id="runCanvas" class="run-canvas"></canvas>
+      <div class="run-overlay" id="runOverlay">
+        <div class="run-msg" id="runMsg">Tap or Space to jump</div>
+        <button class="run-cta" id="runCta">Start</button>
       </div>
-      <div class="pg-arena" id="pgArena">
-        <div class="pg-track">
-          <div class="pg-zone" id="pgZone"></div>
-          <div class="pg-marker" id="pgMarker"></div>
-        </div>
-        <div class="pg-target" id="pgTarget">
-          <div class="pg-target-icon" id="pgTargetIcon"></div>
-        </div>
-        <div class="pg-flash" id="pgFlash"></div>
-        <div class="pg-msg" id="pgMsg"></div>
-      </div>
-      <button class="pg-cta" id="pgCta">Tap to start</button>
     </div>
-
-    <!-- GAME 2: ECHO (memory) -->
-    <div class="game-pane" id="paneEcho">
-      <div class="pg-hud">
-        <div class="pg-stat"><span class="k" id="ecLevelLabel">Level</span><span class="v" id="ecLevel">1</span></div>
-        <div class="pg-combo" id="ecStatus"></div>
-        <div class="pg-stat" style="text-align:right"><span class="k" id="ecBestLabel">Best</span><span class="v" id="ecBest">0</span></div>
-      </div>
-      <div class="ec-grid" id="ecGrid">
-        <button class="ec-pad" data-pad="0"></button>
-        <button class="ec-pad" data-pad="1"></button>
-        <button class="ec-pad" data-pad="2"></button>
-        <button class="ec-pad" data-pad="3"></button>
-      </div>
-      <button class="pg-cta" id="ecCta">Tap to start</button>
-    </div>
+    <div class="run-hint" id="runHint">Space / ↑ / tap — jump · ↓ — duck</div>
   </div>
 </div>
 
 <script>
-console.log('%c portfolio v10 no-dividers+scream', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
+console.log('%c portfolio v15 mobile-gallery+blue-hl', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
 
 
 /* ===== CONTENT LOADER ===== */
@@ -2424,6 +2582,18 @@ const FALLBACK_DATA = {
       "eep!",
       "!!!",
       "agh!"
+    ],
+    "praise": [
+      "hire Artem!",
+      "he ships outcomes",
+      "systems thinker 🧠",
+      "ARPU +5%, btw",
+      "design systems pro",
+      "7+ yrs in product",
+      "won an AI hackathon",
+      "loves hard products",
+      "write to Artem! 🐾",
+      "great with details"
     ]
   },
   "work": [
@@ -2432,50 +2602,60 @@ const FALLBACK_DATA = {
       "title": "Uchi.ru",
       "role": "Senior Product Designer",
       "period": "2023 — now",
-      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (**ARPU +5%, conversion +7%**), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
+      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (==ARPU +5%, conversion +7%==), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
     },
     {
       "id": "ailet",
       "title": "Ailet",
       "role": "Product Designer",
       "period": "2021 — 2023",
-      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. **CSAT/CSI +5pp, support tickets −8%**, steady growth in task completion."
+      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. ==CSAT/CSI +5pp, support tickets −8%==, steady growth in task completion."
     },
     {
       "id": "akbars",
       "title": "Ak Bars",
       "role": "Product Designer",
       "period": "2020 — 2021",
-      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. **Entries to investments +11%** after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
+      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
     },
     {
       "id": "bars",
       "title": "BARS Group",
       "role": "Product Designer",
       "period": "2018 — 2020",
-      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. **Routine tasks −10% time**, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
+      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
     }
   ],
   "side": [
     {
+      "slug": "custom-vibrations",
       "title": "Custom Vibrations",
       "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
       "link": "https://t.me/kidstechdesign/113"
     },
     {
+      "slug": "telegram-digester",
       "title": "Telegram Digester",
       "line": "No-code bot that summarises my channels into one daily digest",
       "link": "https://t.me/kidstechdesign/121"
     },
     {
+      "slug": "bi-agent",
       "title": "BI Agent",
       "line": "AI agent that answers retail BI-data questions in plain chat",
       "link": "https://t.me/kidstechdesign/117"
     },
     {
+      "slug": "sound-ux",
       "title": "Sound UX",
       "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
       "link": "https://t.me/kidstechdesign/74"
+    },
+    {
+      "slug": "figma-linter",
+      "title": "Figma Linter — AI",
+      "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma.",
+      "link": "https://t.me/kidstechdesign"
     }
   ]
 }
@@ -2527,7 +2707,14 @@ function applySiteMeta() {
     };
     document.querySelectorAll('.tab-view .tab-label').forEach(el => {
       const tabName = el.closest('.tab-view').dataset.tab;
-      if (labelMap[tabName]) el.textContent = labelMap[tabName];
+      const ORDER = ['overview', 'projects', 'education', 'social'];
+      const idx = ORDER.indexOf(tabName);
+      let label = labelMap[tabName];
+      if (label) {
+        const namePart = label.replace(/^\s*\d+\s*[—–-]\s*/, '');
+        const num = idx >= 0 ? String(idx + 1).padStart(2, '0') + ' — ' : '';
+        el.textContent = num + namePart;
+      }
     });
     const dockMap = {
       overview: DATA.tabs.dockOverview,
@@ -2765,6 +2952,87 @@ class Sound {
   meow3() { this._meowVariant({ dur: 0.7, f0: 360, fPeak: 620, fEnd: 280, peakAt: 0.18, formantStart: 600, formantPeak: 1200, formantEnd: 480, vol: 0.11, q: 5 }); }
   meow4() { this._meowVariant({ dur: 0.3, f0: 720, fPeak: 1100, fEnd: 760, peakAt: 0.1, formantStart: 1100, formantPeak: 1900, formantEnd: 1200, vol: 0.085, q: 8 }); }
   meow5() { this._meowVariant({ dur: 0.5, f0: 280, fPeak: 540, fEnd: 240, peakAt: 0.14, formantStart: 500, formantPeak: 1100, formantEnd: 420, vol: 0.12, q: 4, type: 'sawtooth' }); }
+  /* CONTINUOUS cute cat scream — sustained vocal tone with warble + wander, for drag-and-drop */
+  startCatScream() {
+    if (!this.ctx || this.muted || this._scream) return;
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(700, t);
+    // slow pitch wander (gives a panicked, swooping meow)
+    const wander = this.ctx.createOscillator();
+    wander.type = 'sine'; wander.frequency.value = 1.4;
+    const wanderGain = this.ctx.createGain(); wanderGain.gain.value = 110;
+    wander.connect(wanderGain); wanderGain.connect(osc.frequency);
+    // fast vibrato (cute warble)
+    const vib = this.ctx.createOscillator();
+    vib.type = 'sine'; vib.frequency.value = 12;
+    const vibGain = this.ctx.createGain(); vibGain.gain.value = 32;
+    vib.connect(vibGain); vibGain.connect(osc.frequency);
+    // vocal formant so it reads as "aaa" not a buzzer
+    const f1 = this.ctx.createBiquadFilter(); f1.type = 'bandpass'; f1.frequency.value = 1300; f1.Q.value = 5;
+    const f2 = this.ctx.createBiquadFilter(); f2.type = 'lowpass'; f2.frequency.value = 3200;
+    const env = this.ctx.createGain();
+    env.gain.setValueAtTime(0.0001, t);
+    env.gain.linearRampToValueAtTime(0.085, t + 0.08);
+    // amplitude tremolo => pulsing "aa-aa-aa"
+    const trem = this.ctx.createOscillator(); trem.type = 'sine'; trem.frequency.value = 7.5;
+    const tremGain = this.ctx.createGain(); tremGain.gain.value = 0.03;
+    trem.connect(tremGain); tremGain.connect(env.gain);
+    osc.connect(f1); f1.connect(f2); f2.connect(env); env.connect(this.master);
+    osc.start(t); vib.start(t); wander.start(t); trem.start(t);
+    this._scream = { osc, vib, wander, trem, env };
+  }
+  stopCatScream() {
+    if (!this._scream || !this.ctx) return;
+    const s = this._scream; this._scream = null;
+    const t = this.ctx.currentTime;
+    try {
+      s.env.gain.cancelScheduledValues(t);
+      s.env.gain.setValueAtTime(Math.max(0.0001, s.env.gain.value), t);
+      s.env.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+      [s.osc, s.vib, s.wander, s.trem].forEach(n => { try { n.stop(t + 0.16); } catch (e) {} });
+    } catch (e) {}
+  }
+  /* CONTINUOUS knight yell — gruff lower vocal "AAARGH" with warble, for drag-and-drop */
+  startKnightScream() {
+    if (!this.ctx || this.muted || this._kscream) return;
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(220, t);
+    const wander = this.ctx.createOscillator();
+    wander.type = 'sine'; wander.frequency.value = 1.1;
+    const wanderGain = this.ctx.createGain(); wanderGain.gain.value = 55;
+    wander.connect(wanderGain); wanderGain.connect(osc.frequency);
+    const vib = this.ctx.createOscillator();
+    vib.type = 'sine'; vib.frequency.value = 8;
+    const vibGain = this.ctx.createGain(); vibGain.gain.value = 16;
+    vib.connect(vibGain); vibGain.connect(osc.frequency);
+    // vowel formant — low "aah"
+    const f1 = this.ctx.createBiquadFilter(); f1.type = 'bandpass'; f1.frequency.value = 760; f1.Q.value = 4;
+    const f2 = this.ctx.createBiquadFilter(); f2.type = 'lowpass'; f2.frequency.value = 2200;
+    const env = this.ctx.createGain();
+    env.gain.setValueAtTime(0.0001, t);
+    env.gain.linearRampToValueAtTime(0.085, t + 0.07);
+    const trem = this.ctx.createOscillator(); trem.type = 'sine'; trem.frequency.value = 6;
+    const tremGain = this.ctx.createGain(); tremGain.gain.value = 0.028;
+    trem.connect(tremGain); tremGain.connect(env.gain);
+    osc.connect(f1); f1.connect(f2); f2.connect(env); env.connect(this.master);
+    osc.start(t); vib.start(t); wander.start(t); trem.start(t);
+    this._kscream = { osc, vib, wander, trem, env };
+  }
+  stopKnightScream() {
+    if (!this._kscream || !this.ctx) return;
+    const s = this._kscream; this._kscream = null;
+    const t = this.ctx.currentTime;
+    try {
+      s.env.gain.cancelScheduledValues(t);
+      s.env.gain.setValueAtTime(Math.max(0.0001, s.env.gain.value), t);
+      s.env.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+      [s.osc, s.vib, s.wander, s.trem].forEach(n => { try { n.stop(t + 0.16); } catch (e) {} });
+    } catch (e) {}
+  }
   chirp() {
     if (!this.ctx || this.muted) return;
     const t = this.ctx.currentTime;
@@ -3581,6 +3849,23 @@ function makeRandomCreatureSVG() {
   }
   return makePixelSVG(CAT_POSES[Math.floor(Math.random()*CAT_POSES.length)], CAT_PALETTES[Math.floor(Math.random()*CAT_PALETTES.length)]);
 }
+// Wandering creatures (click pop, letter thief, edge peek) load from /images/cats/.
+// Replace those PNGs with your own; a built-in pixel sprite is shown if a file is missing.
+const CAT_IMG_COUNT = 6, FANTASY_IMG_COUNT = 3;
+function creatureImgSrc() {
+  if (currentTheme === 'fantasy') return 'images/cats/fantasy-' + (1 + Math.floor(Math.random() * FANTASY_IMG_COUNT)) + '.png';
+  return 'images/cats/cat-' + (1 + Math.floor(Math.random() * CAT_IMG_COUNT)) + '.png';
+}
+function fillCreature(container) {
+  const svg = makeRandomCreatureSVG();
+  const img = document.createElement('img');
+  img.className = 'creature-img';
+  img.alt = '';
+  img.src = creatureImgSrc();
+  img.addEventListener('error', () => { container.innerHTML = svg; });
+  container.innerHTML = '';
+  container.appendChild(img);
+}
 function spawnCreature(x, y) {
   const cat = document.createElement('div');
   cat.className = 'pixel-cat popping';
@@ -3589,7 +3874,7 @@ function spawnCreature(x, y) {
   const py = Math.max(80, Math.min(window.innerHeight - size - 100, y - size / 2));
   cat.style.left = px + 'px';
   cat.style.top = py + 'px';
-  cat.innerHTML = makeRandomCreatureSVG();
+  fillCreature(cat);
   document.body.appendChild(cat);
   if (currentTheme === 'fantasy') sfx.randomFantasySound();
   else sfx.randomCatSound();
@@ -3913,6 +4198,46 @@ function spawnHeart() {
   setTimeout(() => h.remove(), 1500);
 }
 
+function spawnSparkle() {
+  const bed = document.getElementById('sceneCatBed');
+  if (!bed) return;
+  const w = bed.offsetWidth || 180;
+  for (let i = 0; i < 3; i++) {
+    const s = document.createElement('div');
+    s.className = 'catbed-heart';
+    s.textContent = ['✦', '✧', '⋆', '✨'][Math.floor(Math.random() * 4)];
+    s.style.fontSize = (10 + Math.random() * 10) + 'px';
+    s.style.color = currentTheme === 'fantasy' ? 'var(--accent)' : '#e8b54a';
+    s.style.left = (w * (0.35 + Math.random() * 0.4)) + 'px';
+    s.style.top = (10 + Math.random() * 30) + 'px';
+    bed.appendChild(s);
+    requestAnimationFrame(() => s.classList.add('show'));
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
+let _catHoverAt = 0;
+function catHoverFx() {
+  if (currentTheme === 'fantasy') return;
+  if (catState.dragging || catState.pressed) return;
+  const now = Date.now();
+  if (now - _catHoverAt < 900) return; // small cooldown so it's not spammy
+  _catHoverAt = now;
+  const cat = document.getElementById('catBedCat');
+  if (!cat) return;
+  const fx = ['perk', 'tailflick', 'wiggle', 'blink'];
+  const cls = fx[Math.floor(Math.random() * fx.length)];
+  cat.classList.remove('perk', 'tailflick', 'wiggle', 'blink');
+  void cat.offsetHeight;
+  cat.classList.add(cls);
+  setTimeout(() => cat.classList.remove(cls), 800);
+  const r = Math.random();
+  if (r < 0.4) spawnSparkle();
+  else if (r < 0.7) spawnHeart();
+  if (sfx.chirp && Math.random() < 0.5) sfx.chirp();
+  else if (sfx.trill && Math.random() < 0.3) sfx.trill();
+}
+
 function spawnBubble(mood) {
   const bed = document.getElementById('sceneCatBed');
   if (!bed) return;
@@ -3996,17 +4321,82 @@ function startIdleLoop() {
       cat.classList.remove('wiggle'); void cat.offsetHeight;
       cat.classList.add('wiggle');
       setTimeout(() => cat.classList.remove('wiggle'), 800);
-    } else if (r < 0.80) {
+    } else if (r < 0.72) {
       cat.classList.add('snoozy');
       setTimeout(() => cat.classList.remove('snoozy'), 6000);
+    } else if (r < 0.90) {
+      spawnBubble('praise');
+      if (sfx.meow1) sfx.meow1();
     } else if (catState.mood === 'sleeping' && Math.random() < 0.5) spawnBubble('purring');
   };
   catState.idleTimer = setTimeout(tick, 4000);
 }
 
+let petInviteEl = null, petInviteTimer = null;
+function ensurePetInvite() {
+  if (petInviteEl) return petInviteEl;
+  petInviteEl = document.createElement('div');
+  petInviteEl.className = 'pet-invite';
+  petInviteEl.innerHTML = '<button class="pet-invite-close" type="button" aria-label="close">×</button><div class="pet-invite-text"></div><button class="pet-invite-btn" type="button"></button>';
+  document.body.appendChild(petInviteEl);
+  petInviteEl.querySelector('.pet-invite-close').addEventListener('click', (e) => { e.stopPropagation(); hidePetInvite(); });
+  petInviteEl.querySelector('.pet-invite-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    hidePetInvite();
+    if (typeof goTo === 'function') goTo(3); // → contacts / social
+  });
+  return petInviteEl;
+}
+function hidePetInvite() {
+  if (petInviteEl) petInviteEl.classList.remove('show');
+  if (petInviteTimer) { clearTimeout(petInviteTimer); petInviteTimer = null; }
+}
+function showPetInvite(anchorEl) {
+  if (!anchorEl) return;
+  const el = ensurePetInvite();
+  const isRu = (typeof currentLang !== 'undefined') && currentLang === 'ru';
+  const linesRu = [
+    'Артём — сильный продуктовый дизайнер: системное мышление и забота о деталях. Напишите ему!',
+    'Делает продукты, которые приносят измеримый результат (ARPU +5%, конверсия +7%). Напишите Артёму!',
+    '7+ лет в продукте: EdTech, retail-AI, финтех, медтех. Берёт сложные задачи. Контакты ниже 👇',
+    'Дизайн-системы, геймификация, sound UX — и победа на AI-хакатоне. Зовите в команду!',
+    'Любит сложные продукты и доводит до результата. Обсудим сотрудничество?',
+    'Сам пилит ИИ-инструменты для дизайнеров (плагин-линтер для Figma). Напишите Артёму!'
+  ];
+  const linesEn = [
+    'Artem is a strong product designer — systems thinking and an eye for detail. Reach out!',
+    'Ships measurable outcomes (ARPU +5%, conversion +7%). Message Artem!',
+    '7+ years in product: EdTech, retail-AI, fintech, medtech. Loves hard problems. Contacts below 👇',
+    'Design systems, gamification, sound UX — plus an AI-hackathon win. Hire him!',
+    'Builds his own AI tools for designers (a Figma linter plugin). Reach out to Artem!',
+    'Turns complex products into real results. Up for a chat?'
+  ];
+  const pool = isRu ? linesRu : linesEn;
+  if (el._lastIdx === undefined) el._lastIdx = -1;
+  let idx = Math.floor(Math.random() * pool.length);
+  if (pool.length > 1 && idx === el._lastIdx) idx = (idx + 1) % pool.length;
+  el._lastIdx = idx;
+  el.querySelector('.pet-invite-text').textContent = pool[idx];
+  el.querySelector('.pet-invite-btn').textContent = isRu ? 'Контакты' : 'Contacts';
+  el.classList.add('show');
+  const r = anchorEl.getBoundingClientRect();
+  const ew = el.offsetWidth, eh = el.offsetHeight;
+  let left = r.left + r.width / 2 - ew / 2;
+  left = Math.max(12, Math.min(window.innerWidth - ew - 12, left));
+  let top = r.top - eh - 44; // raised above emotion bubbles
+  let below = false;
+  if (top < 12) { top = r.bottom + 12; below = true; }
+  el.style.left = left + 'px';
+  el.style.top = top + 'px';
+  el.style.setProperty('--tail-display', below ? 'none' : 'block');
+  if (petInviteTimer) clearTimeout(petInviteTimer);
+  petInviteTimer = setTimeout(hidePetInvite, 7000);
+}
+
 function pokeCat() {
   const cat = document.getElementById('catBedCat');
   if (!cat || currentTheme === 'fantasy') return;
+  showPetInvite(document.getElementById('sceneCatBed') || cat);
   catState.chainPokes += 1;
   if (catState.chainResetTimer) clearTimeout(catState.chainResetTimer);
   catState.chainResetTimer = setTimeout(() => {
@@ -4052,7 +4442,8 @@ function pokeCat() {
   else if (sfx.meow1) [sfx.meow1, sfx.meow2, sfx.meow3, sfx.meow4][Math.floor(Math.random()*4)].call(sfx);
   spawnHeart();
   if (Math.random() < 0.5) setTimeout(spawnHeart, 220);
-  if (Math.random() < 0.25) spawnBubble('awake');
+  if (Math.random() < 0.55) spawnBubble('praise');
+  else if (Math.random() < 0.5) spawnBubble('awake');
 }
 
 let cursorApproachState = { lastDistance: Infinity, lastUpdate: 0 };
@@ -4090,6 +4481,8 @@ function startDrag(clientX, clientY) {
   bed.style.right = 'auto'; bed.style.bottom = 'auto';
   catState.dragOffset = { x: clientX - r.left, y: clientY - r.top };
   catState.lastScream = 0; catState.lastScreamBubble = 0;
+  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
+  sfx.startCatScream && sfx.startCatScream();
   catScream();
 }
 const CAT_SCREAM_LINES = ['AAAA', 'MROWW!', 'put me DOWN', 'EEEEK', 'nooo', 'HELP', 'wheeee', 'aaaH', 'unhand me', 'MEOWW'];
@@ -4107,15 +4500,7 @@ function spawnScreamBubble() {
   setTimeout(() => b.remove(), 1400);
 }
 function catScream() {
-  if (typeof sfx === 'undefined' || !sfx) return;
-  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
   const now = Date.now();
-  if (now - catState.lastScream > 300) {
-    catState.lastScream = now;
-    const r = Math.random();
-    if (r < 0.5) sfx.yowl && sfx.yowl();
-    else { const m = sfx['meow' + (2 + Math.floor(Math.random() * 3))]; m && m.call(sfx); }
-  }
   if (now - catState.lastScreamBubble > 850) {
     catState.lastScreamBubble = now;
     spawnScreamBubble();
@@ -4137,6 +4522,7 @@ function endDrag() {
   if (!cat || !bed || !catState.dragging) return;
   catState.dragging = false;
   cat.classList.remove('dragging');
+  sfx.stopCatScream && sfx.stopCatScream();
   bed.style.transition = 'left 0.7s cubic-bezier(0.34, 1.4, 0.64, 1), top 0.7s cubic-bezier(0.34, 1.4, 0.64, 1)';
   setTimeout(() => {
     bed.style.left = 'auto'; bed.style.top = 'auto';
@@ -4157,6 +4543,7 @@ function endDrag() {
 function bindCatBed() {
   const cat = document.getElementById('catBedCat');
   if (!cat) return;
+  cat.addEventListener('mouseenter', catHoverFx);
   cat.addEventListener('mousedown', e => {
     e.preventDefault();
     catState.pressed = true;
@@ -4305,6 +4692,7 @@ function knightSound(kind) {
 function pokeKnight() {
   const knight = document.getElementById('sceneKnight');
   if (!knight || currentTheme !== 'fantasy') return;
+  showPetInvite(knight);
   knightState.chainPokes += 1;
   if (knightState.chainResetTimer) clearTimeout(knightState.chainResetTimer);
   knightState.chainResetTimer = setTimeout(() => { knightState.chainPokes = 0; }, 1800);
@@ -4337,17 +4725,7 @@ function pokeKnight() {
 }
 
 function knightScream() {
-  if (currentTheme !== 'fantasy') return;
-  if (typeof sfx === 'undefined' || !sfx) return;
-  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
   const now = Date.now();
-  if (now - knightState.lastScream > 300) {
-    knightState.lastScream = now;
-    const r = Math.random();
-    if (r < 0.45) sfx.swordSwing && sfx.swordSwing();
-    else if (r < 0.75) sfx._metalClank && sfx._metalClank(0.14);
-    else sfx.battleHorn && sfx.battleHorn();
-  }
   if (now - knightState.lastScreamBubble > 850) {
     knightState.lastScreamBubble = now;
     spawnKnightBubble('scream');
@@ -4369,6 +4747,8 @@ function startKnightDrag(clientX, clientY) {
   knight.style.bottom = 'auto';
   knightState.dragOffset = { x: clientX - r.left, y: clientY - r.top };
   knightState.lastScream = 0; knightState.lastScreamBubble = 0;
+  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
+  sfx.startKnightScream && sfx.startKnightScream();
   knightScream();
 }
 function moveKnightDrag(clientX, clientY) {
@@ -4385,6 +4765,7 @@ function endKnightDrag() {
   if (!knight || !knightState.dragging) return;
   knightState.dragging = false;
   knight.classList.remove('dragging');
+  sfx.stopKnightScream && sfx.stopKnightScream();
   const home = knightState.homeRect;
   knight.style.transition = 'left 0.7s cubic-bezier(0.34, 1.4, 0.64, 1), top 0.7s cubic-bezier(0.34, 1.4, 0.64, 1)';
   requestAnimationFrame(() => {
@@ -4747,7 +5128,7 @@ function sendThief(letter) {
 
   const cat = document.createElement('div');
   cat.className = 'pixel-thief';
-  cat.innerHTML = makeRandomCreatureSVG();
+  fillCreature(cat);
   cat.style.left = fromX + 'px';
   cat.style.top = fromY + 'px';
   cat.style.transform = `scaleX(${scaleX})`;
@@ -4792,7 +5173,7 @@ let edgeActive = false, edgeTimer = null, lastSwipeAt = 0;
 function showEdgeCat(side, y) {
   if (edgeActive) return;
   edgeActive = true;
-  edgeCat.innerHTML = makeRandomCreatureSVG();
+  fillCreature(edgeCat);
   const cs = 104;
   let yy = Math.max(80, Math.min(window.innerHeight - cs - 100, y - cs / 2));
   edgeCat.style.top = yy + 'px';
@@ -4843,10 +5224,18 @@ function getProjects() { return (DATA && DATA.projects) || []; }
 function stateLabel(s) { return getStateLabel(s); }
 function escHtml(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 function fmtNarrative(s) {
-  // wrap **...** in <strong class="acc">…</strong>, escape rest
+  // **...** → bold accent; ==...== → Apple-style blue highlight
   if (!s) return '';
-  const parts = s.split(/\*\*([^*]+)\*\*/);
-  return parts.map((p, i) => i % 2 === 1 ? `<strong class="acc">${escHtml(p)}</strong>` : escHtml(p)).join('');
+  const re = /\*\*([^*]+)\*\*|==([^=]+)==/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(s)) !== null) {
+    out += escHtml(s.slice(last, m.index));
+    if (m[1] !== undefined) out += `<strong class="acc">${escHtml(m[1])}</strong>`;
+    else out += `<span class="hl">${escHtml(m[2])}</span>`;
+    last = m.index + m[0].length;
+  }
+  out += escHtml(s.slice(last));
+  return out;
 }
 function renderProjects() {
   const workList = document.getElementById('workList');
@@ -4871,12 +5260,17 @@ function renderProjects() {
     const row = document.createElement('div');
     row.className = 'work-row';
     row.dataset.sound = 'projects';
-    // mini gallery: 4 small cat-avatar tiles (placeholder for future screenshots)
+    // mini gallery: 4 image tiles loaded from /images/projects/<id>-<n>.png
+    // (placeholder cats shown until you upload real screenshots with the same names)
+    const pid = w.id || ('project' + (wi + 1));
     const tiles = [];
+    const wPoses = [];
     for (let t = 0; t < 4; t++) {
       const pose = CAT_POSES[t % CAT_POSES.length];
       const pal = CAT_PALETTES[(wi * 2 + t) % CAT_PALETTES.length];
-      tiles.push(`<button class="work-shot" data-shot="${t}" aria-label="preview">${makePixelSVG(pose, pal)}</button>`);
+      wPoses.push(makePixelSVG(pose, pal));
+      const src = 'images/projects/' + pid + '-' + (t + 1) + '.png';
+      tiles.push('<button class="work-shot" data-shot="' + t + '" aria-label="preview"><img class="shot-img" src="' + src + '" alt="" loading="lazy"></button>');
     }
     row.innerHTML = `
       <div class="work-row-head">
@@ -4887,14 +5281,19 @@ function renderProjects() {
       <div class="work-line">${fmtNarrative(w.line)}</div>
       <div class="work-shots">${tiles.join('')}</div>
     `;
-    // click on a shot opens fullscreen lightbox
-    const wPoses = [];
-    for (let t = 0; t < 4; t++) {
-      wPoses.push(makePixelSVG(CAT_POSES[t % CAT_POSES.length], CAT_PALETTES[(wi * 2 + t) % CAT_PALETTES.length]));
-    }
-    row.querySelectorAll('.work-shot').forEach((sh, idx) => {
+    const shotEls = Array.from(row.querySelectorAll('.work-shot'));
+    shotEls.forEach((sh, idx) => {
+      const img = sh.querySelector('img');
+      if (img) img.addEventListener('error', () => { sh.innerHTML = wPoses[idx]; });
       sh.addEventListener('click', () => {
-        openLightbox(wPoses[idx], w.title, w.role);
+        const items = shotEls.map((s2, i2) => {
+          const im = s2.querySelector('img');
+          const hasImg = im && im.complete && im.naturalWidth > 0;
+          return hasImg
+            ? '<img src="' + im.src + '" alt="" style="width:100%;height:100%;object-fit:contain;image-rendering:auto">'
+            : wPoses[i2];
+        });
+        openGallery(items, idx, w.title, w.line);
         sfx.click('projects');
       });
     });
@@ -4909,18 +5308,26 @@ function renderProjects() {
     row.dataset.sound = 'projects';
     const pose = CAT_POSES[si % CAT_POSES.length];
     const pal = CAT_PALETTES[(si * 3 + 1) % CAT_PALETTES.length];
+    const svg = makePixelSVG(pose, pal);
+    const slug = s.slug || ('side' + (si + 1));
+    const src = 'images/side/' + slug + '.png';
     row.innerHTML = `
-      <button class="side-thumb" aria-label="open preview">${makePixelSVG(pose, pal)}</button>
+      <button class="side-thumb" aria-label="open preview"><img class="shot-img" src="${src}" alt="" loading="lazy"></button>
       <div class="side-text">
         <span class="side-title">${escHtml(s.title)}</span>
         <span class="side-line">${escHtml(s.line)}</span>
       </div>
       <a class="side-arrow" href="${escHtml(s.link||'#')}" target="_blank" rel="noopener" aria-label="open link">↗</a>
     `;
-    // thumbnail opens fullscreen lightbox
     const thumb = row.querySelector('.side-thumb');
+    const img = thumb.querySelector('img');
+    if (img) img.addEventListener('error', () => { thumb.innerHTML = svg; });
     thumb.addEventListener('click', () => {
-      openLightbox(makePixelSVG(pose, pal), s.title, s.line);
+      const hasImg = img && img.complete && img.naturalWidth > 0;
+      const content = hasImg
+        ? '<img src="' + img.src + '" alt="" style="width:100%;height:100%;object-fit:contain;image-rendering:auto">'
+        : svg;
+      openGallery([content], 0, s.title, s.line);
       sfx.click('projects');
     });
     row.addEventListener('mouseenter', () => sfx.hover('projects'));
@@ -4928,34 +5335,83 @@ function renderProjects() {
   });
 }
 
-/* === FULLSCREEN LIGHTBOX === */
-function openLightbox(svgMarkup, title, sub) {
+/* === FULLSCREEN LIGHTBOX / GALLERY === */
+let lbItems = [], lbIdx = 0, lbTitle = '', lbCase = '';
+function ensureLightbox() {
   let lb = document.getElementById('lightbox');
-  if (!lb) {
-    lb = document.createElement('div');
-    lb.id = 'lightbox';
-    lb.className = 'lightbox';
-    lb.innerHTML = `
-      <button class="lightbox-close" aria-label="close">×</button>
-      <div class="lightbox-inner">
-        <div class="lightbox-art" id="lightboxArt"></div>
-        <div class="lightbox-cap"><span class="lightbox-title" id="lightboxTitle"></span><span class="lightbox-sub" id="lightboxSub"></span></div>
-      </div>`;
-    document.body.appendChild(lb);
-    lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lightbox-close')) closeLightbox(); });
-  }
-  lb.querySelector('#lightboxArt').innerHTML = svgMarkup;
-  lb.querySelector('#lightboxTitle').textContent = title || '';
-  lb.querySelector('#lightboxSub').textContent = sub || '';
-  requestAnimationFrame(() => lb.classList.add('show'));
-  document.addEventListener('keydown', lightboxEsc);
+  if (lb) return lb;
+  lb = document.createElement('div');
+  lb.id = 'lightbox';
+  lb.className = 'lightbox';
+  lb.innerHTML = `
+    <button class="lightbox-close" aria-label="close">×</button>
+    <button class="lightbox-nav prev" aria-label="previous">‹</button>
+    <button class="lightbox-nav next" aria-label="next">›</button>
+    <div class="lightbox-inner">
+      <div class="lightbox-art" id="lightboxArt"></div>
+      <div class="lightbox-count" id="lightboxCount"></div>
+      <div class="lightbox-cap">
+        <span class="lightbox-title" id="lightboxTitle"></span>
+        <span class="lightbox-sub" id="lightboxSub"></span>
+      </div>
+    </div>`;
+  document.body.appendChild(lb);
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lightbox-close')) closeLightbox(); });
+  lb.querySelector('.lightbox-nav.prev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+  lb.querySelector('.lightbox-nav.next').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
+  let sx = 0, sy = 0, swiping = false;
+  lb.addEventListener('touchstart', e => {
+    if (!e.touches[0]) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (!swiping || !e.changedTouches[0]) return;
+    swiping = false;
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      dx < 0 ? lbNext() : lbPrev();
+    }
+  }, { passive: true });
+  return lb;
 }
+function renderLightbox() {
+  const lb = document.getElementById('lightbox'); if (!lb) return;
+  const art = lb.querySelector('#lightboxArt');
+  art.classList.remove('swap'); void art.offsetWidth; art.classList.add('swap');
+  art.innerHTML = lbItems[lbIdx] || '';
+  lb.querySelector('#lightboxTitle').textContent = lbTitle || '';
+  const sub = lb.querySelector('#lightboxSub');
+  if (typeof fmtNarrative === 'function') sub.innerHTML = fmtNarrative(lbCase || '');
+  else sub.textContent = lbCase || '';
+  const multi = lbItems.length > 1;
+  lb.querySelector('#lightboxCount').textContent = multi ? (lbIdx + 1) + ' / ' + lbItems.length : '';
+  lb.querySelector('.lightbox-nav.prev').style.display = multi ? 'flex' : 'none';
+  lb.querySelector('.lightbox-nav.next').style.display = multi ? 'flex' : 'none';
+}
+function openGallery(items, startIndex, title, caseText) {
+  lbItems = Array.isArray(items) ? items : [items];
+  lbIdx = Math.max(0, Math.min(lbItems.length - 1, startIndex || 0));
+  lbTitle = title || ''; lbCase = caseText || '';
+  const lb = ensureLightbox();
+  renderLightbox();
+  requestAnimationFrame(() => lb.classList.add('show'));
+  document.addEventListener('keydown', lightboxKeys);
+}
+function openLightbox(content, title, sub) { openGallery([content], 0, title, sub); }
+function lbNext() { if (lbItems.length < 2) return; lbIdx = (lbIdx + 1) % lbItems.length; renderLightbox(); sfx.hover && sfx.hover('projects'); }
+function lbPrev() { if (lbItems.length < 2) return; lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; renderLightbox(); sfx.hover && sfx.hover('projects'); }
 function closeLightbox() {
   const lb = document.getElementById('lightbox');
   if (lb) lb.classList.remove('show');
-  document.removeEventListener('keydown', lightboxEsc);
+  document.removeEventListener('keydown', lightboxKeys);
 }
-function lightboxEsc(e) { if (e.key === 'Escape') closeLightbox(); }
+function lightboxKeys(e) {
+  if (e.key === 'Escape') closeLightbox();
+  else if (e.key === 'ArrowRight') { e.preventDefault(); lbNext(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); lbPrev(); }
+}
+function lightboxOpen() { const lb = document.getElementById('lightbox'); return lb && lb.classList.contains('show'); }
 
 /* =============== OVERVIEW CONTENT =============== */
 function renderOverviewContent() {
@@ -5113,6 +5569,14 @@ function initScrollSpy() {
   // scroll-spy: which section is most centered
   let spyTick = false;
   mainEl.addEventListener('scroll', () => {
+    // scroll progress bar + subtle mote parallax (micro-interaction)
+    const st = mainEl.scrollTop;
+    const max = Math.max(1, mainEl.scrollHeight - mainEl.clientHeight);
+    const prog = Math.min(1, st / max);
+    const bar = document.getElementById('scrollProg');
+    if (bar) bar.style.transform = 'scaleX(' + prog.toFixed(4) + ')';
+    const amb = document.querySelector('.ambient');
+    if (amb) amb.style.transform = 'translateY(' + (st * -0.05) + 'px)';
     if (spyTick) return;
     spyTick = true;
     requestAnimationFrame(() => {
@@ -5170,6 +5634,8 @@ soundBtn.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', e => {
+  if (typeof lightboxOpen === 'function' && lightboxOpen()) return;
+  if (document.getElementById('gameOverlay') && document.getElementById('gameOverlay').classList.contains('show')) return;
   if (e.key === 'ArrowRight') goTo(activeIdx + 1);
   else if (e.key === 'ArrowLeft') goTo(activeIdx - 1);
   else if (/^[1-5]$/.test(e.key)) goTo(parseInt(e.key) - 1);
@@ -5447,7 +5913,7 @@ function pgUpdateCombo() {
 
 function pgShowMsg(text, perfect) {
   PG.msg.textContent = text;
-  PG.msg.style.color = perfect ? (currentTheme === 'fantasy' ? '#ffd060' : '#44b87a') : 'var(--fg-mid)';
+  PG.msg.style.color = perfect ? (currentTheme === 'fantasy' ? '#ffd060' : '#6f9a6a') : 'var(--fg-mid)';
   PG.msg.classList.remove('show'); void PG.msg.offsetWidth; PG.msg.classList.add('show');
 }
 
@@ -5627,87 +6093,344 @@ function ecFail() {
   }, 1400);
 }
 
-/* ============ GAME SHELL ============ */
-let currentGameTab = 'pounce';
-function switchGameTab(name) {
-  currentGameTab = name;
-  document.querySelectorAll('.game-tab').forEach(t => t.classList.toggle('active', t.dataset.game === name));
-  document.getElementById('panePounce').classList.toggle('active', name === 'pounce');
-  document.getElementById('paneEcho').classList.toggle('active', name === 'echo');
-  // stop timing game if leaving
-  if (name !== 'pounce' && PG.running) { PG.running = false; if (PG.raf) cancelAnimationFrame(PG.raf); }
-  updateGameTexts();
+/* ============ GAME: CAT RUNNER (endless platformer) ============ */
+const RUN = {
+  canvas: null, ctx: null, w: 0, h: 0, dpr: 1, groundY: 0,
+  running: false, over: false, raf: null, last: 0, _inited: false,
+  score: 0, best: 0, speed: 0, baseSpeed: 4.0,
+  cat: null, obstacles: [], spawnT: 0, nextGap: 60, frame: 0, bgX: 0,
+  overlay: null, msgEl: null, ctaEl: null, scoreEl: null, bestEl: null
+};
+
+function runInit() {
+  RUN.canvas = document.getElementById('runCanvas');
+  if (!RUN.canvas) return;
+  if (RUN._inited) { runResize(); return; }
+  RUN._inited = true;
+  RUN.ctx = RUN.canvas.getContext('2d');
+  RUN.overlay = document.getElementById('runOverlay');
+  RUN.msgEl = document.getElementById('runMsg');
+  RUN.ctaEl = document.getElementById('runCta');
+  RUN.scoreEl = document.getElementById('runScore');
+  RUN.bestEl = document.getElementById('runBest');
+  RUN.ctaEl.addEventListener('click', (e) => { e.stopPropagation(); runStart(); });
+  RUN.canvas.addEventListener('pointerdown', (e) => { e.preventDefault(); if (RUN.running) runJump(); else runStart(); });
+  window.addEventListener('resize', runResize);
+  runResize();
+  runReset();
 }
 
+function runResize() {
+  if (!RUN.canvas || !RUN.ctx) return;
+  const rect = RUN.canvas.getBoundingClientRect();
+  RUN.dpr = Math.min(2, window.devicePixelRatio || 1);
+  RUN.w = Math.max(280, Math.round(rect.width || RUN.canvas.clientWidth || 320));
+  RUN.h = 240;
+  RUN.canvas.width = Math.round(RUN.w * RUN.dpr);
+  RUN.canvas.height = Math.round(RUN.h * RUN.dpr);
+  RUN.ctx.setTransform(RUN.dpr, 0, 0, RUN.dpr, 0, 0);
+  RUN.groundY = RUN.h - 38;
+  if (RUN.cat) RUN.cat.y = Math.min(RUN.cat.y, RUN.groundY);
+  if (!RUN.running) runDraw();
+}
+
+function runReset() {
+  RUN.over = false; RUN.running = false;
+  RUN.score = 0; RUN.speed = RUN.baseSpeed;
+  RUN.obstacles = []; RUN.spawnT = 0; RUN.nextGap = 260; RUN.frame = 0; RUN.bgX = 0;
+  RUN.cat = { x: 54, y: RUN.groundY, vy: 0, w: 32, h: 22, onGround: true, duck: false };
+  if (RUN.scoreEl) RUN.scoreEl.textContent = '0';
+  runDraw();
+}
+
+function runStart() {
+  runReset();
+  RUN.running = true;
+  if (RUN.overlay) RUN.overlay.classList.add('hide');
+  if (!sfx.ctx) { sfx.init && sfx.init(); sfx.resume && sfx.resume(); }
+  RUN.last = performance.now();
+  RUN.raf = requestAnimationFrame(runLoop);
+}
+
+function runStop() { RUN.running = false; if (RUN.raf) cancelAnimationFrame(RUN.raf); }
+
+function runJump() {
+  if (!RUN.running) return;
+  const c = RUN.cat;
+  if (c.onGround) {
+    c.vy = -11.4; c.onGround = false;
+    if (currentTheme === 'fantasy') sfx.swordSwing && sfx.swordSwing();
+    else sfx.meow2 && sfx.meow2();
+  }
+}
+function runDuck(on) { if (RUN.running) RUN.cat.duck = on; }
+
+function runGameOver() {
+  RUN.running = false; RUN.over = true;
+  if (RUN.raf) cancelAnimationFrame(RUN.raf);
+  const isRu = currentLang === 'ru';
+  if (RUN.score > RUN.best) { RUN.best = RUN.score; if (RUN.bestEl) RUN.bestEl.textContent = String(RUN.best); }
+  if (RUN.overlay) RUN.overlay.classList.remove('hide');
+  if (RUN.msgEl) RUN.msgEl.textContent = (isRu ? 'Поймали! Очки: ' : 'Caught! Score: ') + RUN.score;
+  if (RUN.ctaEl) RUN.ctaEl.textContent = isRu ? 'Ещё раз' : 'Play again';
+  sfx.lose && sfx.lose();
+}
+
+function runLoop(now) {
+  if (!RUN.running) return;
+  const dt = Math.min(2.6, (now - RUN.last) / 16.667);
+  RUN.last = now;
+  const c = RUN.cat;
+  c.vy += 0.62 * dt;
+  c.y += c.vy * dt;
+  if (c.y >= RUN.groundY) { c.y = RUN.groundY; c.vy = 0; c.onGround = true; }
+  RUN.speed = RUN.baseSpeed + Math.min(3.8, RUN.score * 0.0013);
+  RUN.bgX -= RUN.speed * 0.35 * dt;
+  RUN.spawnT += RUN.speed * dt;
+  if (RUN.spawnT >= RUN.nextGap) {
+    RUN.spawnT = 0;
+    RUN.nextGap = 175 + RUN.speed * 16 + Math.random() * 120;
+    spawnObstacle();
+  }
+  for (let i = RUN.obstacles.length - 1; i >= 0; i--) {
+    const o = RUN.obstacles[i];
+    o.x -= RUN.speed * dt;
+    if (o.x + o.w < -12) { RUN.obstacles.splice(i, 1); continue; }
+    if (runHit(c, o)) { runGameOver(); break; }
+  }
+  RUN.score += Math.max(1, Math.round(RUN.speed * dt * 0.6));
+  if (RUN.scoreEl) RUN.scoreEl.textContent = String(RUN.score);
+  RUN.frame += dt;
+  runDraw();
+  if (RUN.running) RUN.raf = requestAnimationFrame(runLoop);
+}
+
+function spawnObstacle() {
+  const fly = RUN.score > 450 && Math.random() < 0.22;
+  if (fly) {
+    RUN.obstacles.push({ x: RUN.w + 12, y: RUN.groundY - 34, w: 30, h: 16, fly: true });
+  } else {
+    const tall = Math.random() < 0.45;
+    const w = tall ? 16 : 24, h = tall ? 32 : 20;
+    RUN.obstacles.push({ x: RUN.w + 12, y: RUN.groundY - h, w, h, fly: false });
+  }
+}
+
+function runHit(c, o) {
+  const ch = (c.duck && c.onGround) ? 12 : c.h;
+  const top = c.y - ch;
+  const pad = 5;
+  const l = c.x + pad, r = c.x + c.w - pad, t = top + pad, b = c.y - 2;
+  return r > o.x && l < o.x + o.w && b > o.y && t < o.y + o.h;
+}
+
+function runDraw() {
+  const ctx = RUN.ctx; if (!ctx) return;
+  const fant = currentTheme === 'fantasy';
+  ctx.clearRect(0, 0, RUN.w, RUN.h);
+  // background
+  if (fant) {
+    ctx.fillStyle = 'rgba(200,210,240,0.45)';
+    for (let i = 0; i < 20; i++) {
+      const sx = (((i * 53 + RUN.bgX * 0.2) % RUN.w) + RUN.w) % RUN.w;
+      const sy = (i * 31) % (RUN.groundY - 24) + 6;
+      ctx.fillRect(sx, sy, 2, 2);
+    }
+    ctx.fillStyle = 'rgba(240,226,188,0.92)';
+    ctx.beginPath(); ctx.arc(RUN.w - 48, 40, 16, 0, 7); ctx.fill();
+  } else {
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    for (let i = 0; i < 3; i++) {
+      const span = RUN.w + 140;
+      const cx = (((i * 150 + RUN.bgX * 0.5) % span) + span) % span - 60;
+      const cy = 28 + i * 18;
+      ctx.beginPath(); ctx.arc(cx, cy, 9, 0, 7); ctx.arc(cx + 12, cy + 2, 12, 0, 7); ctx.arc(cx + 26, cy, 8, 0, 7); ctx.fill();
+    }
+    ctx.fillStyle = 'rgba(255,205,115,0.75)';
+    ctx.beginPath(); ctx.arc(RUN.w - 48, 40, 15, 0, 7); ctx.fill();
+  }
+  // ground
+  ctx.strokeStyle = fant ? '#4a4170' : '#c9bca3';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, RUN.groundY + 1); ctx.lineTo(RUN.w, RUN.groundY + 1); ctx.stroke();
+  ctx.fillStyle = fant ? '#3a335a' : '#d8ccb4';
+  const dash = 14, gap = 22, period = dash + gap;
+  let off = Math.floor(RUN.bgX) % period; if (off > 0) off -= period;
+  for (let x = off; x < RUN.w; x += period) ctx.fillRect(x, RUN.groundY + 6, dash, 3);
+  // obstacles
+  RUN.obstacles.forEach(o => {
+    if (o.fly) {
+      ctx.fillStyle = fant ? '#9a7bc8' : '#6f9a6a';
+      ctx.fillRect(o.x, o.y + o.h * 0.35, o.w, 5);
+      const up = Math.floor(RUN.frame / 6) % 2 === 0;
+      if (up) ctx.fillRect(o.x + o.w * 0.32, o.y, o.w * 0.36, o.h * 0.5);
+      else ctx.fillRect(o.x + o.w * 0.32, o.y + o.h * 0.5, o.w * 0.36, o.h * 0.5);
+    } else {
+      ctx.fillStyle = fant ? '#6a5a86' : '#7a9e6a';
+      ctx.fillRect(o.x + o.w * 0.35, o.y, o.w * 0.3, o.h);
+      ctx.fillRect(o.x, o.y + o.h * 0.42, o.w * 0.3, o.h * 0.28);
+      ctx.fillRect(o.x + o.w * 0.7, o.y + o.h * 0.24, o.w * 0.3, o.h * 0.34);
+    }
+  });
+  // cat
+  drawCat(ctx, RUN.cat, fant);
+}
+
+function drawCat(ctx, c, fant) {
+  if (!c) return;
+  const col = fant ? '#f0e2bc' : '#2c2a26';
+  const eye = fant ? '#0a0e1a' : '#fafaf7';
+  const x = c.x, baseY = c.y;
+  const duck = c.duck && c.onGround;
+  ctx.fillStyle = col;
+  const bodyH = duck ? 12 : 18;
+  const bodyW = duck ? 38 : 30;
+  const bodyY = baseY - bodyH - 6;
+  ctx.fillRect(x, bodyY, bodyW, bodyH);
+  // head
+  const hs = duck ? 12 : 14;
+  const hx = x + bodyW - 6, hy = bodyY - (duck ? 0 : 8);
+  ctx.fillRect(hx, hy, hs, hs);
+  ctx.fillRect(hx + 1, hy - 4, 3, 4);
+  ctx.fillRect(hx + hs - 4, hy - 4, 3, 4);
+  // tail
+  ctx.fillRect(x - 6, bodyY + 2, 6, 4);
+  // legs
+  const f = Math.floor(RUN.frame / 4) % 2;
+  if (duck) {
+    ctx.fillRect(x + 6, baseY - 5, 5, 5); ctx.fillRect(x + bodyW - 12, baseY - 5, 5, 5);
+  } else if (c.onGround) {
+    ctx.fillRect(x + 4, baseY - 6, 5, f === 0 ? 7 : 5);
+    ctx.fillRect(x + bodyW - 13, baseY - 6, 5, f === 0 ? 5 : 7);
+  } else {
+    ctx.fillRect(x + 6, baseY - 5, 6, 4); ctx.fillRect(x + bodyW - 13, baseY - 5, 6, 4);
+  }
+  // eye
+  ctx.fillStyle = eye;
+  ctx.fillRect(hx + hs - 6, hy + 4, 3, 3);
+}
+
+/* ============ GAME SHELL ============ */
 function updateGameTexts() {
   const isRu = currentLang === 'ru';
-  const fant = currentTheme === 'fantasy';
-  // titles
   const titleEl = document.getElementById('gameTitleEl');
   const subEl = document.getElementById('gameSubEl');
-  if (currentGameTab === 'pounce') {
-    if (fant) { titleEl.textContent = isRu ? 'Точный удар' : 'Perfect Strike'; subEl.textContent = isRu ? 'Бей, когда метка в зоне' : 'Strike when the marker hits the zone'; }
-    else { titleEl.textContent = isRu ? 'Точный прыжок' : 'Perfect Pounce'; subEl.textContent = isRu ? 'Прыгай, когда метка в зоне' : 'Pounce when the marker hits the zone'; }
-  } else {
-    if (fant) { titleEl.textContent = isRu ? 'Эхо рун' : 'Rune Echo'; subEl.textContent = isRu ? 'Повтори последовательность' : 'Repeat the sequence'; }
-    else { titleEl.textContent = isRu ? 'Эхо' : 'Echo'; subEl.textContent = isRu ? 'Повтори последовательность' : 'Repeat the sequence'; }
-  }
-  // tab labels
-  document.querySelectorAll('.game-tab').forEach(t => {
-    if (t.dataset.game === 'pounce') t.textContent = fant ? (isRu ? 'Удар' : 'Strike') : (isRu ? 'Прыжок' : 'Pounce');
-    if (t.dataset.game === 'echo') t.textContent = isRu ? 'Эхо' : 'Echo';
-  });
-  // hud labels
+  if (titleEl) titleEl.textContent = isRu ? 'Кот-бегун' : 'Cat Runner';
+  if (subEl) subEl.textContent = isRu ? 'Прыгай через препятствия' : 'Jump over the obstacles';
   const setT = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-  setT('pgScoreLabel', isRu ? 'Очки' : 'Score');
-  setT('pgBestLabel', isRu ? 'Рекорд' : 'Best');
-  setT('ecLevelLabel', isRu ? 'Уровень' : 'Level');
-  setT('ecBestLabel', isRu ? 'Рекорд' : 'Best');
-  // CTAs (only when idle)
-  if (!PG.running) { const c = document.getElementById('pgCta'); if (c && PG.score === 0) c.textContent = isRu ? 'Тап — старт' : 'Tap to start'; }
-  const ec = document.getElementById('ecCta'); if (ec && EC.level === 0) ec.textContent = isRu ? 'Тап — старт' : 'Tap to start';
-  // refresh target creature for theme
-  if (PG.targetIcon && !PG.running) PG.targetIcon.innerHTML = gameCreatureSVG();
+  setT('runScoreLabel', isRu ? 'Очки' : 'Score');
+  setT('runBestLabel', isRu ? 'Рекорд' : 'Best');
+  const hint = document.getElementById('runHint');
+  if (hint) hint.textContent = isRu ? 'Пробел / ↑ / тап — прыжок · ↓ — пригнуться' : 'Space / ↑ / tap — jump · ↓ — duck';
+  if (typeof RUN !== 'undefined' && !RUN.running && !RUN.over) {
+    const msg = document.getElementById('runMsg'); if (msg) msg.textContent = isRu ? 'Тап или пробел — прыжок' : 'Tap or Space to jump';
+    const cta = document.getElementById('runCta'); if (cta) cta.textContent = isRu ? 'Старт' : 'Start';
+  }
 }
 
 function openGame() {
   gameOverlay.classList.add('show');
   if (!sfx.ctx) { sfx.init(); sfx.resume(); }
-  switchGameTab('pounce');
+  runInit();
+  runResize();
+  runReset();
+  if (RUN.overlay) RUN.overlay.classList.remove('hide');
+  updateGameTexts();
   if (currentTheme === 'fantasy') sfx.swordSwing && sfx.swordSwing();
-  else sfx.click('projects');
+  else sfx.click && sfx.click('projects');
 }
 function closeGame() {
   gameOverlay.classList.remove('show');
-  if (PG.running) { PG.running = false; if (PG.raf) cancelAnimationFrame(PG.raf); }
+  runStop();
 }
 
 gameBtn.addEventListener('click', openGame);
 gameClose.addEventListener('click', closeGame);
 gameOverlay.addEventListener('click', e => { if (e.target === gameOverlay) closeGame(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && gameOverlay.classList.contains('show')) closeGame();
-  // spacebar to tap in timing game
-  if (e.code === 'Space' && gameOverlay.classList.contains('show') && currentGameTab === 'pounce') {
+  if (!gameOverlay.classList.contains('show')) return;
+  if (e.key === 'Escape') { closeGame(); return; }
+  if (e.code === 'Space' || e.code === 'ArrowUp') {
     e.preventDefault();
-    if (PG.running) pgTap(); else pgStart();
+    if (RUN.running) runJump(); else runStart();
+  } else if (e.code === 'ArrowDown') {
+    e.preventDefault(); runDuck(true);
   }
 });
-document.querySelectorAll('.game-tab').forEach(t => {
-  t.addEventListener('click', () => { switchGameTab(t.dataset.game); sfx.click('projects'); });
-});
+document.addEventListener('keyup', e => { if (e.code === 'ArrowDown') runDuck(false); });
 
-// init both games once DOM is ready
-pgInit();
-ecInit();
+// init runner once DOM is ready
+runInit();
 
 /* =============== INIT =============== */
+function buildAmbient() {
+  let amb = document.querySelector('.ambient');
+  if (!amb) { amb = document.createElement('div'); amb.className = 'ambient'; document.body.appendChild(amb); }
+  amb.innerHTML = '';
+  const n = 16;
+  for (let i = 0; i < n; i++) {
+    const m = document.createElement('div');
+    m.className = 'mote';
+    m.style.left = (Math.random() * 100) + 'vw';
+    m.style.bottom = '-12px';
+    const dur = 14 + Math.random() * 16;
+    m.style.animationDuration = dur + 's';
+    m.style.animationDelay = (-Math.random() * dur) + 's';
+    m.style.setProperty('--mx', (Math.random() * 80 - 40) + 'px');
+    const sz = (2.5 + Math.random() * 3).toFixed(1);
+    m.style.width = sz + 'px'; m.style.height = sz + 'px';
+    amb.appendChild(m);
+  }
+}
+
+/* MICRO-INTERACTIONS */
+function buildScrollProgress() {
+  if (document.getElementById('scrollProg')) return;
+  const bar = document.createElement('div');
+  bar.id = 'scrollProg'; bar.className = 'scroll-prog';
+  document.body.appendChild(bar);
+}
+function setupMagneticDock() {
+  const tabs = dock ? dock.querySelectorAll('.dock-tab') : [];
+  tabs.forEach(tab => {
+    tab.addEventListener('mousemove', e => {
+      const r = tab.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      tab.style.transform = 'translate(' + (dx * 6).toFixed(1) + 'px,' + (dy * 5).toFixed(1) + 'px)';
+    });
+    tab.addEventListener('mouseleave', () => { tab.style.transform = ''; });
+  });
+}
+function setupCardTilt() {
+  const sel = '.work-row, .soc-row, .pcard, .side-row';
+  document.querySelectorAll(sel).forEach(el => {
+    if (el._tilt) return; el._tilt = true;
+    el.addEventListener('mouseenter', () => {
+      if (document.body.classList.contains('theme-fantasy')) return;
+      el.style.transition = 'transform 0.1s linear';
+    });
+    el.addEventListener('mousemove', e => {
+      if (document.body.classList.contains('theme-fantasy')) return; // keep fantasy flat/sharp
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'perspective(700px) rotateX(' + (-py * 3).toFixed(2) + 'deg) rotateY(' + (px * 4).toFixed(2) + 'deg) translateY(-2px)';
+    });
+    el.addEventListener('mouseleave', () => { el.style.transition = ''; el.style.transform = ''; });
+  });
+}
+
+buildAmbient();
+buildScrollProgress();
 buildName();
 renderOverviewContent();
 renderProjects();
 bindSounds();
+setupMagneticDock();
+setTimeout(setupCardTilt, 400);
 window.addEventListener('resize', () => positionIndicator(dock.querySelectorAll('.dock-tab')[activeIdx]));
-window.addEventListener('load', () => setTimeout(() => positionIndicator(dock.querySelectorAll('.dock-tab')[0]), 60));
+window.addEventListener('load', () => { setTimeout(() => positionIndicator(dock.querySelectorAll('.dock-tab')[0]), 60); setTimeout(setupCardTilt, 200); });
 </script>
 </body>
 </html>

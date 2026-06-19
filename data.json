@@ -11,9 +11,9 @@
   "tabs": {
     "labelOverview": "01 — Overview",
     "labelExperience": "02 — Experience",
-    "labelProjects": "03 — Projects",
-    "labelEducation": "04 — Education",
-    "labelSocial": "05 — Social",
+    "labelProjects": "02 — Projects",
+    "labelEducation": "03 — Education",
+    "labelSocial": "04 — Social",
     "dockOverview": "Overview",
     "dockExperience": "Experience",
     "dockProjects": "Projects",
@@ -267,6 +267,18 @@
       "eep!",
       "!!!",
       "agh!"
+    ],
+    "praise": [
+      "hire Artem!",
+      "he ships outcomes",
+      "systems thinker 🧠",
+      "ARPU +5%, btw",
+      "design systems pro",
+      "7+ yrs in product",
+      "won an AI hackathon",
+      "loves hard products",
+      "write to Artem! 🐾",
+      "great with details"
     ]
   },
   "work": [
@@ -275,50 +287,60 @@
       "title": "Uchi.ru",
       "role": "Senior Product Designer",
       "period": "2023 — now",
-      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (**ARPU +5%, conversion +7%**), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
+      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (==ARPU +5%, conversion +7%==), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
     },
     {
       "id": "ailet",
       "title": "Ailet",
       "role": "Product Designer",
       "period": "2021 — 2023",
-      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. **CSAT/CSI +5pp, support tickets −8%**, steady growth in task completion."
+      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. ==CSAT/CSI +5pp, support tickets −8%==, steady growth in task completion."
     },
     {
       "id": "akbars",
       "title": "Ak Bars",
       "role": "Product Designer",
       "period": "2020 — 2021",
-      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. **Entries to investments +11%** after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
+      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
     },
     {
       "id": "bars",
       "title": "BARS Group",
       "role": "Product Designer",
       "period": "2018 — 2020",
-      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. **Routine tasks −10% time**, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
+      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
     }
   ],
   "side": [
     {
       "title": "Custom Vibrations",
       "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
-      "link": "https://t.me/kidstechdesign/113"
+      "link": "https://t.me/kidstechdesign/113",
+      "slug": "custom-vibrations"
     },
     {
       "title": "Telegram Digester",
       "line": "No-code bot that summarises my channels into one daily digest",
-      "link": "https://t.me/kidstechdesign/121"
+      "link": "https://t.me/kidstechdesign/121",
+      "slug": "telegram-digester"
     },
     {
       "title": "BI Agent",
       "line": "AI agent that answers retail BI-data questions in plain chat",
-      "link": "https://t.me/kidstechdesign/117"
+      "link": "https://t.me/kidstechdesign/117",
+      "slug": "bi-agent"
     },
     {
       "title": "Sound UX",
       "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
-      "link": "https://t.me/kidstechdesign/74"
+      "link": "https://t.me/kidstechdesign/74",
+      "slug": "sound-ux"
+    },
+    {
+      "slug": "figma-linter",
+      "title": "Figma Linter — AI",
+      "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma.",
+      "link": "https://t.me/kidstechdesign"
     }
   ]
 }
