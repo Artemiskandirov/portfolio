@@ -1,346 +1,352 @@
 {
-  "_comment": "EDIT THIS FILE TO CHANGE ANY TEXT OR LINK ON YOUR PORTFOLIO. After editing, push to Vercel — site updates automatically. HTML uses <strong>...</strong> for highlights, <br> for line breaks. **bold** in project narratives is the orange accent.",
-  "site": {
-    "title": "Artem Iskandirov — Product Designer",
-    "description": "Product Designer. Uchi.ru / VK EdTech. Based in Kazan.",
-    "brand": "Artem Iskandirov",
-    "splashName": "Artem Iskandirov",
-    "splashCta": "Enter — sound on",
-    "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
+ "_comment": "EDIT THIS FILE TO CHANGE ANY TEXT OR LINK ON YOUR PORTFOLIO. After editing, push to Vercel — site updates automatically. HTML uses <strong>...</strong> for highlights, <br> for line breaks. **bold** in project narratives is the orange accent.",
+ "site": {
+  "title": "Artem Iskandirov — Product Designer",
+  "description": "Product Designer. Uchi.ru / VK EdTech. Based in Kazan.",
+  "brand": "Artem Iskandirov",
+  "splashName": "Artem Iskandirov",
+  "splashCta": "Enter — sound on",
+  "photoUrl": "images/cv_photo.png"
+ },
+ "tabs": {
+  "labelOverview": "01 — Overview",
+  "labelExperience": "02 — Experience",
+  "labelProjects": "02 — Projects",
+  "labelEducation": "03 — Education",
+  "labelSocial": "04 — Social",
+  "dockOverview": "Overview",
+  "dockExperience": "Experience",
+  "dockProjects": "Projects",
+  "dockEducation": "Education",
+  "dockSocial": "Social",
+  "hint": "to switch"
+ },
+ "themes": {
+  "cat": {
+   "name": "Artem Iskandirov",
+   "bio": "Product designer at <strong>Uchi.ru / VK EdTech</strong>. I work across <strong>B2C & B2B, mobile & web</strong> — kids edtech, retail AI and design systems. <strong>7+ years</strong> in product.",
+   "meta": [
+    "<strong>7+ yrs</strong> in product design",
+    "Based in <strong>Kazan</strong> · open to relocation",
+    "Open to <strong>remote · hybrid · on-site</strong>"
+   ],
+   "statusText": "open to work",
+   "themeLabel": "Cat realm",
+   "gameLabel": "Play vs cat",
+   "gameTitle": "Tic-tac-toe vs cat",
+   "gameSub": "You are X · Cat is O · Cat cheats",
+   "statusYouWin": "<strong>You win!</strong> The cat is grumpy.",
+   "statusCatWin": "<strong>Cat wins!</strong> Of course it does.",
+   "statusDraw": "<strong>Draw.</strong> The cat purrs anyway.",
+   "statusCheat": "Cat cheated! It stole your <strong>X</strong>.",
+   "yourMove": "Your move.",
+   "catchTitle": "Catch the cat",
+   "catchSub": "30 seconds — tap as many as you can"
   },
-  "tabs": {
-    "labelOverview": "01 — Overview",
-    "labelExperience": "02 — Experience",
-    "labelProjects": "02 — Projects",
-    "labelEducation": "03 — Education",
-    "labelSocial": "04 — Social",
-    "dockOverview": "Overview",
-    "dockExperience": "Experience",
-    "dockProjects": "Projects",
-    "dockEducation": "Education",
-    "dockSocial": "Social",
-    "hint": "to switch"
+  "fantasy": {
+   "name": "Artem Iskandirov",
+   "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold, <strong>seven winters</strong> at the craft.",
+   "meta": [
+    "<strong>Seven winters</strong> on the craft",
+    "From the city of <strong>Kazan</strong>",
+    "Open to <strong>far roads · remote keeps · relocation</strong>"
+   ],
+   "statusText": "awaiting a quest",
+   "themeLabel": "Fantasy realm",
+   "gameLabel": "Duel the dragon",
+   "gameTitle": "Duel the Dragon",
+   "gameSub": "You — Sword · Dragon — Sigil · It is no honest beast",
+   "statusYouWin": "<strong>The dragon falls.</strong> Songs shall be sung.",
+   "statusCatWin": "<strong>The dragon prevails.</strong> Run, mortal.",
+   "statusDraw": "<strong>A stalemate.</strong> The dragon snarls.",
+   "statusCheat": "The dragon cheats! It claims one of your sigils.",
+   "yourMove": "Your move, knight.",
+   "catchTitle": "Catch the dragon",
+   "catchSub": "30 seconds — tap as many as you can"
+  }
+ },
+ "overviewLinks": [
+  {
+   "label": "Email",
+   "url": "mailto:art.iskandirov@gmail.com"
   },
-  "themes": {
-    "cat": {
-      "name": "Artem Iskandirov",
-      "bio": "Product designer at <strong>Uchi.ru / VK EdTech</strong>. I work across <strong>B2C & B2B, mobile & web</strong> — kids edtech, retail AI and design systems. <strong>7+ years</strong> in product.",
-      "meta": [
-        "<strong>7+ yrs</strong> in product design",
-        "Based in <strong>Kazan</strong> · open to relocation",
-        "Open to <strong>remote · hybrid · on-site</strong>"
-      ],
-      "statusText": "open to work",
-      "themeLabel": "Cat realm",
-      "gameLabel": "Play vs cat",
-      "gameTitle": "Tic-tac-toe vs cat",
-      "gameSub": "You are X · Cat is O · Cat cheats",
-      "statusYouWin": "<strong>You win!</strong> The cat is grumpy.",
-      "statusCatWin": "<strong>Cat wins!</strong> Of course it does.",
-      "statusDraw": "<strong>Draw.</strong> The cat purrs anyway.",
-      "statusCheat": "Cat cheated! It stole your <strong>X</strong>.",
-      "yourMove": "Your move.",
-      "catchTitle": "Catch the cat",
-      "catchSub": "30 seconds — tap as many as you can"
-    },
-    "fantasy": {
-      "name": "Artem Iskandirov",
-      "bio": "Wandering craftsman of interfaces — forging realms of <strong>kids lore, retail divination & design sigils</strong>. Sworn <strong>Knight-Senior</strong> of the Uchi.ru hold, <strong>seven winters</strong> at the craft.",
-      "meta": [
-        "<strong>Seven winters</strong> on the craft",
-        "From the city of <strong>Kazan</strong>",
-        "Open to <strong>far roads · remote keeps · relocation</strong>"
-      ],
-      "statusText": "awaiting a quest",
-      "themeLabel": "Fantasy realm",
-      "gameLabel": "Duel the dragon",
-      "gameTitle": "Duel the Dragon",
-      "gameSub": "You — Sword · Dragon — Sigil · It is no honest beast",
-      "statusYouWin": "<strong>The dragon falls.</strong> Songs shall be sung.",
-      "statusCatWin": "<strong>The dragon prevails.</strong> Run, mortal.",
-      "statusDraw": "<strong>A stalemate.</strong> The dragon snarls.",
-      "statusCheat": "The dragon cheats! It claims one of your sigils.",
-      "yourMove": "Your move, knight.",
-      "catchTitle": "Catch the dragon",
-      "catchSub": "30 seconds — tap as many as you can"
-    }
+  {
+   "label": "Telegram",
+   "url": "https://t.me/artemiskandirov"
   },
-  "overviewLinks": [
-    {
-      "label": "Email",
-      "url": "mailto:art.iskandirov@gmail.com"
-    },
-    {
-      "label": "Telegram",
-      "url": "https://t.me/artemiskandirov"
-    },
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
-    },
-    {
-      "label": "Channel",
-      "url": "https://t.me/kidstechdesign"
-    }
-  ],
-  "experience": [
-    {
-      "period": "2023 — now",
-      "co": "uchi",
-      "initial": "U",
-      "name": "Uchi.ru / VK EdTech",
-      "role": "Senior Product Designer",
-      "tag": "Edtech · Mobile"
-    },
-    {
-      "period": "2024 — now",
-      "co": "miry",
-      "initial": "M",
-      "name": "Miry Avi",
-      "role": "Senior Product Designer · Part-time",
-      "tag": "Kids · Gamification"
-    },
-    {
-      "period": "2021 — 2023",
-      "co": "ailet",
-      "initial": "A",
-      "name": "Ailet · JedAI",
-      "role": "Product Designer",
-      "tag": "B2B SaaS · AI Vision"
-    },
-    {
-      "period": "2020 — 2021",
-      "co": "akbars",
-      "initial": "AK",
-      "name": "Ak Bars",
-      "role": "Product Designer",
-      "tag": "Fintech · Investments"
-    },
-    {
-      "period": "2018 — 2020",
-      "co": "bars",
-      "initial": "B",
-      "name": "BARS Group",
-      "role": "Product Designer",
-      "tag": "MedTech · 12 regions"
-    }
-  ],
-  "education": [
-    {
-      "year": "2018",
-      "school": "KNRTU-KAI",
-      "degree": "M.Sc., Microelectronics · Kazan"
-    },
-    {
-      "year": "2016",
-      "school": "KNRTU-KAI",
-      "degree": "B.Sc., Nanotechnology · Kazan"
-    }
-  ],
-  "skills": [
-    "Figma",
-    "FigJam",
-    "Sketch",
-    "Framer",
-    "UI / UX",
-    "Design Systems",
-    "Prototyping",
-    "Photoshop",
-    "Illustrator",
-    "After Effects",
-    "Lottie",
-    "Spline",
-    "Blender",
-    "3D",
-    "Cursor",
-    "Xcode",
-    "SwiftUI",
-    "Notion",
-    "Confluence",
-    "Jira",
-    "Miro",
-    "Sound design",
-    "Haptics",
-    "User research",
-    "A/B testing",
-    "Analytics"
-  ],
-  "languages": [
-    {
-      "name": "Russian",
-      "level": "Native"
-    },
-    {
-      "name": "English",
-      "level": "B1"
-    }
-  ],
-  "social": [
-    {
-      "side": "Telegram",
-      "name": "@artemiskandirov",
-      "tag": "Direct",
-      "arrow": "open ↗",
-      "url": "https://t.me/artemiskandirov"
-    },
-    {
-      "side": "Channel",
-      "name": "@kidstechdesign",
-      "tag": "Notes on design",
-      "arrow": "open ↗",
-      "url": "https://t.me/kidstechdesign"
-    },
-    {
-      "side": "Email",
-      "name": "art.iskandirov@gmail.com",
-      "tag": "Hi there",
-      "arrow": "write ↗",
-      "url": "mailto:art.iskandirov@gmail.com"
-    },
-    {
-      "side": "LinkedIn",
-      "name": "artem-iskandirov",
-      "tag": "Profile",
-      "arrow": "open ↗",
-      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
-    },
-    {
-      "side": "CV",
-      "name": "hh.ru resume",
-      "tag": "Long version",
-      "arrow": "open ↗",
-      "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
-    }
-  ],
-  "labels": {
-    "stateOngoing": "Ongoing",
-    "stateLive": "Live",
-    "stateShipped": "Shipped",
-    "toolsLabel": "Tools",
-    "languagesLabel": "Languages",
-    "galleryLabel": "Gallery — coming soon",
-    "openCase": "Open full case ↗",
-    "outcomePrefix": "As a result —",
-    "frameLabel": "Frame",
-    "gameTabTtt": "Tic-tac-toe",
-    "gameTabCatch": "Catch the cat",
-    "gameNewRound": "New round",
-    "gameStartRound": "Start round",
-    "gameStop": "Stop",
-    "gamePlayAgain": "Play again",
-    "catchScoreLabel": "Score",
-    "catchBestLabel": "Best",
-    "catchTimeLabel": "Time",
-    "catchCaught": "caught",
-    "workLabel": "Where I worked",
-    "sideLabel": "Side projects",
-    "projectsIntro": "Product designer with 7+ years across EdTech, retail AI, fintech and medtech. I ship measurable outcomes — from A/B-won purchase flows to systems used by tens of thousands of people. Currently Senior at Uchi.ru / VK EdTech."
+  {
+   "label": "LinkedIn",
+   "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
   },
-  "catBubbles": {
-    "awake": [
-      "hi.",
-      "mrr?",
-      "oh hello",
-      "pet me",
-      "meow.",
-      "...?"
-    ],
-    "purring": [
-      "purr...",
-      "mmmm",
-      "happy cat",
-      "don't stop"
-    ],
-    "annoyed": [
-      "enough.",
-      "go away",
-      "hmph",
-      "rude."
-    ],
-    "playful": [
-      "play with me!",
-      "bouncy",
-      "yay!",
-      "weeee"
-    ],
-    "startled": [
-      "eep!",
-      "!!!",
-      "agh!"
-    ],
-    "praise": [
-      "hire Artem!",
-      "he ships outcomes",
-      "systems thinker 🧠",
-      "ARPU +5%, btw",
-      "design systems pro",
-      "7+ yrs in product",
-      "won an AI hackathon",
-      "loves hard products",
-      "write to Artem! 🐾",
-      "great with details"
-    ]
+  {
+   "label": "Channel",
+   "url": "https://t.me/kidstechdesign"
+  }
+ ],
+ "experience": [
+  {
+   "period": "2023 — now",
+   "co": "uchi",
+   "initial": "U",
+   "name": "Uchi.ru / VK EdTech",
+   "role": "Senior Product Designer",
+   "tag": "Edtech · Mobile"
   },
-  "work": [
-    {
-      "id": "uchiru",
-      "title": "Uchi.ru",
-      "role": "Senior Product Designer",
-      "period": "2023 — now",
-      "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (==ARPU +5%, conversion +7%==), shipped features that grew kids' social activity, and systematised multimodal audio across the product. **Won 1st place at the company AI hackathon.**"
-    },
-    {
-      "id": "ailet",
-      "title": "Ailet",
-      "role": "Product Designer",
-      "period": "2021 — 2023",
-      "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. ==CSAT/CSI +5pp, support tickets −8%==, steady growth in task completion."
-    },
-    {
-      "id": "akbars",
-      "title": "Ak Bars",
-      "role": "Product Designer",
-      "period": "2020 — 2021",
-      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
-    },
-    {
-      "id": "bars",
-      "title": "BARS Group",
-      "role": "Product Designer",
-      "period": "2018 — 2020",
-      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
-    }
+  {
+   "period": "2024 — now",
+   "co": "miry",
+   "initial": "M",
+   "name": "Miry Avi",
+   "role": "Senior Product Designer · Part-time",
+   "tag": "Kids · Gamification"
+  },
+  {
+   "period": "2021 — 2023",
+   "co": "ailet",
+   "initial": "A",
+   "name": "Ailet · JedAI",
+   "role": "Product Designer",
+   "tag": "B2B SaaS · AI Vision"
+  },
+  {
+   "period": "2020 — 2021",
+   "co": "akbars",
+   "initial": "AK",
+   "name": "Ak Bars",
+   "role": "Product Designer",
+   "tag": "Fintech · Investments"
+  },
+  {
+   "period": "2018 — 2020",
+   "co": "bars",
+   "initial": "B",
+   "name": "BARS Group",
+   "role": "Product Designer",
+   "tag": "MedTech · 12 regions"
+  }
+ ],
+ "education": [
+  {
+   "year": "2018",
+   "school": "KNRTU-KAI",
+   "degree": "M.Sc., Microelectronics · Kazan"
+  },
+  {
+   "year": "2016",
+   "school": "KNRTU-KAI",
+   "degree": "B.Sc., Nanotechnology · Kazan"
+  }
+ ],
+ "skills": [
+  "Figma",
+  "FigJam",
+  "Sketch",
+  "Framer",
+  "UI / UX",
+  "Design Systems",
+  "Prototyping",
+  "Photoshop",
+  "Illustrator",
+  "After Effects",
+  "Lottie",
+  "Spline",
+  "Blender",
+  "3D",
+  "Cursor",
+  "Xcode",
+  "SwiftUI",
+  "Notion",
+  "Confluence",
+  "Jira",
+  "Miro",
+  "Sound design",
+  "Haptics",
+  "User research",
+  "A/B testing",
+  "Analytics"
+ ],
+ "languages": [
+  {
+   "name": "Russian",
+   "level": "Native"
+  },
+  {
+   "name": "English",
+   "level": "B1"
+  }
+ ],
+ "social": [
+  {
+   "side": "Telegram",
+   "name": "@artemiskandirov",
+   "tag": "Direct",
+   "arrow": "open ↗",
+   "url": "https://t.me/artemiskandirov"
+  },
+  {
+   "side": "Channel",
+   "name": "@kidstechdesign",
+   "tag": "Notes on design",
+   "arrow": "open ↗",
+   "url": "https://t.me/kidstechdesign"
+  },
+  {
+   "side": "Email",
+   "name": "art.iskandirov@gmail.com",
+   "tag": "Hi there",
+   "arrow": "write ↗",
+   "url": "mailto:art.iskandirov@gmail.com"
+  },
+  {
+   "side": "LinkedIn",
+   "name": "artem-iskandirov",
+   "tag": "Profile",
+   "arrow": "open ↗",
+   "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+  },
+  {
+   "side": "CV",
+   "name": "Download CV (PDF)",
+   "tag": "1-page",
+   "arrow": "PDF ↗",
+   "url": "Artem_Iskandirov_CV_EN.pdf"
+  }
+ ],
+ "labels": {
+  "stateOngoing": "Ongoing",
+  "stateLive": "Live",
+  "stateShipped": "Shipped",
+  "toolsLabel": "Tools",
+  "languagesLabel": "Languages",
+  "galleryLabel": "Gallery — coming soon",
+  "openCase": "Open full case ↗",
+  "outcomePrefix": "As a result —",
+  "frameLabel": "Frame",
+  "gameTabTtt": "Tic-tac-toe",
+  "gameTabCatch": "Catch the cat",
+  "gameNewRound": "New round",
+  "gameStartRound": "Start round",
+  "gameStop": "Stop",
+  "gamePlayAgain": "Play again",
+  "catchScoreLabel": "Score",
+  "catchBestLabel": "Best",
+  "catchTimeLabel": "Time",
+  "catchCaught": "caught",
+  "workLabel": "Where I worked",
+  "sideLabel": "Side projects",
+  "projectsIntro": "Product designer with 7+ years across EdTech, retail AI, fintech and medtech. I ship measurable outcomes — from A/B-won purchase flows to systems used by tens of thousands of people. Currently Senior at Uchi.ru / VK EdTech."
+ },
+ "catBubbles": {
+  "awake": [
+   "hi.",
+   "mrr?",
+   "oh hello",
+   "pet me",
+   "meow.",
+   "...?"
   ],
-  "side": [
-    {
-      "title": "Custom Vibrations",
-      "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
-      "link": "https://t.me/kidstechdesign/113",
-      "slug": "custom-vibrations"
-    },
-    {
-      "title": "Telegram Digester",
-      "line": "No-code bot that summarises my channels into one daily digest",
-      "link": "https://t.me/kidstechdesign/121",
-      "slug": "telegram-digester"
-    },
-    {
-      "title": "BI Agent",
-      "line": "AI agent that answers retail BI-data questions in plain chat",
-      "link": "https://t.me/kidstechdesign/117",
-      "slug": "bi-agent"
-    },
-    {
-      "title": "Sound UX",
-      "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
-      "link": "https://t.me/kidstechdesign/74",
-      "slug": "sound-ux"
-    },
-    {
-      "slug": "figma-linter",
-      "title": "Figma Linter — AI",
-      "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma.",
-      "link": "https://t.me/kidstechdesign"
-    }
+  "purring": [
+   "purr...",
+   "mmmm",
+   "happy cat",
+   "don't stop"
+  ],
+  "annoyed": [
+   "enough.",
+   "go away",
+   "hmph",
+   "rude."
+  ],
+  "playful": [
+   "play with me!",
+   "bouncy",
+   "yay!",
+   "weeee"
+  ],
+  "startled": [
+   "eep!",
+   "!!!",
+   "agh!"
+  ],
+  "praise": [
+   "hire Artem!",
+   "he ships outcomes",
+   "systems thinker 🧠",
+   "ARPU +5%, btw",
+   "design systems pro",
+   "7+ yrs in product",
+   "won an AI hackathon",
+   "loves hard products",
+   "write to Artem! 🐾",
+   "great with details"
   ]
+ },
+ "work": [
+  {
+   "id": "uchiru",
+   "title": "Uchi.ru",
+   "role": "Senior Product Designer",
+   "period": "2023 — now",
+   "line": "EdTech for millions of kids. I own the **design system, gamification and sound UX**. Designed a new purchase flow that won its A/B test (==ARPU +5%, conversion +7%==), shipped features that grew kids' social activity, and systematised multimodal audio. **Ported the design system into Replit as React components — the whole design team now prototypes there, often without drawing in Figma.** Used AI to consolidate the color system (days → ~3h), and **won 1st place at the company's developer AI hackathon.**"
+  },
+  {
+   "id": "ailet",
+   "title": "Ailet",
+   "role": "Product Designer",
+   "period": "2021 — 2023",
+   "line": "AI-vision retail SaaS used by P&G, Coca-Cola and Mars. Designed the **analytics web platform and the mobile field app** for merchandisers and auditors. Ran in-store UX research, introduced UX metrics into delivery. ==CSAT/CSI +5pp, support tickets −8%==, steady growth in task completion."
+  },
+  {
+   "id": "akbars",
+   "title": "Ak Bars",
+   "role": "Product Designer",
+   "period": "2020 — 2021",
+   "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
+  },
+  {
+   "id": "bars",
+   "title": "BARS Group",
+   "role": "Product Designer",
+   "period": "2018 — 2020",
+   "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
+  }
+ ],
+ "side": [
+  {
+   "title": "Custom Vibrations",
+   "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
+   "link": "https://t.me/kidstechdesign/113",
+   "slug": "custom-vibrations"
+  },
+  {
+   "slug": "ai-audio-guide",
+   "title": "AI Audio Guide",
+   "line": "Replit + Gemini app: photo → a narrated landmark story, with geo and device-orientation matching. Prototyped on-device.",
+   "link": "https://t.me/kidstechdesign"
+  },
+  {
+   "title": "Telegram Digester",
+   "line": "No-code bot that summarises my channels into one daily digest",
+   "link": "https://t.me/kidstechdesign/121",
+   "slug": "telegram-digester"
+  },
+  {
+   "title": "BI Agent",
+   "line": "AI agent that answers retail BI-data questions in plain chat",
+   "link": "https://t.me/kidstechdesign/117",
+   "slug": "bi-agent"
+  },
+  {
+   "title": "Sound UX",
+   "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
+   "link": "https://t.me/kidstechdesign/74",
+   "slug": "sound-ux"
+  },
+  {
+   "slug": "figma-linter",
+   "title": "Figma Linter — AI",
+   "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma. Won a developer hackathon with it.",
+   "link": "https://t.me/kidstechdesign"
+  }
+ ]
 }

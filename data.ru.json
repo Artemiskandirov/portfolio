@@ -1,346 +1,352 @@
 {
-  "_comment": "РУССКАЯ ВЕРСИЯ. Редактируй любой текст/ссылку. После правок — пуш на Vercel. Используй <strong>...</strong> для выделения, <br> для переноса строк. **жирный** в описаниях проектов = оранжевый акцент.",
-  "site": {
-    "title": "Артём Искандиров — Продуктовый дизайнер",
-    "description": "Продуктовый дизайнер. Uchi.ru / VK EdTech. Казань.",
-    "brand": "Артём Искандиров",
-    "splashName": "Артём Искандиров",
-    "splashCta": "Войти — со звуком",
-    "photoUrl": "https://framerusercontent.com/images/cUuEjUccGHSNZgDYIhqKMunjLPk.png"
+ "_comment": "РУССКАЯ ВЕРСИЯ. Редактируй любой текст/ссылку. После правок — пуш на Vercel. Используй <strong>...</strong> для выделения, <br> для переноса строк. **жирный** в описаниях проектов = оранжевый акцент.",
+ "site": {
+  "title": "Артём Искандиров — Продуктовый дизайнер",
+  "description": "Продуктовый дизайнер. Uchi.ru / VK EdTech. Казань.",
+  "brand": "Артём Искандиров",
+  "splashName": "Артём Искандиров",
+  "splashCta": "Войти — со звуком",
+  "photoUrl": "images/cv_photo.png"
+ },
+ "tabs": {
+  "labelOverview": "01 — Обзор",
+  "labelExperience": "02 — Опыт",
+  "labelProjects": "02 — Проекты",
+  "labelEducation": "03 — Образование",
+  "labelSocial": "04 — Контакты",
+  "dockOverview": "Обзор",
+  "dockExperience": "Опыт",
+  "dockProjects": "Проекты",
+  "dockEducation": "Образование",
+  "dockSocial": "Контакты",
+  "hint": "переключить"
+ },
+ "themes": {
+  "cat": {
+   "name": "Артём Искандиров",
+   "bio": "Продуктовый дизайнер в <strong>Uchi.ru / VK EdTech</strong>. Работаю с <strong>B2C и B2B, mobile и web</strong> — детский edtech, ритейл-AI и дизайн-системы. <strong>7+ лет</strong> в продукте.",
+   "meta": [
+    "<strong>7+ лет</strong> в продуктовом дизайне",
+    "Казань · готов к переезду",
+    "Открыт к <strong>удалёнке · гибриду · офису</strong>"
+   ],
+   "statusText": "открыт к предложениям",
+   "themeLabel": "Кот",
+   "gameLabel": "Игра с котом",
+   "gameTitle": "Крестики-нолики с котом",
+   "gameSub": "Вы — X · Кот — O · Кот жульничает",
+   "statusYouWin": "<strong>Вы выиграли!</strong> Кот недоволен.",
+   "statusCatWin": "<strong>Кот выиграл!</strong> Ну конечно.",
+   "statusDraw": "<strong>Ничья.</strong> Кот всё равно мурчит.",
+   "statusCheat": "Кот сжульничал! Украл ваш <strong>X</strong>.",
+   "yourMove": "Ваш ход.",
+   "catchTitle": "Поймай кота",
+   "catchSub": "30 секунд — поймайте как можно больше"
   },
-  "tabs": {
-    "labelOverview": "01 — Обзор",
-    "labelExperience": "02 — Опыт",
-    "labelProjects": "02 — Проекты",
-    "labelEducation": "03 — Образование",
-    "labelSocial": "04 — Контакты",
-    "dockOverview": "Обзор",
-    "dockExperience": "Опыт",
-    "dockProjects": "Проекты",
-    "dockEducation": "Образование",
-    "dockSocial": "Контакты",
-    "hint": "переключить"
+  "fantasy": {
+   "name": "Артём Искандиров",
+   "bio": "Странствующий мастер интерфейсов — кую миры из <strong>детских сказаний, ритейл-прорицаний и дизайн-сигилов</strong>. Рыцарь-старшина крепости Uchi.ru, <strong>семь зим</strong> у ремесла.",
+   "meta": [
+    "<strong>Семь зим</strong> у ремесла",
+    "Из града <strong>Казань</strong>",
+    "Открыт к <strong>дальним дорогам · удалённым крепостям · переезду</strong>"
+   ],
+   "statusText": "в ожидании квеста",
+   "themeLabel": "Фэнтези",
+   "gameLabel": "Дуэль с драконом",
+   "gameTitle": "Дуэль с Драконом",
+   "gameSub": "Вы — Меч · Дракон — Сигил · Зверь нечестен",
+   "statusYouWin": "<strong>Дракон повержен.</strong> О вас сложат песни.",
+   "statusCatWin": "<strong>Дракон победил.</strong> Беги, смертный.",
+   "statusDraw": "<strong>Пат.</strong> Дракон рычит.",
+   "statusCheat": "Дракон жульничает! Забрал один из ваших сигилов.",
+   "yourMove": "Ваш ход, рыцарь.",
+   "catchTitle": "Поймай дракона",
+   "catchSub": "30 секунд — поймайте как можно больше"
+  }
+ },
+ "overviewLinks": [
+  {
+   "label": "Почта",
+   "url": "mailto:art.iskandirov@gmail.com"
   },
-  "themes": {
-    "cat": {
-      "name": "Артём Искандиров",
-      "bio": "Продуктовый дизайнер в <strong>Uchi.ru / VK EdTech</strong>. Работаю с <strong>B2C и B2B, mobile и web</strong> — детский edtech, ритейл-AI и дизайн-системы. <strong>7+ лет</strong> в продукте.",
-      "meta": [
-        "<strong>7+ лет</strong> в продуктовом дизайне",
-        "Казань · готов к переезду",
-        "Открыт к <strong>удалёнке · гибриду · офису</strong>"
-      ],
-      "statusText": "открыт к предложениям",
-      "themeLabel": "Кот",
-      "gameLabel": "Игра с котом",
-      "gameTitle": "Крестики-нолики с котом",
-      "gameSub": "Вы — X · Кот — O · Кот жульничает",
-      "statusYouWin": "<strong>Вы выиграли!</strong> Кот недоволен.",
-      "statusCatWin": "<strong>Кот выиграл!</strong> Ну конечно.",
-      "statusDraw": "<strong>Ничья.</strong> Кот всё равно мурчит.",
-      "statusCheat": "Кот сжульничал! Украл ваш <strong>X</strong>.",
-      "yourMove": "Ваш ход.",
-      "catchTitle": "Поймай кота",
-      "catchSub": "30 секунд — поймайте как можно больше"
-    },
-    "fantasy": {
-      "name": "Артём Искандиров",
-      "bio": "Странствующий мастер интерфейсов — кую миры из <strong>детских сказаний, ритейл-прорицаний и дизайн-сигилов</strong>. Рыцарь-старшина крепости Uchi.ru, <strong>семь зим</strong> у ремесла.",
-      "meta": [
-        "<strong>Семь зим</strong> у ремесла",
-        "Из града <strong>Казань</strong>",
-        "Открыт к <strong>дальним дорогам · удалённым крепостям · переезду</strong>"
-      ],
-      "statusText": "в ожидании квеста",
-      "themeLabel": "Фэнтези",
-      "gameLabel": "Дуэль с драконом",
-      "gameTitle": "Дуэль с Драконом",
-      "gameSub": "Вы — Меч · Дракон — Сигил · Зверь нечестен",
-      "statusYouWin": "<strong>Дракон повержен.</strong> О вас сложат песни.",
-      "statusCatWin": "<strong>Дракон победил.</strong> Беги, смертный.",
-      "statusDraw": "<strong>Пат.</strong> Дракон рычит.",
-      "statusCheat": "Дракон жульничает! Забрал один из ваших сигилов.",
-      "yourMove": "Ваш ход, рыцарь.",
-      "catchTitle": "Поймай дракона",
-      "catchSub": "30 секунд — поймайте как можно больше"
-    }
+  {
+   "label": "Telegram",
+   "url": "https://t.me/artemiskandirov"
   },
-  "overviewLinks": [
-    {
-      "label": "Почта",
-      "url": "mailto:art.iskandirov@gmail.com"
-    },
-    {
-      "label": "Telegram",
-      "url": "https://t.me/artemiskandirov"
-    },
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
-    },
-    {
-      "label": "Канал",
-      "url": "https://t.me/kidstechdesign"
-    }
-  ],
-  "experience": [
-    {
-      "period": "2023 — сейчас",
-      "co": "uchi",
-      "initial": "U",
-      "name": "Uchi.ru / VK EdTech",
-      "role": "Senior Product Designer",
-      "tag": "Edtech · Mobile"
-    },
-    {
-      "period": "2024 — сейчас",
-      "co": "miry",
-      "initial": "M",
-      "name": "Miry Avi",
-      "role": "Senior Product Designer · part-time",
-      "tag": "Дети · Геймификация"
-    },
-    {
-      "period": "2021 — 2023",
-      "co": "ailet",
-      "initial": "A",
-      "name": "Ailet · JedAI",
-      "role": "Product Designer",
-      "tag": "B2B SaaS · AI Vision"
-    },
-    {
-      "period": "2020 — 2021",
-      "co": "akbars",
-      "initial": "AK",
-      "name": "Ak Bars",
-      "role": "Product Designer",
-      "tag": "Финтех · Инвестиции"
-    },
-    {
-      "period": "2018 — 2020",
-      "co": "bars",
-      "initial": "B",
-      "name": "BARS Group",
-      "role": "Product Designer",
-      "tag": "MedTech · 12 регионов"
-    }
-  ],
-  "education": [
-    {
-      "year": "2018",
-      "school": "КНИТУ-КАИ им. Туполева",
-      "degree": "Магистр, электроника и микроэлектроника · Казань"
-    },
-    {
-      "year": "2016",
-      "school": "КНИТУ-КАИ им. Туполева",
-      "degree": "Бакалавр, нанотехнологии · Казань"
-    }
-  ],
-  "skills": [
-    "Figma",
-    "FigJam",
-    "Sketch",
-    "Framer",
-    "UI / UX",
-    "Design Systems",
-    "Prototyping",
-    "Photoshop",
-    "Illustrator",
-    "After Effects",
-    "Lottie",
-    "Spline",
-    "Blender",
-    "3D",
-    "Cursor",
-    "Xcode",
-    "SwiftUI",
-    "Notion",
-    "Confluence",
-    "Jira",
-    "Miro",
-    "Sound design",
-    "Haptics",
-    "User research",
-    "A/B testing",
-    "Analytics"
-  ],
-  "languages": [
-    {
-      "name": "Русский",
-      "level": "Родной"
-    },
-    {
-      "name": "Английский",
-      "level": "B1"
-    }
-  ],
-  "social": [
-    {
-      "side": "Telegram",
-      "name": "@artemiskandirov",
-      "tag": "Личка",
-      "arrow": "открыть ↗",
-      "url": "https://t.me/artemiskandirov"
-    },
-    {
-      "side": "Канал",
-      "name": "@kidstechdesign",
-      "tag": "Заметки о дизайне",
-      "arrow": "открыть ↗",
-      "url": "https://t.me/kidstechdesign"
-    },
-    {
-      "side": "Почта",
-      "name": "art.iskandirov@gmail.com",
-      "tag": "Привет",
-      "arrow": "написать ↗",
-      "url": "mailto:art.iskandirov@gmail.com"
-    },
-    {
-      "side": "LinkedIn",
-      "name": "artem-iskandirov",
-      "tag": "Профиль",
-      "arrow": "открыть ↗",
-      "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
-    },
-    {
-      "side": "Резюме",
-      "name": "hh.ru resume",
-      "tag": "Полная версия",
-      "arrow": "открыть ↗",
-      "url": "https://kazan.hh.ru/resume/c61965d6ff0c6148f70039ed1f677955375836"
-    }
-  ],
-  "labels": {
-    "stateOngoing": "В работе",
-    "stateLive": "Live",
-    "stateShipped": "Завершён",
-    "toolsLabel": "Инструменты",
-    "languagesLabel": "Языки",
-    "galleryLabel": "Галерея — скоро",
-    "openCase": "Открыть кейс ↗",
-    "outcomePrefix": "В результате —",
-    "frameLabel": "Кадр",
-    "gameTabTtt": "Крестики-нолики",
-    "gameTabCatch": "Поймай кота",
-    "gameNewRound": "Новый раунд",
-    "gameStartRound": "Старт",
-    "gameStop": "Стоп",
-    "gamePlayAgain": "Ещё раз",
-    "catchScoreLabel": "Счёт",
-    "catchBestLabel": "Рекорд",
-    "catchTimeLabel": "Время",
-    "catchCaught": "поймано",
-    "workLabel": "Где я работал",
-    "sideLabel": "Сайд-проекты",
-    "projectsIntro": "Продуктовый дизайнер, 7+ лет в EdTech, ритейл-AI, финтехе и медтехе. Делаю измеримый результат — от выигранных в A/B путей покупки до систем на десятки тысяч пользователей. Сейчас Senior в Uchi.ru / VK EdTech."
+  {
+   "label": "LinkedIn",
+   "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
   },
-  "catBubbles": {
-    "awake": [
-      "привет.",
-      "мрр?",
-      "о, привет",
-      "погладь",
-      "мяу.",
-      "...?"
-    ],
-    "purring": [
-      "мрррр...",
-      "ммм",
-      "довольный кот",
-      "не останавливайся"
-    ],
-    "annoyed": [
-      "хватит.",
-      "уйди",
-      "хмф",
-      "грубо."
-    ],
-    "playful": [
-      "поиграй со мной!",
-      "прыг",
-      "ура!",
-      "вииии"
-    ],
-    "startled": [
-      "ой!",
-      "!!!",
-      "ааа!"
-    ],
-    "praise": [
-      "наймите Артёма!",
-      "делает результат",
-      "системно мыслит 🧠",
-      "ARPU +5%, кстати",
-      "спец по дизайн-системам",
-      "7+ лет в продукте",
-      "взял 1-е на AI-хакатоне",
-      "любит сложные продукты",
-      "напишите Артёму! 🐾",
-      "внимателен к деталям"
-    ]
+  {
+   "label": "Канал",
+   "url": "https://t.me/kidstechdesign"
+  }
+ ],
+ "experience": [
+  {
+   "period": "2023 — сейчас",
+   "co": "uchi",
+   "initial": "U",
+   "name": "Uchi.ru / VK EdTech",
+   "role": "Senior Product Designer",
+   "tag": "Edtech · Mobile"
   },
-  "work": [
-    {
-      "id": "uchiru",
-      "title": "Uchi.ru",
-      "role": "Senior Product Designer",
-      "period": "2023 — сейчас",
-      "line": "EdTech для миллионов детей. Отвечаю за **дизайн-систему, геймификацию и звуковой UX**. Спроектировал новый путь покупки — выиграл A/B-тест (==ARPU +5%, конверсия +7%==), запускал фичи для роста соц-активности детей, систематизировал мультимодальную озвучку. **1-е место на AI-хакатоне компании.**"
-    },
-    {
-      "id": "ailet",
-      "title": "Ailet",
-      "role": "Product Designer",
-      "period": "2021 — 2023",
-      "line": "AI-vision SaaS для ритейла — клиенты P&G, Coca-Cola, Mars. Проектировал **аналитическую веб-платформу и мобильное приложение** для мерчендайзеров и аудиторов. Проводил UX-исследования в магазинах, внедрил UX-метрики в разработку. ==CSAT/CSI +5 п.п., обращения в поддержку −8%==, устойчивый рост task completion."
-    },
-    {
-      "id": "akbars",
-      "title": "Ак Барс",
-      "role": "Product Designer",
-      "period": "2020 — 2021",
-      "line": "Финтех — **раздел инвестиций внутри банковского приложения**. Спроектировал масштабируемую UI-архитектуру для добавления новых продуктов, работал с поведенческой аналитикой. ==Переходы в инвестиции +11%== после редизайна главной, **отказы на оформлении −12%**, быстрее путь покупки."
-    },
-    {
-      "id": "bars",
-      "title": "БАРС Груп",
-      "role": "Product Designer",
-      "period": "2018 — 2020",
-      "line": "MedTech — редизайн **медицинской информационной системы в 12 регионах России, 10 000+ пользователей**. Исследовал 7+ профессиональных ролей (врачи, медсёстры, админы), адаптировал сценарии под каждую. ==Типовые сценарии −10% времени==, позитив в 3 из 5 пилотных регионов, онбординг без мануалов."
-    }
+  {
+   "period": "2024 — сейчас",
+   "co": "miry",
+   "initial": "M",
+   "name": "Miry Avi",
+   "role": "Senior Product Designer · part-time",
+   "tag": "Дети · Геймификация"
+  },
+  {
+   "period": "2021 — 2023",
+   "co": "ailet",
+   "initial": "A",
+   "name": "Ailet · JedAI",
+   "role": "Product Designer",
+   "tag": "B2B SaaS · AI Vision"
+  },
+  {
+   "period": "2020 — 2021",
+   "co": "akbars",
+   "initial": "AK",
+   "name": "Ak Bars",
+   "role": "Product Designer",
+   "tag": "Финтех · Инвестиции"
+  },
+  {
+   "period": "2018 — 2020",
+   "co": "bars",
+   "initial": "B",
+   "name": "BARS Group",
+   "role": "Product Designer",
+   "tag": "MedTech · 12 регионов"
+  }
+ ],
+ "education": [
+  {
+   "year": "2018",
+   "school": "КНИТУ-КАИ им. Туполева",
+   "degree": "Магистр, электроника и микроэлектроника · Казань"
+  },
+  {
+   "year": "2016",
+   "school": "КНИТУ-КАИ им. Туполева",
+   "degree": "Бакалавр, нанотехнологии · Казань"
+  }
+ ],
+ "skills": [
+  "Figma",
+  "FigJam",
+  "Sketch",
+  "Framer",
+  "UI / UX",
+  "Design Systems",
+  "Prototyping",
+  "Photoshop",
+  "Illustrator",
+  "After Effects",
+  "Lottie",
+  "Spline",
+  "Blender",
+  "3D",
+  "Cursor",
+  "Xcode",
+  "SwiftUI",
+  "Notion",
+  "Confluence",
+  "Jira",
+  "Miro",
+  "Sound design",
+  "Haptics",
+  "User research",
+  "A/B testing",
+  "Analytics"
+ ],
+ "languages": [
+  {
+   "name": "Русский",
+   "level": "Родной"
+  },
+  {
+   "name": "Английский",
+   "level": "B1"
+  }
+ ],
+ "social": [
+  {
+   "side": "Telegram",
+   "name": "@artemiskandirov",
+   "tag": "Личка",
+   "arrow": "открыть ↗",
+   "url": "https://t.me/artemiskandirov"
+  },
+  {
+   "side": "Канал",
+   "name": "@kidstechdesign",
+   "tag": "Заметки о дизайне",
+   "arrow": "открыть ↗",
+   "url": "https://t.me/kidstechdesign"
+  },
+  {
+   "side": "Почта",
+   "name": "art.iskandirov@gmail.com",
+   "tag": "Привет",
+   "arrow": "написать ↗",
+   "url": "mailto:art.iskandirov@gmail.com"
+  },
+  {
+   "side": "LinkedIn",
+   "name": "artem-iskandirov",
+   "tag": "Профиль",
+   "arrow": "открыть ↗",
+   "url": "https://www.linkedin.com/in/artem-iskandirov-516735204/"
+  },
+  {
+   "side": "Резюме",
+   "name": "Скачать CV (PDF)",
+   "tag": "1 страница",
+   "arrow": "PDF ↗",
+   "url": "Artem_Iskandirov_CV_RU.pdf"
+  }
+ ],
+ "labels": {
+  "stateOngoing": "В работе",
+  "stateLive": "Live",
+  "stateShipped": "Завершён",
+  "toolsLabel": "Инструменты",
+  "languagesLabel": "Языки",
+  "galleryLabel": "Галерея — скоро",
+  "openCase": "Открыть кейс ↗",
+  "outcomePrefix": "В результате —",
+  "frameLabel": "Кадр",
+  "gameTabTtt": "Крестики-нолики",
+  "gameTabCatch": "Поймай кота",
+  "gameNewRound": "Новый раунд",
+  "gameStartRound": "Старт",
+  "gameStop": "Стоп",
+  "gamePlayAgain": "Ещё раз",
+  "catchScoreLabel": "Счёт",
+  "catchBestLabel": "Рекорд",
+  "catchTimeLabel": "Время",
+  "catchCaught": "поймано",
+  "workLabel": "Где я работал",
+  "sideLabel": "Сайд-проекты",
+  "projectsIntro": "Продуктовый дизайнер, 7+ лет в EdTech, ритейл-AI, финтехе и медтехе. Делаю измеримый результат — от выигранных в A/B путей покупки до систем на десятки тысяч пользователей. Сейчас Senior в Uchi.ru / VK EdTech."
+ },
+ "catBubbles": {
+  "awake": [
+   "привет.",
+   "мрр?",
+   "о, привет",
+   "погладь",
+   "мяу.",
+   "...?"
   ],
-  "side": [
-    {
-      "title": "Custom Vibrations",
-      "line": "iOS-приложение для создания хаптики — вайбкодинг в Cursor + Xcode",
-      "link": "https://t.me/kidstechdesign/113",
-      "slug": "custom-vibrations"
-    },
-    {
-      "title": "Telegram Digester",
-      "line": "No-code бот, собирающий мои каналы в один дневной дайджест",
-      "link": "https://t.me/kidstechdesign/121",
-      "slug": "telegram-digester"
-    },
-    {
-      "title": "BI Agent",
-      "line": "AI-агент, отвечающий на вопросы по BI-данным ритейла в чате",
-      "link": "https://t.me/kidstechdesign/117",
-      "slug": "bi-agent"
-    },
-    {
-      "title": "Sound UX",
-      "line": "Доклад на Chulakov Design Meetup о роли звука в продукте",
-      "link": "https://t.me/kidstechdesign/74",
-      "slug": "sound-ux"
-    },
-    {
-      "slug": "figma-linter",
-      "title": "Figma Linter — ИИ",
-      "line": "ИИ-плагин для ревью макетов по дизайн-системе: читает подключённые библиотеки в JSON, привязывает цвета/отступы/шрифты к токенам ДС, заменяет детач-компоненты, чинит непривязанные отступы и переписывает тексты по запросу. Источник правды — ДС в Figma.",
-      "link": "https://t.me/kidstechdesign"
-    }
+  "purring": [
+   "мрррр...",
+   "ммм",
+   "довольный кот",
+   "не останавливайся"
+  ],
+  "annoyed": [
+   "хватит.",
+   "уйди",
+   "хмф",
+   "грубо."
+  ],
+  "playful": [
+   "поиграй со мной!",
+   "прыг",
+   "ура!",
+   "вииии"
+  ],
+  "startled": [
+   "ой!",
+   "!!!",
+   "ааа!"
+  ],
+  "praise": [
+   "наймите Артёма!",
+   "делает результат",
+   "системно мыслит 🧠",
+   "ARPU +5%, кстати",
+   "спец по дизайн-системам",
+   "7+ лет в продукте",
+   "взял 1-е на AI-хакатоне",
+   "любит сложные продукты",
+   "напишите Артёму! 🐾",
+   "внимателен к деталям"
   ]
+ },
+ "work": [
+  {
+   "id": "uchiru",
+   "title": "Uchi.ru",
+   "role": "Senior Product Designer",
+   "period": "2023 — сейчас",
+   "line": "EdTech для миллионов детей. Отвечаю за **дизайн-систему, геймификацию и звуковой UX**. Спроектировал новый путь покупки — выиграл A/B-тест (==ARPU +5%, конверсия +7%==), запускал фичи для роста соц-активности детей, систематизировал мультимодальную озвучку. **Перенёс дизайн-систему в Replit в виде React-компонентов — теперь вся команда дизайна собирает прототипы там, часто вообще не рисуя в Figma.** Расчистил цветовую систему с ИИ (дни → ~3 ч) и **занял 1-е место на AI-хакатоне среди разработчиков.**"
+  },
+  {
+   "id": "ailet",
+   "title": "Ailet",
+   "role": "Product Designer",
+   "period": "2021 — 2023",
+   "line": "AI-vision SaaS для ритейла — клиенты P&G, Coca-Cola, Mars. Проектировал **аналитическую веб-платформу и мобильное приложение** для мерчендайзеров и аудиторов. Проводил UX-исследования в магазинах, внедрил UX-метрики в разработку. ==CSAT/CSI +5 п.п., обращения в поддержку −8%==, устойчивый рост task completion."
+  },
+  {
+   "id": "akbars",
+   "title": "Ак Барс",
+   "role": "Product Designer",
+   "period": "2020 — 2021",
+   "line": "Финтех — **раздел инвестиций внутри банковского приложения**. Спроектировал масштабируемую UI-архитектуру для добавления новых продуктов, работал с поведенческой аналитикой. ==Переходы в инвестиции +11%== после редизайна главной, **отказы на оформлении −12%**, быстрее путь покупки."
+  },
+  {
+   "id": "bars",
+   "title": "БАРС Груп",
+   "role": "Product Designer",
+   "period": "2018 — 2020",
+   "line": "MedTech — редизайн **медицинской информационной системы в 12 регионах России, 10 000+ пользователей**. Исследовал 7+ профессиональных ролей (врачи, медсёстры, админы), адаптировал сценарии под каждую. ==Типовые сценарии −10% времени==, позитив в 3 из 5 пилотных регионов, онбординг без мануалов."
+  }
+ ],
+ "side": [
+  {
+   "title": "Custom Vibrations",
+   "line": "iOS-приложение для создания хаптики — вайбкодинг в Cursor + Xcode",
+   "link": "https://t.me/kidstechdesign/113",
+   "slug": "custom-vibrations"
+  },
+  {
+   "slug": "ai-audio-guide",
+   "title": "ИИ-аудиогид",
+   "line": "Приложение на Replit + Gemini: фото → озвученный рассказ об объекте, с гео и учётом поворота устройства. Прототип собирал на телефоне.",
+   "link": "https://t.me/kidstechdesign"
+  },
+  {
+   "title": "Telegram Digester",
+   "line": "No-code бот, собирающий мои каналы в один дневной дайджест",
+   "link": "https://t.me/kidstechdesign/121",
+   "slug": "telegram-digester"
+  },
+  {
+   "title": "BI Agent",
+   "line": "AI-агент, отвечающий на вопросы по BI-данным ритейла в чате",
+   "link": "https://t.me/kidstechdesign/117",
+   "slug": "bi-agent"
+  },
+  {
+   "title": "Sound UX",
+   "line": "Доклад на Chulakov Design Meetup о роли звука в продукте",
+   "link": "https://t.me/kidstechdesign/74",
+   "slug": "sound-ux"
+  },
+  {
+   "slug": "figma-linter",
+   "title": "Figma Linter — ИИ",
+   "line": "ИИ-плагин для ревью макетов по дизайн-системе: читает подключённые библиотеки в JSON, привязывает цвета/отступы/шрифты к токенам ДС, заменяет детач-компоненты, чинит непривязанные отступы и переписывает тексты по запросу. Источник правды — ДС в Figma. Победил с ним на хакатоне среди разработчиков.",
+   "link": "https://t.me/kidstechdesign"
+  }
+ ]
 }
