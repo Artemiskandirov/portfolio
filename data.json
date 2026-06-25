@@ -301,52 +301,42 @@
    "title": "Ak Bars",
    "role": "Product Designer",
    "period": "2020 — 2021",
-   "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
+   "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow.",
+   "noImages": true
   },
   {
    "id": "bars",
    "title": "BARS Group",
    "role": "Product Designer",
    "period": "2018 — 2020",
-   "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
+   "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals.",
+   "noImages": true
   }
  ],
  "side": [
   {
-   "title": "Custom Vibrations",
-   "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
-   "link": "https://t.me/kidstechdesign/113",
-   "slug": "custom-vibrations"
+   "slug": "figma-linter",
+   "title": "Figma Linter — AI",
+   "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma. Won a developer hackathon with it.",
+   "link": "https://www.linkedin.com/posts/artem-iskandirov-516735204_%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BA%D0%B0-%D0%B2-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D0%BD%D0%B0-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D1%8C-3-%D0%BD%D0%B0-activity-7465029981010763776-mabF"
   },
   {
-   "slug": "ai-audio-guide",
-   "title": "AI Audio Guide",
-   "line": "Replit + Gemini app: photo → a narrated landmark story, with geo and device-orientation matching. Prototyped on-device.",
+   "slug": "ai-colors",
+   "title": "AI Color System Cleanup",
+   "line": "Used Cursor (Sonnet 4.5) to consolidate a sprawling legacy + A/B color system into a structured palette — groupings, dedupes, reconciliation across Figma / web / mobile, and a change history. ~3h instead of days.",
    "link": "https://t.me/kidstechdesign"
   },
   {
-   "title": "Telegram Digester",
-   "line": "No-code bot that summarises my channels into one daily digest",
-   "link": "https://t.me/kidstechdesign/121",
-   "slug": "telegram-digester"
-  },
-  {
-   "title": "BI Agent",
-   "line": "AI agent that answers retail BI-data questions in plain chat",
-   "link": "https://t.me/kidstechdesign/117",
-   "slug": "bi-agent"
+   "title": "Custom Vibrations",
+   "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
+   "link": "https://www.linkedin.com/posts/artem-iskandirov-516735204_figma-mcp-cursor-%D0%B4%D0%BB%D1%8F-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-ios-%D0%B2%D1%80%D0%BE%D0%B4%D0%B5-activity-7398683450456678400-UAOh",
+   "slug": "custom-vibrations"
   },
   {
    "title": "Sound UX",
    "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
-   "link": "https://t.me/kidstechdesign/74",
+   "link": "https://chulakov.ru/event/chulakov-design-meetup-7-kazan",
    "slug": "sound-ux"
-  },
-  {
-   "slug": "figma-linter",
-   "title": "Figma Linter — AI",
-   "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma. Won a developer hackathon with it.",
-   "link": "https://t.me/kidstechdesign"
   }
  ]
 }

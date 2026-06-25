@@ -1388,6 +1388,8 @@
   body.theme-fantasy .hl { color: #6fb2ff; background: rgba(95,160,235,0.15); border-radius: 0; }
   .lightbox-sub .hl { color: #4ea3ff; background: rgba(80,150,235,0.18); }
 
+  /* work row without preview images — text spans full width */
+  .work-row.no-shots .work-main { flex: 1 1 100%; }
   /* gallery — single big tile with auto-rotating slides */
   .work-main { flex: 1 1 0; min-width: 0; }
   .work-shots {
@@ -2352,7 +2354,7 @@
 </div>
 
 <script>
-console.log('%c portfolio v31 local-photo', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
+console.log('%c portfolio v33 noimg-akbars-bars+single-side', 'background:#2a4d3a;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
 
 
 /* ===== CONTENT LOADER ===== */
@@ -2662,52 +2664,42 @@ const FALLBACK_DATA = {
       "title": "Ak Bars",
       "role": "Product Designer",
       "period": "2020 — 2021",
-      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow."
+      "line": "Fintech — the **investments section inside the bank's app**. Designed a scalable UI architecture for adding new products, worked with behavioural analytics. ==Entries to investments +11%== after the home-screen redesign, **checkout drop-off −12%**, faster purchase flow.",
+      "noImages": true
     },
     {
       "id": "bars",
       "title": "BARS Group",
       "role": "Product Designer",
       "period": "2018 — 2020",
-      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals."
+      "line": "MedTech — redesigned a **medical information system deployed across 12 Russian regions, 10,000+ users**. Researched 7+ professional roles (doctors, nurses, admins) and adapted flows per role. ==Routine tasks −10% time==, positive feedback in 3 of 5 pilot regions, onboarding without manuals.",
+      "noImages": true
     }
   ],
   "side": [
     {
-      "slug": "custom-vibrations",
-      "title": "Custom Vibrations",
-      "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
-      "link": "https://t.me/kidstechdesign/113"
-    },
-    {
-      "slug": "ai-audio-guide",
-      "title": "AI Audio Guide",
-      "line": "Replit + Gemini app: photo → a narrated landmark story, with geo and device-orientation matching. Prototyped on-device.",
-      "link": "https://t.me/kidstechdesign"
-    },
-    {
-      "slug": "telegram-digester",
-      "title": "Telegram Digester",
-      "line": "No-code bot that summarises my channels into one daily digest",
-      "link": "https://t.me/kidstechdesign/121"
-    },
-    {
-      "slug": "bi-agent",
-      "title": "BI Agent",
-      "line": "AI agent that answers retail BI-data questions in plain chat",
-      "link": "https://t.me/kidstechdesign/117"
-    },
-    {
-      "slug": "sound-ux",
-      "title": "Sound UX",
-      "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
-      "link": "https://t.me/kidstechdesign/74"
-    },
-    {
       "slug": "figma-linter",
       "title": "Figma Linter — AI",
       "line": "AI plugin that reviews layouts against the design system: reads connected libraries into JSON, binds colors/spacing/fonts to DS tokens, swaps detached components, fixes off-token paddings and rewrites placeholder copy on request. Source of truth = the DS in Figma. Won a developer hackathon with it.",
+      "link": "https://www.linkedin.com/posts/artem-iskandirov-516735204_%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BA%D0%B0-%D0%B2-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D0%BD%D0%B0-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D1%87%D0%B0%D1%81%D1%82%D1%8C-3-%D0%BD%D0%B0-activity-7465029981010763776-mabF"
+    },
+    {
+      "slug": "ai-colors",
+      "title": "AI Color System Cleanup",
+      "line": "Used Cursor (Sonnet 4.5) to consolidate a sprawling legacy + A/B color system into a structured palette — groupings, dedupes, reconciliation across Figma / web / mobile, and a change history. ~3h instead of days.",
       "link": "https://t.me/kidstechdesign"
+    },
+    {
+      "title": "Custom Vibrations",
+      "line": "iOS app for crafting haptic patterns — vibe-coded in Cursor + Xcode",
+      "link": "https://www.linkedin.com/posts/artem-iskandirov-516735204_figma-mcp-cursor-%D0%B4%D0%BB%D1%8F-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-ios-%D0%B2%D1%80%D0%BE%D0%B4%D0%B5-activity-7398683450456678400-UAOh",
+      "slug": "custom-vibrations"
+    },
+    {
+      "title": "Sound UX",
+      "line": "Talk at Chulakov Design Meetup on how sound shapes product feel",
+      "link": "https://chulakov.ru/event/chulakov-design-meetup-7-kazan",
+      "slug": "sound-ux"
     }
   ]
 }
@@ -5505,6 +5497,22 @@ function renderProjects() {
     row.className = 'work-row';
     row.dataset.sound = 'projects';
     const pid = w.id || ('project' + (wi + 1));
+    if (w.noImages) {
+      row.classList.add('no-shots');
+      row.innerHTML = `
+        <div class="work-main">
+          <div class="work-row-head">
+            <span class="work-title">${escHtml(w.title)}</span>
+            <span class="work-period">${escHtml(w.period)}</span>
+          </div>
+          <div class="work-role">${escHtml(w.role)}</div>
+          <div class="work-line">${fmtNarrative(w.line)}</div>
+        </div>
+      `;
+      row.addEventListener('mouseenter', () => sfx.hover('projects'));
+      workList.appendChild(row);
+      return;
+    }
     const tiles = [];
     const wPoses = [];
     const dots = [];
@@ -5569,21 +5577,13 @@ function renderProjects() {
     row.className = 'side-row';
     row.dataset.sound = 'projects';
     const slug = s.slug || ('side' + (si + 1));
-    const slides = [];
-    const fallbacks = [];
-    for (let t = 0; t < 4; t++) {
-      const pose = CAT_POSES[(si + t) % CAT_POSES.length];
-      const pal = CAT_PALETTES[(si * 3 + t + 1) % CAT_PALETTES.length];
-      fallbacks.push(makePixelSVG(pose, pal));
-      const src = 'images/side/' + slug + '-' + (t + 1) + '.png';
-      slides.push('<div class="side-slide' + (t === 0 ? ' active' : '') + '"><img class="shot-img" src="' + src + '" alt="" loading="lazy"></div>');
-    }
+    const pose = CAT_POSES[si % CAT_POSES.length];
+    const pal = CAT_PALETTES[(si * 3 + 1) % CAT_PALETTES.length];
+    const fallback = makePixelSVG(pose, pal);
+    const src = 'images/side/' + slug + '.png';
     row.innerHTML = `
       <button class="side-thumb" aria-label="open preview">
-        ${slides.join('')}
-        <div class="shots-dots">
-          <span class="active"></span><span></span><span></span><span></span>
-        </div>
+        <div class="side-slide active"><img class="shot-img" src="${src}" alt="" loading="lazy"></div>
       </button>
       <div class="side-text">
         <span class="side-title">${escHtml(s.title)}</span>
@@ -5592,32 +5592,15 @@ function renderProjects() {
       <a class="side-arrow" href="${escHtml(s.link||'#')}" target="_blank" rel="noopener" aria-label="open link">↗</a>
     `;
     const thumb = row.querySelector('.side-thumb');
-    const slideEls = Array.from(row.querySelectorAll('.side-slide'));
-    const dotEls = Array.from(row.querySelectorAll('.shots-dots span'));
-    slideEls.forEach((sl, k) => {
-      const im = sl.querySelector('img');
-      if (im) im.addEventListener('error', () => { sl.innerHTML = fallbacks[k]; });
-    });
-    let idx = 0, timer = null;
-    const show = (i) => {
-      idx = (i + slideEls.length) % slideEls.length;
-      slideEls.forEach((sl, k) => sl.classList.toggle('active', k === idx));
-      dotEls.forEach((d, k) => d.classList.toggle('active', k === idx));
-    };
-    const start = () => { stop(); timer = setInterval(() => show(idx + 1), 3700 + si * 250); };
-    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
-    start();
-    thumb.addEventListener('mouseenter', stop);
-    thumb.addEventListener('mouseleave', start);
+    const slideEl = row.querySelector('.side-slide');
+    const im = slideEl.querySelector('img');
+    if (im) im.addEventListener('error', () => { slideEl.innerHTML = fallback; });
     thumb.addEventListener('click', () => {
-      const items = slideEls.map((sl, k) => {
-        const im = sl.querySelector('img');
-        const hasImg = im && im.complete && im.naturalWidth > 0;
-        return hasImg
-          ? '<img src="' + im.src + '" alt="" style="width:100%;height:100%;object-fit:contain;image-rendering:auto">'
-          : fallbacks[k];
-      });
-      openGallery(items, idx, s.title, s.line);
+      const hasImg = im && im.complete && im.naturalWidth > 0;
+      const content = hasImg
+        ? '<img src="' + im.src + '" alt="" style="width:100%;height:100%;object-fit:contain;image-rendering:auto">'
+        : fallback;
+      openGallery([content], 0, s.title, s.line);
       sfx.click('projects');
     });
     row.addEventListener('mouseenter', () => sfx.hover('projects'));
