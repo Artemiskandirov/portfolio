@@ -190,7 +190,6 @@ const sw = { x: reduceMotion ? 0 : 0.3, z: reduceMotion ? 0 : -0.12, vx: 0, vz: 
 const tw = { a: 0, v: reduceMotion ? 0 : 1.2 };                                       // twist around the cord
 const pull = { e: 0, v: 0 };                                                           // cord stretch, px
 let power = theme.get() === 'dark' ? 1 : 0;
-let flicker = 0;     // seconds of flicker left when switching on
 let drag = null;
 
 function applyThemeLook(t) {
@@ -208,7 +207,7 @@ function applyThemeLook(t) {
 applyThemeLook(theme.get());
 theme.onChange((t) => {
   applyThemeLook(t);
-  if (t === 'dark') { flicker = reduceMotion ? 0 : 0.32; if (window.sfx) setTimeout(() => window.sfx.filamentPing(), 60); }
+  if (t === 'dark' && window.sfx) setTimeout(() => window.sfx.filamentPing(), 60);
   wake();
 });
 
@@ -234,11 +233,6 @@ function toCanvas(localY) {
   v3.project(camera);
   return { x: (v3.x + 1) / 2 * W, y: (1 - v3.y) / 2 * H };
 }
-function bulbCenter() {
-  const r = canvas.getBoundingClientRect();
-  const c = toCanvas(GLASS_TOP - 50);
-  return { x: r.left + c.x, y: r.top + c.y };
-}
 function anchor() {
   const r = canvas.getBoundingClientRect();
   return { x: r.left + W / 2, y: r.top };
@@ -246,9 +240,6 @@ function anchor() {
 
 /* ---------- interaction ---------- */
 const MAX_SWING = 0.72; // keeps the bulb inside the canvas
-function toggle() {
-  theme.toggle(bulbCenter());
-}
 function nudge(strength = 0.35) {
   sw.vx += (Math.random() < 0.5 ? -1 : 1) * strength;
   sw.vz += (Math.random() - 0.5) * strength * 0.6;
@@ -292,8 +283,8 @@ function release(e, cancelled) {
   drag = null;
   btn.classList.remove('is-dragging');
   if (cancelled) return;
-  if (tap) { nudge(0.28); toggle(); }
-  else if (pulled) toggle();
+  if (tap) { nudge(0.28); theme.toggle(); }
+  else if (pulled) theme.toggle();
   wake();
 }
 btn.addEventListener('pointerup', (e) => release(e, false));
@@ -324,15 +315,8 @@ function step(dt) {
   tw.a += tw.v * dt;
 
   const target = theme.get() === 'dark' ? 1 : 0;
-  if (target === 1) {
-    power += (1 - power) * (1 - Math.exp(-dt * 14));
-    if (flicker > 0) {
-      flicker -= dt;
-      if (flicker > 0) power = Math.min(power, 0.25 + 0.75 * (Math.sin(flicker * 90) * 0.5 + 0.5));
-    }
-  } else {
-    power += (0 - power) * (1 - Math.exp(-dt * 3.2)); // tungsten cools down slowly
-  }
+  // the filament warms up quickly and cools down slowly, like tungsten
+  power += (target - power) * (1 - Math.exp(-dt * (target === 1 ? 9 : 3.2)));
 }
 
 function place() {
@@ -353,7 +337,7 @@ function place() {
 let raf = 0, last = 0;
 function settled() {
   const target = theme.get() === 'dark' ? 1 : 0;
-  return !drag && flicker <= 0 &&
+  return !drag &&
     Math.abs(sw.x) + Math.abs(sw.vx) + Math.abs(sw.z) + Math.abs(sw.vz) < 2e-4 &&
     Math.abs(pull.e) + Math.abs(pull.v) < 0.02 &&
     Math.abs(tw.a) + Math.abs(tw.v) < 2e-4 &&
