@@ -1,65 +1,45 @@
 # Artem Iskandirov — Portfolio
 
-A single-page portfolio site with a sleeping cat companion, fantasy mode with forest scene, mini-games, and full Web Audio sound design.
+Live: https://artemiskandirov.github.io/portfolio/ (RU: `/ru/`)
+
+A one-page CV site: plain semantic HTML that people, ATS parsers and AI screeners can all read,
+plus two playful extras — a 3D light bulb that switches the theme and a pixel cat in the corner.
 
 ## Files
 
-- **`index.html`** — the entire site. Don't edit unless you want to change layout, animations, or code.
-- **`data.json`** — **all editable text and links live here.** Edit this file to update bio, projects, links, experience, etc.
+- **`index.html`** — English page. All text lives right here, in plain HTML.
+- **`ru/index.html`** — Russian page, same structure.
+- `assets/css/site.css` — layout, colors (light/dark tokens at the top), print styles.
+- `assets/css/cat.css`, `assets/js/cat.js` — the cat: sprite, moods, reactions, feeding.
+- `assets/js/bulb.js` — the 3D bulb (three.js, vendored in `assets/vendor/`).
+- `assets/js/site.js` — theme switching, screenshot lightbox, lazy start of the bulb.
+- `assets/js/sound.js` — procedural Web Audio sounds (no audio files).
+- `assets/fonts/` — Lebowski by Pragmatica (free license, see the `.rtf` next to the fonts; files must stay unmodified).
+- `Artem_Iskandirov_CV_EN.pdf`, `Artem_Iskandirov_CV_RU.pdf` — downloadable CVs.
 
-## How to edit content
+## Editing content
 
-Open `data.json` in any editor. Change any text, URL, or array. Save. Push to your hosting — site updates.
+Edit the text in `index.html` and `ru/index.html` directly — keep both in sync.
 
-### What you can edit
-- **`site`** — page title, brand text, splash CTA, profile photo
-- **`tabs`** — labels for tabs (Overview / Experience / etc.)
-- **`themes.cat`** and **`themes.fantasy`** — bio, meta lines, status text, game titles, win/lose messages for both modes
-- **`overviewLinks`** — the 4 inline links on the Overview screen
-- **`experience`** — work history rows. `co` is the avatar color slot (`uchi` / `miry` / `ailet` / `akbars` / `bars`). `initial` is the letter shown in the avatar.
-- **`projects`** — all 11 project cards. The `**bold**` markers in `problem`, `approach`, `outcome` get the orange accent color.
-- **`education`**, **`skills`**, **`languages`** — education tab content
-- **`social`** — the 5 social rows
-- **`labels`** — small UI labels (Tools, Languages, Open full case, game labels)
-- **`catBubbles`** — what the cat says in different moods (sleeping clicks, when annoyed, etc.)
+- **Experience**: one `<article class="row job">` per job. Dates go in `<time datetime="YYYY-MM">`.
+  Metrics wrapped in `<strong>` get the accent color.
+- **Screenshots**: add a `<button class="shot" data-full="…">` inside `.shots`; images live in `assets/img/work/`.
+- **Structured data**: the `application/ld+json` block in `<head>` mirrors the CV for search engines and AI parsers —
+  update it when a job, title or contact changes.
+- **Cat lines** (what it says) are at the top of `assets/js/cat.js`, in both languages.
 
-### Markup inside text
-You can use HTML tags in any text field:
-- `<strong>important</strong>` — bold/highlight
-- `<br>` — line break
-- `<em>italic</em>` — italic
+## How the extras work
 
-In project narratives (`problem`, `approach`, `outcome`), use `**double asterisks**` for the orange accent — they get converted automatically.
-
-### Project gradients
-The `bg` field on each project is a CSS gradient. Examples:
-- `linear-gradient(135deg, #4a90e2, #7c5fce)` — blue → purple
-- `linear-gradient(135deg, #ffb85c, #ff7a6b)` — orange → coral
-- `linear-gradient(135deg, #2a4d3a, #6ab37a)` — dark green → emerald
-- `linear-gradient(180deg, #color1, #color2)` — vertical instead of diagonal
-
-## Deploy to Vercel
-
-1. Create a Git repo (GitHub recommended) and push these files
-2. Go to [vercel.com](https://vercel.com), sign in with GitHub
-3. Click "Add New" → "Project" → import your repo
-4. Click "Deploy" — no build step needed, no settings to change
-5. You get a `*.vercel.app` URL in ~30 seconds
-
-Every push to `main` auto-deploys. Pull requests get preview URLs.
-
-To use a custom domain: Project Settings → Domains → add your domain, follow DNS instructions.
+- **Bulb**: tap it, or pull it down by the cord, to switch the theme (lamp on = dark theme). Drag it sideways to swing it.
+  Keyboard: Tab to it, press Enter. Without WebGL it falls back to a plain icon button.
+- **Cat**: click to pet (4+ clicks — purring, 7+ — it gets annoyed), double-click to make it jump, hold to annoy,
+  drag to carry it around. Every click on a contact link feeds it a shrimp; it slowly gets hungry again.
+- **Sound** is on by default and plays only on interaction; the speaker button in the header mutes it.
 
 ## Local preview
 
-Open `index.html` directly in a browser. It will load `data.json` via `fetch()` — this works on any local server but **not when opened as `file://`** (browsers block local file fetch). If you want to preview locally without setting up a server:
-- The site has a fallback — if `data.json` fails to load, it uses a built-in copy of the same data, so it still works
-- Or run a quick server: `python3 -m http.server` in this folder, then open `http://localhost:8000`
+```
+python3 -m http.server
+```
 
-## Tech notes
-
-- No build step, no dependencies, no framework
-- Web Audio API for all sound (procedural, no audio files)
-- All graphics inline as SVG or pixel-rendered SVG
-- One image asset: the cat photo (Framer CDN)
-- Works offline once loaded
+then open http://localhost:8000. No build step, no dependencies.
