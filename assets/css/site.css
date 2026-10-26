@@ -170,6 +170,27 @@ ul { padding: 0; list-style: none; }
 .shot:hover { transform: translateY(-3px); border-color: var(--fg-3); }
 .shot img { width: 100%; height: 100%; object-fit: cover; }
 
+/* projects: featured own product */
+.feature { margin-top: 36px; padding: 36px 40px 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); max-width: 832px; }
+.feature-kicker { font-size: 16px; color: var(--fg-3); }
+.feature h3 { margin-top: 6px; font-size: clamp(40px, 5vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -0.01em; }
+.feature h3 a { display: inline-flex; align-items: baseline; gap: 12px; text-decoration: none; }
+.feature h3 .ico { width: 0.42em; height: 0.42em; color: var(--fg-3); transition: transform 0.3s var(--ease-out), color 0.2s; }
+.feature h3 a:hover .ico { transform: translate(3px, -3px); color: var(--accent); }
+.feature-lead { margin-top: 14px; max-width: 640px; font-size: 20px; line-height: 1.4; color: var(--fg-2); }
+.feature .feature-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px; max-width: none; }
+.feature .tags { margin-top: 22px; }
+
+/* compact list of other AI projects */
+.sub-h { margin-top: 64px; font-size: 26px; font-weight: 800; }
+.plist { margin-top: 18px; }
+.plist h4 { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.15; }
+.plist h4 .muted { color: var(--fg-3); font-weight: 600; font-size: 0.8em; }
+.plist p { margin-top: 6px; }
+.plist .tags { margin-top: 8px; }
+.plink { display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; font-size: 16px; font-weight: 600; color: var(--fg-2); text-decoration: none; vertical-align: 2px; }
+.plink:hover { color: var(--accent); }
+
 /* side projects */
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; max-width: 832px; margin-top: 36px; }
 .card { display: block; text-decoration: none; }
@@ -298,6 +319,12 @@ main, .top, .foot { position: relative; z-index: 1; }
   .shots { gap: 6px; }
   .shot { flex: 1 1 0; }
   .cards { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .feature { padding: 24px 20px; border-radius: 16px; }
+  .feature-lead { font-size: 17px; }
+  .feature .feature-stats { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .sub-h { margin-top: 48px; font-size: 22px; }
+  .plist h4 { font-size: 21px; }
+  .plink { display: flex; margin: 4px 0 0; }
   .links { grid-template-columns: minmax(0, 1fr); }
   .links a { font-size: 18px; }
   .bulb { right: 0; width: 260px; height: 220px; margin-right: -70px; }
