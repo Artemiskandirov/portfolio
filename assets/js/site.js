@@ -8,8 +8,7 @@
   const listeners = [];
   const theme = {
     get: () => (root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'),
-    /* origin = {x, y} in viewport px: the circular reveal grows from there */
-    set(next, origin) {
+    set(next) {
       if (next === theme.get()) return;
       const apply = () => {
         root.setAttribute('data-theme', next);
@@ -18,20 +17,11 @@
         listeners.forEach((fn) => fn(next));
       };
       if (window.sfx) window.sfx.switchClick(next === 'dark');
-      if (!document.startViewTransition || reduceMotion || !origin) { apply(); return; }
-      const { x, y } = origin;
-      const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-      root.classList.add('vt-running');
-      const vt = document.startViewTransition(apply);
-      vt.ready.then(() => {
-        root.animate(
-          { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + r + 'px at ' + x + 'px ' + y + 'px)'] },
-          { duration: 700, easing: 'cubic-bezier(.3,.7,.2,1)', pseudoElement: '::view-transition-new(root)' }
-        );
-      }).catch(() => {});
-      vt.finished.finally(() => root.classList.remove('vt-running'));
+      // crossfade via View Transitions (opacity only, see site.css); instant switch elsewhere
+      if (!document.startViewTransition || reduceMotion) { apply(); return; }
+      document.startViewTransition(apply);
     },
-    toggle(origin) { theme.set(theme.get() === 'dark' ? 'light' : 'dark', origin); },
+    toggle() { theme.set(theme.get() === 'dark' ? 'light' : 'dark'); },
     onChange(fn) { listeners.push(fn); }
   };
   window.theme = theme;
@@ -57,8 +47,7 @@
     bulbBtn.addEventListener('click', (e) => {
       // with the 3D bulb running, pointer taps are handled in bulb.js; only keyboard clicks (detail 0) land here
       if (bulb.classList.contains('is-ready') && e.detail !== 0) return;
-      const r = bulbBtn.getBoundingClientRect();
-      theme.toggle({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+      theme.toggle();
       window.dispatchEvent(new CustomEvent('bulb:nudge'));
     });
   }

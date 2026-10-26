@@ -14,7 +14,7 @@
   --fg-2: #525252;
   --fg-3: #8a8a8a;
   --line: #e6e6e6;
-  --accent: #e64a00;
+  --accent: #0057ff;
   --ok: #2f9e5b;
   --shadow-cat: rgba(0, 0, 0, 0.16);
 
@@ -34,7 +34,7 @@
   --fg-2: #a6a6a6;
   --fg-3: #737373;
   --line: #222222;
-  --accent: #ff7f33;
+  --accent: #4d8dff;
   --ok: #4cc27e;
   --shadow-cat: rgba(255, 255, 255, 0.08);
 }
@@ -43,7 +43,7 @@
   :root:not([data-theme]) {
     color-scheme: dark;
     --bg: #000000; --surface: #111111; --fg: #f2f2f2; --fg-2: #a6a6a6; --fg-3: #737373;
-    --line: #222222; --accent: #ff7f33; --ok: #4cc27e; --shadow-cat: rgba(255, 255, 255, 0.08);
+    --line: #222222; --accent: #4d8dff; --ok: #4cc27e; --shadow-cat: rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -63,7 +63,6 @@ body {
   font-feature-settings: 'calt';
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
@@ -159,6 +158,11 @@ ul { padding: 0; list-style: none; }
 .job li::before { content: ''; position: absolute; left: 2px; top: 0.66em; width: 6px; height: 6px; border-radius: 50%; background: var(--fg-3); }
 .job li strong, .metric { color: var(--accent); font-weight: 700; }
 .tags { margin-top: 14px; font-size: 16px; color: var(--fg-3); }
+.app-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-size: 17px; font-weight: 600; }
+.app-links a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.app-links a .ico { color: var(--fg-3); transition: transform 0.3s var(--ease-out), color 0.2s; }
+.app-links a:hover { color: var(--accent); }
+.app-links a:hover .ico { transform: translate(2px, -2px); color: var(--accent); }
 
 .shots { display: flex; gap: 8px; margin-top: 18px; }
 .shot {
@@ -188,8 +192,6 @@ ul { padding: 0; list-style: none; }
 .plist h4 .muted { color: var(--fg-3); font-weight: 600; font-size: 0.8em; }
 .plist p { margin-top: 6px; }
 .plist .tags { margin-top: 8px; }
-.plink { display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; font-size: 16px; font-weight: 600; color: var(--fg-2); text-decoration: none; vertical-align: 2px; }
-.plink:hover { color: var(--accent); }
 
 /* side projects */
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; max-width: 832px; margin-top: 36px; }
@@ -266,7 +268,6 @@ ul { padding: 0; list-style: none; }
 .bulb.is-fallback:not(.is-ready) .bulb-toggle { pointer-events: auto; cursor: pointer; display: grid; place-items: center; }
 .bulb.is-fallback:not(.is-ready) .bulb-toggle svg { display: block; }
 main, .top, .foot { position: relative; z-index: 1; }
-:root.vt-running, :root.vt-running * { transition: none !important; }
 
 /* ============ Lightbox ============ */
 .lightbox { max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; color: #fff; }
@@ -287,8 +288,13 @@ main, .top, .foot { position: relative; z-index: 1; }
 .lb-prev { left: 20px; top: 50%; margin-top: -24px; }
 .lb-next { right: 20px; top: 50%; margin-top: -24px; }
 
-/* theme switch: circular reveal from the bulb (View Transitions API) */
-::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+/* theme switch: a plain crossfade (View Transitions API). Opacity runs on the compositor,
+   so it stays smooth; the bulb and the cat are captured separately and stay live. */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.45s; animation-timing-function: var(--ease); }
+.bulb-layer { view-transition-name: bulb; }
+#cat { view-transition-name: cat; }
+::view-transition-old(bulb), ::view-transition-old(cat) { display: none; }
+::view-transition-new(bulb), ::view-transition-new(cat) { animation: none; }
 
 /* ============ Responsive ============ */
 @media (max-width: 1023px) {
@@ -324,7 +330,6 @@ main, .top, .foot { position: relative; z-index: 1; }
   .feature .feature-stats { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .sub-h { margin-top: 48px; font-size: 22px; }
   .plist h4 { font-size: 21px; }
-  .plink { display: flex; margin: 4px 0 0; }
   .links { grid-template-columns: minmax(0, 1fr); }
   .links a { font-size: 18px; }
   .bulb { right: 0; width: 260px; height: 220px; margin-right: -70px; }
