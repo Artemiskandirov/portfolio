@@ -26,6 +26,13 @@
   image-rendering: pixelated;
   pointer-events: none;
 }
+/* 3D voxel cat (cat3d.js); the sprite above is the fallback */
+.cat-canvas { display: none; width: 200px; height: 200px; pointer-events: none; }
+.cat.is-3d .cat-canvas { display: block; }
+.cat.is-3d .cat-sprite, .cat.is-3d .cat-shadow { display: none; }
+.cat.is-3d .cat-hit, .cat.is-3d .cat-hit:hover, .cat.is-3d .cat-hit.dragging { filter: none; animation: none !important; }
+.cat.is-3d { right: 4px; bottom: 0; }
+.cat.is-3d .cat-mood { left: 4px; bottom: 22px; }
 .cat-shadow {
   position: absolute;
   left: 18%;
@@ -223,7 +230,10 @@
 .cat-badge img { width: 13px; height: 13px; display: block; }
 
 @media (max-width: 699px) {
+  .cat-canvas { width: 136px; height: 136px; }
   .cat { right: 8px; bottom: 6px; }
+  .cat.is-3d { right: 0; bottom: 0; }
+  .cat.is-3d .cat-mood { left: -18px; bottom: 12px; }
   .cat-mood { left: -40px; bottom: 6px; padding: 2px 7px 2px 2px; }
   .cat-ring { width: 22px; height: 22px; }
   .cat-count { font-size: 12px; }
