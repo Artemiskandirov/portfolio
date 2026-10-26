@@ -56,6 +56,8 @@
   function startBulb() {
     if (!bulb) return;
     import(new URL('bulb.js', SCRIPT.src).href).catch(() => bulb.classList.add('is-fallback'));
+    // voxel cat shares three.js with the bulb; without WebGL the pixel sprite simply stays
+    if (window.__cat) import(new URL('cat3d.js', SCRIPT.src).href).catch(() => {});
     setTimeout(() => { if (!bulb.classList.contains('is-ready')) bulb.classList.add('is-fallback'); }, 6000);
   }
   if (document.readyState === 'complete') startBulb();

@@ -91,7 +91,7 @@
     full: { fps: 6, loop: false, then: 'idle' }, trick: { fps: 9, loop: false, then: 'happy' },
     walk: { fps: 9, loop: true }, dizzy: { fps: 9, loop: false, then: 'idle' }
   };
-  const SPR = { state: 'sleep', frame: 0, t0: 0, done: false, w: 0, h: 0 };
+  const SPR = { state: 'sleep', frame: 0, t0: 0, since: performance.now(), done: false, w: 0, h: 0 };
 
   function sizeSprite() {
     SPR.h = window.innerWidth < 700 ? 96 : 150;
@@ -110,7 +110,7 @@
     if (!(name in ROW)) return;
     const cfg = CFG[name] || {};
     if (!force && name === SPR.state && cfg.loop) return;
-    SPR.state = name; SPR.frame = 0; SPR.done = false; SPR.t0 = performance.now();
+    SPR.state = name; SPR.frame = 0; SPR.done = false; SPR.t0 = SPR.since = performance.now();
     drawFrame();
   }
   function tick(now) {
@@ -508,6 +508,18 @@
     if (st.dragging) e.preventDefault();
   }, { passive: false });
   document.addEventListener('touchend', release);
+
+  /* the 3D voxel view (cat3d.js) reads the state machine through this hook;
+     the pixel sprite stays as the fallback when WebGL is not available */
+  window.__cat = {
+    bed, hit,
+    state: () => SPR.state,
+    since: () => SPR.since,
+    duration: (name) => { const c = CFG[name]; return c && !c.loop ? FRAMES / c.fps : 0; },
+    dragging: () => st.dragging,
+    setState,
+    use3D() { bed.classList.add('is-3d'); }
+  };
 
   /* ---------- boot ---------- */
   sizeSprite();
