@@ -242,7 +242,7 @@ const LIE = { bodyY: 0, pitch: 0, fl: -1.5, fr: -1.5, bl: -1.5, br: -1.5 };
 const STAND = { bodyY: 3, pitch: 0, fl: 0, fr: 0, bl: 0, br: 0 };
 const GRAB = { bodyY: 1.5, pitch: -1.3, fl: 1.3, fr: 1.3, bl: 1.3, br: 1.3 };
 const DEFAULTS = {
-  lift: 0, spin: 0, sx: 1, sy: 1, hy: 0, hp: 0, hr: 0, look: 0, ears: 0, eye: 1, mouth: 0,
+  lift: 0, spin: 0, roll: 0, sx: 1, sy: 1, hy: 0, hp: 0, hr: 0, look: 0, ears: 0, eye: 1, mouth: 0,
   tailUp: 0.4, wag: 0.25, wagSpeed: 1.6, curl: 0, frZ: 0, breathe: 1, belly: 1, shiftX: 0
 };
 const ease = (k) => k * k * (3 - 2 * k);
@@ -263,11 +263,21 @@ const POSES = {
   stretch: (t, k) => ({ ...STAND, bodyY: 2.1, pitch: 0.35, fl: -1.55, fr: -1.55, bl: -0.35, br: -0.35, mouth: Math.sin(Math.PI * k), eye: 0, hp: -0.2, tailUp: 1.1 }),
   yawn: (t, k) => ({ ...SIT, hp: -0.35 * Math.sin(Math.PI * k), mouth: Math.sin(Math.PI * k), eye: 0 }),
   wave: (t) => ({ ...SIT, look: 1, eye: 0.3, fr: -2.6, frZ: 0.5 * Math.sin(t * 14) }),
-  love: (t) => ({ ...SIT, eye: 0, hr: 0.25 * Math.sin(t * 6), tailUp: 1, wag: 0.4, wagSpeed: 5 }),
+  // eyes shut, purring and kneading: front paws push in turns
+  love: (t) => ({ ...SIT, eye: 0, hr: 0.25 * Math.sin(t * 6), tailUp: 1, wag: 0.4, wagSpeed: 5,
+    fl: 0.5 - 0.6 * Math.max(0, Math.sin(t * 7)), fr: 0.5 - 0.6 * Math.max(0, -Math.sin(t * 7)) }),
   full: () => ({ ...LIE, eye: 0.2, belly: 1.12, breathe: 1.3 }),
   trick: (t, k) => ({ ...STAND, lift: 3.6 * Math.sin(Math.PI * k), spin: Math.PI * 2 * ease(k), tailUp: 1, eye: 0.3 }),
   walk: (t) => { const s = Math.sin(t * 9) * 0.45; return { ...STAND, fl: s, br: s, fr: -s, bl: -s, lift: 0.15 * Math.abs(Math.sin(t * 9)), look: 0 }; },
-  dizzy: (t) => ({ ...SIT, hr: 0.3 * Math.sin(t * 9), hy: 0.3 * Math.cos(t * 9), eye: 0.5, ears: 0.4 })
+  dizzy: (t) => ({ ...SIT, hr: 0.3 * Math.sin(t * 9), hy: 0.3 * Math.cos(t * 9), eye: 0.5, ears: 0.4 }),
+  // gallop for zoomies: front and back pairs swing in turns, ears flat
+  run: (t) => { const s = Math.sin(t * 17) * 0.75; return { ...STAND, bodyY: 2.6, pitch: 0.12 * s, fl: s, fr: s * 0.8, bl: -s, br: -s * 0.8, lift: 0.5 * Math.abs(s), ears: 0.45, eye: 1.2, tailUp: 0.9, wag: 0.2, wagSpeed: 10 }; },
+  // hunting crouch: chest low, hind legs loaded, the rear wiggles before the pounce
+  crouch: (t) => ({ ...STAND, bodyY: 1.1, pitch: 0.4, fl: -0.55, fr: -0.55, bl: 0.75, br: 0.75, roll: 0.07 * Math.sin(t * 20), eye: 1.3, ears: -0.35, tailUp: 0.05, wag: 0.55, wagSpeed: 10 }),
+  // chasing its own tail: two fast turns, head craned back
+  chase: (t, k) => { const s = Math.sin(t * 16) * 0.4; return { ...STAND, bodyY: 2.4, pitch: 0.15, spin: Math.PI * 4 * ease(k), lift: 0.4 * Math.abs(Math.sin(t * 12)), hy: 0.55, eye: 1.25, tailUp: 0.5, wag: 0.8, wagSpeed: 14, fl: s, fr: -s, bl: -s, br: s }; },
+  // flopped on its side with the belly to the viewer, paws pedalling in the air, head tilted up
+  belly: (t) => ({ ...LIE, roll: 1.5, bodyY: 3.1, shiftX: 2.5, hr: -1.2, hp: -0.2, eye: 0.15, mouth: 0.15, fl: -0.5 + 0.4 * Math.sin(t * 5), fr: -0.5 - 0.4 * Math.sin(t * 5), bl: 0.2 + 0.35 * Math.sin(t * 4 + 1), br: 0.2 - 0.35 * Math.sin(t * 4 + 1), tailUp: 0, wag: 0.5, wagSpeed: 3 })
 };
 const cur = { ...DEFAULTS, ...SIT };
 
@@ -304,7 +314,9 @@ function frame() {
     tgt.hp += THREE.MathUtils.clamp(dy / 500, -0.35, 0.4) * tgt.look;
   }
 
-  // one-shot states animate directly; everything else blends with a soft spring
+  // one-shot states animate directly; everything else blends with a soft spring.
+  // Full turns left over from a spin are dropped so the cat never unwinds backwards.
+  if (!dur) cur.spin = Math.atan2(Math.sin(cur.spin), Math.cos(cur.spin));
   const rate = dur ? 18 : 7;
   const a = 1 - Math.exp(-dt * rate);
   for (const p in tgt) cur[p] += (tgt[p] - cur[p]) * (p === 'spin' || p === 'lift' ? (dur ? 1 : a) : a);
@@ -333,6 +345,7 @@ function frame() {
   model.scale.set(cur.sx, cur.sy, cur.sx);
   bodyG.position.y = cur.bodyY;
   bodyG.rotation.x = cur.pitch;
+  bodyG.rotation.z = cur.roll;
   const breath = 1 + (reduceMotion ? 0.01 : 0.025) * cur.breathe * Math.sin(time * (cur.breathe > 1.5 ? 1.6 : 2.4));
   bodyMesh.scale.set(cur.belly, breath, 1);
 

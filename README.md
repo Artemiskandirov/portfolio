@@ -40,7 +40,10 @@ Edit the text in `index.html` and `ru/index.html` directly — keep both in sync
   drag to carry it around. It only eats fish, and a fish comes from writing to Artem: a click on an email, Telegram or LinkedIn
   link (they carry a small "fish +1" badge) throws a fish from the link into its mouth. One fish lasts about a minute.
   Toys next to the fish counter: a ball (the cat chases and bats it; grab and throw it yourself) and a laser pointer
-  (the cat stalks the red dot along the bottom of the screen and pounces; Esc turns it off). Now and then it takes a walk on its own.
+  (the cat stalks the red dot along the bottom of the screen and pounces; Esc turns it off).
+  On its own it takes walks, gets the zoomies (sometimes right after a fish), chases its tail and hunts the cursor
+  when it rests low on the screen nearby. Double-click: a jump, a spin or a tail chase. Keep petting: it kneads or flops
+  over for belly rubs. It also startles when the lamp is switched, squeals at a fast scroll and waves when you reach Contact.
 - **Sound** is on by default and plays only on interaction; the speaker button in the header mutes it.
 
 ## Local preview
