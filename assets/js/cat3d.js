@@ -167,6 +167,22 @@ const tail = [];
   }
 }
 
+// fish for the "eat" state, built from the same pixel map as the 2D fish icon in cat.js;
+// fins and tail are one voxel thin, the eye shows on both sides
+const fishG = group(0, -0.9, 6.3, headG);
+{
+  const { rows, pal } = api.fish;
+  const v = voxels();
+  const hex = (ch) => parseInt(pal[ch].slice(1), 16);
+  rows.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (!pal[ch]) return;
+    const thin = ch === 'd';
+    for (let z = thin ? 0 : -1; z <= (thin ? 0 : 1); z++) v.set(x, rows.length - 1 - y, z, ch === 'k' && z === 0 ? hex('b') : hex(ch));
+  }));
+  fishG.add(new THREE.Mesh(v.geometry([-rows[0].length / 2, -rows.length / 2, -0.5]), voxelMat));
+  fishG.visible = false;
+}
+
 // soft contact shadow
 const shadowTex = (() => {
   const c = document.createElement('canvas');
@@ -250,7 +266,7 @@ const POSES = {
   love: (t) => ({ ...SIT, eye: 0, hr: 0.25 * Math.sin(t * 6), tailUp: 1, wag: 0.4, wagSpeed: 5 }),
   full: () => ({ ...LIE, eye: 0.2, belly: 1.12, breathe: 1.3 }),
   trick: (t, k) => ({ ...STAND, lift: 3.6 * Math.sin(Math.PI * k), spin: Math.PI * 2 * ease(k), tailUp: 1, eye: 0.3 }),
-  walk: (t) => { const s = Math.sin(t * 9) * 0.45; return { ...STAND, fl: s, br: s, fr: -s, bl: -s, lift: 0.15 * Math.abs(Math.sin(t * 9)), look: 0.5 }; },
+  walk: (t) => { const s = Math.sin(t * 9) * 0.45; return { ...STAND, fl: s, br: s, fr: -s, bl: -s, lift: 0.15 * Math.abs(Math.sin(t * 9)), look: 0 }; },
   dizzy: (t) => ({ ...SIT, hr: 0.3 * Math.sin(t * 9), hy: 0.3 * Math.cos(t * 9), eye: 0.5, ears: 0.4 })
 };
 const cur = { ...DEFAULTS, ...SIT };
@@ -261,6 +277,9 @@ document.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e
 let blinkIn = 2 + Math.random() * 3, blinkLeft = 0;
 let twitchIn = 3 + Math.random() * 4, twitchLeft = 0, twitchEar = earL;
 const swing = { a: 0, v: 0, lastX: null };
+// body yaw: three-quarter view at home, turned left or right while walking (the face stays partly visible)
+const YAW = { '-1': -0.85, 0: 0.12, 1: 1.4 };
+let yaw = YAW[0];
 
 /* ---------- loop ---------- */
 const clock = new THREE.Clock();
@@ -307,9 +326,10 @@ function frame() {
   swing.a += swing.v * dt;
 
   /* apply */
+  yaw += (YAW[api.facing()] - yaw) * (1 - Math.exp(-dt * 9));
   swingG.rotation.z = swing.a;
   model.position.set(cur.shiftX, -13 + cur.lift, 0);
-  model.rotation.y = 0.12 + cur.spin;
+  model.rotation.y = yaw + cur.spin;
   model.scale.set(cur.sx, cur.sy, cur.sx);
   bodyG.position.y = cur.bodyY;
   bodyG.rotation.x = cur.pitch;
@@ -326,6 +346,12 @@ function frame() {
     e.scale.set(Math.max(1, open), open, 1);
     e.userData.shine.visible = open > 0.5;
     e.rotation.z = name === 'dizzy' ? time * 8 : 0;
+  }
+  // the fish shrinks bite by bite
+  fishG.visible = name === 'eat';
+  if (fishG.visible) {
+    fishG.scale.setScalar(0.42 * Math.max(0.3, 1 - since / 1.8));
+    fishG.rotation.z = 0.18 * Math.sin(time * 16);
   }
   mouth.scale.set(1, 1 + cur.mouth * 2.6, 1);
   mouth.position.y = -0.35 - cur.mouth * 0.45;
