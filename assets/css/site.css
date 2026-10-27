@@ -204,6 +204,16 @@ ul { padding: 0; list-style: none; }
 .card:hover h3 .ico { transform: translate(2px, -2px); color: var(--accent); }
 .card p { margin-top: 6px; font-size: 17px; line-height: 1.4; color: var(--fg-2); }
 
+/* KODO: wide card with two real photos — in the car and on the breadboard */
+.card-wide { grid-column: 1 / -1; }
+.kodo-shots { display: grid; grid-template-columns: 1.252fr 0.839fr; gap: 12px; }
+.kodo-shots .card-img:first-child { aspect-ratio: 960 / 767; }
+.kodo-shots .card-img:last-child { aspect-ratio: 640 / 763; }
+.card-wide .feature-kicker { margin-top: 18px; font-size: 16px; color: var(--fg-3); }
+.card-wide .tags { margin-top: 10px; font-size: 16px; color: var(--fg-3); }
+.card-wide h3 { margin-top: 4px; }
+.card-wide p:not(.feature-kicker):not(.tags) { max-width: 640px; }
+
 /* skills / education */
 .skills .row { padding: 18px 0; }
 .skills dt.when { padding-top: 2px; }

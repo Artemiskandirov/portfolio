@@ -1,4 +1,4 @@
-/* Pixel cat in the bottom-right corner (see assets/js/cat.js) */
+/* Corner cat (assets/js/cat.js, 3D view in cat3d.js), its toys and the fish badges on contact links */
 
 .cat {
   position: fixed;
@@ -33,6 +33,7 @@
 .cat.is-3d .cat-hit, .cat.is-3d .cat-hit:hover, .cat.is-3d .cat-hit.dragging { filter: none; animation: none !important; }
 .cat.is-3d { right: 4px; bottom: 0; }
 .cat.is-3d .cat-mood { left: 4px; bottom: 22px; }
+.cat.face-right .cat-sprite { transform: scaleX(-1); }
 .cat-shadow {
   position: absolute;
   left: 18%;
@@ -69,7 +70,7 @@
 @keyframes catPurr { 50% { transform: scale(1.015, 1.03); } }
 @keyframes catStartled { 20% { transform: translateY(-12px) scale(1.05, 0.92); } 50% { transform: translateY(-6px) scale(0.96, 1.08); } 80% { transform: translateY(-2px); } }
 
-/* mood ring + shrimp counter */
+/* mood ring + fish counter */
 .cat-mood {
   position: absolute;
   left: -54px;
@@ -95,7 +96,7 @@
 .cat-ring .ring-bg { fill: none; stroke: var(--line); stroke-width: 7; }
 .cat-ring .ring-fg { fill: none; stroke-width: 7; stroke-linecap: round; transition: stroke-dashoffset 0.6s var(--ease), stroke 0.6s; }
 .cat-count { display: flex; align-items: center; gap: 2px; font-size: 13px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
-.cat-count img { width: 15px; height: 15px; display: block; }
+.cat-count svg { width: 19px; height: 11px; display: block; }
 
 /* overfed: spinning stars */
 .cat-stars { position: absolute; top: 0; left: 50%; margin-left: -34px; width: 68px; height: 68px; pointer-events: none; z-index: 8; opacity: 0; transition: opacity 0.3s; }
@@ -139,8 +140,6 @@
   50% { opacity: 1; transform: translateY(-2px); }
   100% { opacity: 0; transform: translateY(-14px) scale(0.9); }
 }
-.cat-shrimp-pop { font-size: 22px; transform: translateY(6px) scale(0.6); transition: opacity 0.3s, transform 1.1s var(--ease-out); }
-.cat-shrimp-pop.show { opacity: 1; transform: translateY(-34px) scale(1.1) rotate(-12deg); }
 .cat-bubble {
   padding: 5px 11px;
   border: 1px solid var(--line);
@@ -153,6 +152,7 @@
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+.cat-bubble svg { display: inline-block; width: 1.5em; height: 0.875em; vertical-align: -0.08em; }
 .cat-bubble.show { animation: catBubble 2.4s var(--ease-out) forwards; }
 @keyframes catBubble {
   0% { opacity: 0; transform: translateY(4px) scale(0.7); }
@@ -227,17 +227,76 @@
 }
 .cat-invite-btn:hover { transform: translateY(-2px); }
 .cat-badge { display: inline-flex; align-items: center; gap: 2px; padding: 1px 6px 1px 3px; border-radius: 999px; background: rgba(255, 255, 255, 0.18); font-size: 12px; }
-.cat-badge img { width: 13px; height: 13px; display: block; }
+.cat-badge svg { width: 17px; height: 10px; display: block; }
+
+/* fish thrown from a contact link into the cat's mouth */
+.cat-fish-fly { position: fixed; left: 0; top: 0; z-index: 46; width: 32px; height: 19px; pointer-events: none; }
+.cat-fish-fly svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25)); }
+
+/* "+1 fish" badges on the links that feed the cat, and the legend */
+.fish-tag {
+  display: inline-flex; align-items: center; gap: 3px; flex: none;
+  padding: 3px 7px 3px 5px; border-radius: 999px;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  color: var(--accent);
+  font-size: 12px; font-weight: 700; line-height: 1; letter-spacing: 0; vertical-align: middle;
+}
+.fish-tag::after { content: '+1'; }
+.fish-tag svg { width: 17px; height: 10px; display: block; }
+.btn-primary .fish-tag { color: inherit; background: color-mix(in srgb, currentColor 18%, transparent); }
+.links a .fish-tag { margin-right: auto; color: var(--accent); font-size: 12px; font-weight: 700; }
+.contact-mail .fish-tag { margin-left: 0.25em; padding: 5px 10px 5px 7px; font-size: 16px; vertical-align: 0.3em; }
+.contact-mail .fish-tag svg { width: 24px; height: 14px; }
+.fish-note { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 15px; color: var(--fg-3); }
+.fish-note svg { width: 22px; height: 13px; flex: none; }
+
+/* toys: ball and laser pointer */
+.cat-toys { position: absolute; left: -124px; bottom: 20px; z-index: 3; display: flex; gap: 6px; }
+.cat.is-3d .cat-toys { left: -66px; bottom: 24px; }
+.cat-toy {
+  display: grid; place-items: center; width: 30px; height: 30px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
+  cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.35s var(--ease-bounce), border-color 0.2s;
+}
+.cat-toy:hover { transform: translateY(-2px) scale(1.06); }
+.cat-toy[aria-pressed='true'] { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent); }
+.cat-ball-ico, .cat-ball i {
+  display: block; border-radius: 50%;
+  background: linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%), #ff4d5e;
+}
+.cat-ball-ico { width: 15px; height: 15px; box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.25); }
+.cat-laser-ico { width: 9px; height: 9px; border-radius: 50%; background: #ff2b2b; box-shadow: 0 0 6px 2px rgba(255, 40, 40, 0.55); }
+.cat-ball { position: fixed; left: 0; top: 0; z-index: 31; cursor: grab; touch-action: none; transform-origin: 50% 100%; transition: opacity 0.4s; }
+.cat-ball i { position: absolute; inset: 0; }
+/* fixed light and shading on top of the rolling stripe make it read as a sphere */
+.cat-ball::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.8) 0 10%, transparent 30%), radial-gradient(circle, transparent 52%, rgba(0, 0, 0, 0.3) 100%);
+}
+.cat-ball.held { cursor: grabbing; }
+.cat-ball-shadow { position: fixed; left: 0; top: 0; z-index: 29; height: 7px; border-radius: 50%; background: var(--shadow-cat); filter: blur(2px); pointer-events: none; transition: opacity 0.4s; }
+.cat-ball.out, .cat-ball-shadow.out { opacity: 0 !important; }
+.cat-laser {
+  position: fixed; left: 0; top: 0; z-index: 60; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 16%, #ff2020 42%, rgba(255, 0, 0, 0) 72%);
+  box-shadow: 0 0 14px 5px rgba(255, 30, 30, 0.45);
+  pointer-events: none;
+}
+html.cat-laser-on, html.cat-laser-on * { cursor: none !important; }
 
 @media (max-width: 699px) {
   .cat-canvas { width: 136px; height: 136px; }
   .cat { right: 8px; bottom: 6px; }
   .cat.is-3d { right: 0; bottom: 0; }
   .cat.is-3d .cat-mood { left: -18px; bottom: 12px; }
+  .cat.is-3d .cat-toys { left: -80px; bottom: 12px; }
+  .cat-toys { left: -104px; bottom: 6px; }
+  .cat-toy { width: 28px; height: 28px; }
   .cat-mood { left: -40px; bottom: 6px; padding: 2px 7px 2px 2px; }
   .cat-ring { width: 22px; height: 22px; }
   .cat-count { font-size: 12px; }
 }
 @media print {
-  .cat, .cat-invite, .cat-paw { display: none !important; }
+  .cat, .cat-invite, .cat-paw, .cat-ball, .cat-ball-shadow, .cat-laser, .cat-fish-fly, .fish-tag, .fish-note { display: none !important; }
 }
