@@ -1,7 +1,8 @@
 /* Cat in the bottom-right corner: state machine, mood, sounds and DOM effects.
    cat3d.js draws it in 3D voxels; the pixel sprite sheet is the fallback.
-   Reactions to hover, clicks, double-clicks, long press and drag; toys (a ball and a laser pointer)
-   and short walks along the bottom of the screen.
+   Reactions to hover, clicks, double-clicks, long press and drag; toys (a ball and a laser pointer),
+   walks and zoomies along the bottom of the screen, cursor hunting, tail chasing, belly-up rolls,
+   and reactions to the lamp and to scrolling.
    Feeding: only a click on a "write to me" link (email, Telegram, LinkedIn) throws the cat a fish.
    Purely decorative — the page works the same without it. */
 (function () {
@@ -26,7 +27,15 @@
         praise: ['hire Artem!', 'he ships outcomes', 'systems thinker 🧠', 'ARPU +5%, btw', 'design systems pro',
           '7+ yrs in product', 'won an AI hackathon', 'loves hard products', 'write to Artem! 🐾', 'great with details'],
         ball: ['ball!', 'mine!', 'again!', 'boop', 'gotcha'],
-        laser: ['red dot!!', 'I see it', "I'll get it", 'where did it go?', 'mrrrp!']
+        laser: ['red dot!!', 'I see it', "I'll get it", 'where did it go?', 'mrrrp!'],
+        zoomies: ['zoom!', 'nyoom', "can't stop!", 'wheee'],
+        phew: ['phew', "ok, I'm done", '*pant pant*'],
+        hunt: ['gotcha!', 'mine!', 'caught your cursor'],
+        tail: ['my tail!', 'almost...', 'who is that?!'],
+        belly: ['belly rubs?', "it's a trap", 'mrrr'],
+        lamp: ['whoa', 'lights!', 'who did that?', 'mrrp?'],
+        scroll: ['wheee', 'slow down!', 'so fast'],
+        contact: ['write to Artem — I get a fish {fish}', 'one message = one fish {fish}']
       },
       scream: ['AAAA', 'MROWW!', 'put me DOWN', 'EEEEK', 'nooo', 'HELP', 'wheeee', 'aaaH', 'unhand me', 'MEOWW'],
       invite: [
@@ -54,7 +63,15 @@
         praise: ['наймите Артёма!', 'делает результат', 'системно мыслит 🧠', 'ARPU +5%, кстати', 'спец по дизайн-системам',
           '7+ лет в продукте', 'взял 1-е на AI-хакатоне', 'любит сложные продукты', 'напишите Артёму! 🐾', 'внимателен к деталям'],
         ball: ['мячик!', 'моё!', 'ещё!', 'буп', 'поймал'],
-        laser: ['красная точка!!', 'вижу', 'щас поймаю', 'куда делась?', 'мрррп!']
+        laser: ['красная точка!!', 'вижу', 'щас поймаю', 'куда делась?', 'мрррп!'],
+        zoomies: ['вжух!', 'нууум', 'не могу остановиться!', 'вииии'],
+        phew: ['фух', 'всё, устал', '*пыхтит*'],
+        hunt: ['поймал!', 'моё!', 'попался, курсор'],
+        tail: ['мой хвост!', 'почти...', 'кто это?!'],
+        belly: ['почешешь пузико?', 'это ловушка', 'мррр'],
+        lamp: ['ого', 'свет!', 'кто это сделал?', 'мрр?'],
+        scroll: ['вииии', 'помедленнее!', 'как быстро'],
+        contact: ['напиши Артёму — мне рыбка {fish}', 'одно сообщение = одна рыбка {fish}']
       },
       scream: ['АААА', 'МРЯУ!', 'отпусти', 'ИИИИ', 'неет', 'ПОМОГИТЕ', 'вииии', 'аааА', 'поставь меня', 'МЯЯЯУ'],
       invite: [
@@ -111,7 +128,9 @@
   const ROW = {
     sleep: 0, idle: 1, lie: 2, groom: 3, happy: 4, hungry: 5, eat: 6, sad: 7, startled: 8,
     annoyed: 9, jump: 10, grabbed: 11, play: 12, stretch: 13, yawn: 14, wave: 15, love: 16,
-    full: 17, trick: 18, walk: 19, dizzy: 20
+    full: 17, trick: 18, walk: 19, dizzy: 20,
+    // 3D-only states borrow the closest sprite row for the pixel fallback
+    run: 19, crouch: 12, chase: 18, belly: 16
   };
   const CFG = {
     sleep: { fps: 4, loop: true }, idle: { fps: 6, loop: true }, lie: { fps: 4, loop: true }, groom: { fps: 7, loop: true },
@@ -121,7 +140,9 @@
     stretch: { fps: 8, loop: false, then: 'idle' }, yawn: { fps: 7, loop: false, then: 'idle' },
     wave: { fps: 8, loop: false, then: 'idle' }, love: { fps: 8, loop: false, then: 'happy' },
     full: { fps: 6, loop: false, then: 'idle' }, trick: { fps: 9, loop: false, then: 'happy' },
-    walk: { fps: 9, loop: true }, dizzy: { fps: 9, loop: false, then: 'idle' }
+    walk: { fps: 9, loop: true }, dizzy: { fps: 9, loop: false, then: 'idle' },
+    run: { fps: 14, loop: true }, crouch: { fps: 10, loop: true }, chase: { fps: 3.4, loop: false, then: 'dizzy' },
+    belly: { fps: 6, loop: true }
   };
   const SPR = { state: 'sleep', frame: 0, t0: 0, since: performance.now(), done: false, w: 0, h: 0 };
 
@@ -277,7 +298,14 @@
     if (mood.fish > FISH_TOO_MANY) { overfed(); return; }
     setState('eat', true);
     clearTimeout(feedTimer);
-    feedTimer = setTimeout(() => { setState('full', true); setTimeout(() => setState('happy', true), 1100); }, 1500);
+    feedTimer = setTimeout(() => {
+      setState('full', true);
+      setTimeout(() => {
+        setState('happy', true);
+        // sometimes a fish gives it a sugar rush
+        if (!reduceMotion && Math.random() < 0.35) setTimeout(() => { if (!act && !ball && !laser.on) zoomies(); }, 1200);
+      }, 1100);
+    }, 1500);
     say('praise');
   }
   function overfed() {
@@ -386,7 +414,12 @@
   function idleLoop() {
     setTimeout(idleLoop, 6000 + Math.random() * 8000);
     if (document.visibilityState !== 'visible' || st.dragging || st.pressed || act || ball || laser.on) return;
-    if (!reduceMotion && Math.random() < 0.12) { stroll(); return; }
+    if (!reduceMotion) {
+      const r0 = Math.random();
+      if (r0 < 0.1) { stroll(); return; }
+      if (r0 < 0.15) { zoomies(); return; }
+      if (r0 < 0.19 && pos.x === null) { setState('chase', true); say('tail'); return; }
+    }
     ambientState();
     const r = Math.random();
     if (r < 0.3) spawnDream();
@@ -450,14 +483,17 @@
       st.chainPokes = 0;
       hit.classList.remove('purring');
       if (st.mood === 'purring') { setMood('sleeping'); play('purrLoopStop'); }
+      if (SPR.state === 'belly') setState('happy', true);
     }, 1800);
     const now = Date.now();
     const isDouble = now - st.lastClickAt < 350;
     st.lastClickAt = now;
     if (isDouble) {
-      wiggle('jump', 700);
-      setState('jump', true); haptic('heavy');
-      setMood('playful'); say('playful'); play('trill');
+      haptic('heavy'); setMood('playful'); play('trill');
+      const r = Math.random();
+      if (r < 0.3 && !act) { setState('chase', true); say('tail'); }
+      else if (r < 0.55) { setState('trick', true); say('playful'); }
+      else { wiggle('jump', 700); setState('jump', true); say('playful'); }
       spawnHeart(); setTimeout(spawnHeart, 200);
       return;
     }
@@ -470,7 +506,9 @@
     if (st.chainPokes >= 4) {
       if (!hit.classList.contains('purring')) {
         hit.classList.add('purring');
-        setMood('purring'); say('purring'); setState('love', true);
+        // either kneads in place or rolls over for belly rubs
+        const belly = Math.random() < 0.5;
+        setMood('purring'); say(belly ? 'belly' : 'purring'); setState(belly ? 'belly' : 'love', true);
         play('purrLoopStart');
       }
       spawnHeart();
@@ -625,8 +663,8 @@
     pos.face = f;
     bed.classList.toggle('face-right', f > 0);
   }
-  // steps the cat towards a point (its centre); returns true once it is there
-  function walkTowards(cx, speed, dt, quiet) {
+  // steps the cat towards a point (its centre) in the given gait (null keeps the current state); true once it is there
+  function walkTowards(cx, speed, dt, gait = 'walk') {
     if (pos.x === null) {
       pos.x = bed.getBoundingClientRect().left;
       bed.style.right = 'auto';
@@ -638,7 +676,7 @@
     pos.x += Math.sign(d) * Math.min(Math.abs(d), speed * dt);
     bed.style.left = pos.x + 'px';
     setFace(Math.sign(d));
-    if (!quiet && SPR.state !== 'walk') setState('walk');
+    if (gait && SPR.state !== gait) setState(gait);
     return false;
   }
   function goHome() {
@@ -668,6 +706,95 @@
       }
     };
     startWorld();
+  }
+
+  // zoomies: a burst of running back and forth, then a flop in the corner
+  function zoomies() {
+    const w = catW(), home = homeLeft();
+    if (home < w * 1.4) return;
+    const spots = [16 + w / 2 + Math.random() * home * 0.3, home * (0.55 + Math.random() * 0.3), 16 + w / 2 + Math.random() * home * 0.4, home + w / 2];
+    let i = 0, rest = 0;
+    say('zoomies');
+    if (st.engaged) play('trill');
+    act = {
+      tick(dt) {
+        if (rest > 0) { rest -= dt; if (rest <= 0) { act = null; setState('happy', true); } return; }
+        if (!walkTowards(spots[i], 560, dt, 'run')) return;
+        if (++i < spots.length) return;
+        bed.style.left = bed.style.right = '';
+        pos.x = null; setFace(0);
+        setState('lie', true); say('phew');
+        rest = 2.5;
+      }
+    };
+    startWorld();
+  }
+
+  // hunting the cursor: when it rests low on the screen near the cat, the cat crouches, wiggles and pounces
+  const finePointer = matchMedia('(pointer: fine)').matches;
+  const cursor = { x: -1, y: -1, t: 0 };
+  document.addEventListener('mousemove', (e) => { cursor.x = e.clientX; cursor.y = e.clientY; cursor.t = performance.now(); }, { passive: true });
+  let lastHunt = -Infinity;
+  setInterval(() => {
+    if (!finePointer || reduceMotion || document.hidden || act || ball || laser.on || catBusy() || st.pressed) return;
+    const now = performance.now(), dx = cursor.x - centerX();
+    if (now - cursor.t < 700 || now - cursor.t > 5000 || now - lastHunt < 25000) return;
+    if (cursor.y < window.innerHeight - 200 || Math.abs(dx) < catW() * 0.4 || Math.abs(dx) > 480 || Math.random() < 0.5) return;
+    lastHunt = now;
+    hunt(cursor.x);
+  }, 500);
+  function hunt(tx) {
+    let crouch = 1, lunge = 0, after = 0;
+    setFace(Math.sign(tx - centerX()));
+    setState('crouch', true);
+    act = {
+      tick(dt) {
+        if (crouch > 0) {
+          crouch -= dt;
+          if (crouch <= 0) { setState('jump', true); if (st.engaged) play('chirp'); lunge = 0.4; }
+          return;
+        }
+        if (lunge > 0) {
+          lunge -= dt;
+          walkTowards(tx, 700, dt, null);
+          if (lunge <= 0) { setFace(0); say('hunt'); after = 1.6; }
+          return;
+        }
+        after -= dt;
+        if (after <= 0) goHome();
+      }
+    };
+    startWorld();
+  }
+
+  // the lamp: switching the theme startles it
+  if (window.theme) window.theme.onChange(() => {
+    if (act || st.dragging) return;
+    setTimeout(() => { setState('startled', true); spawnMark(); say('lamp'); if (st.engaged) play('meow4'); }, 250);
+  });
+  // scrolling: a fast fling makes it squeal; reaching Contact makes it wave at the visitor
+  let scrollY0 = window.scrollY, scrollT0 = performance.now(), lastWhee = 0;
+  window.addEventListener('scroll', () => {
+    const now = performance.now();
+    if (now - scrollT0 < 250) return;
+    const v = Math.abs(window.scrollY - scrollY0) / (now - scrollT0) * 1000;
+    scrollY0 = window.scrollY; scrollT0 = now;
+    if (v > 4000 && now - lastWhee > 8000 && !act && !st.dragging) { lastWhee = now; setState('startled', true); say('scroll'); }
+  }, { passive: true });
+  const contactEl = document.getElementById('contact');
+  if (contactEl && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((en) => en.isIntersecting)) return;
+      io.disconnect();
+      // wave once the cat is free (it may be mid-walk or carried around)
+      let tries = 0;
+      const wave = () => {
+        if ((act || st.dragging) && ++tries < 6) { setTimeout(wave, 1500); return; }
+        if (!act && !st.dragging) { setState('wave', true); bubble(pick(TEXT.bubbles.contact), 3600); }
+      };
+      setTimeout(wave, 600);
+    }, { threshold: 0.4 });
+    io.observe(contactEl);
   }
 
   let worldOn = false, worldT = 0;
@@ -864,7 +991,7 @@
       tick(dt) {
         if (!laser.on) return;
         const w = catW(), dx = laser.x - centerX(), now = performance.now();
-        if (laser.lunge > 0) { laser.lunge -= dt; walkTowards(laser.x, 520, dt, true); return; }
+        if (laser.lunge > 0) { laser.lunge -= dt; walkTowards(laser.x, 520, dt, null); return; }
         // dot up on the page: sit and stare at it (the head follows the pointer)
         if (laser.y < window.innerHeight - 230) {
           if (SPR.state === 'walk') setState('idle', true);
